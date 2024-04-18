@@ -2750,6 +2750,11 @@
 								"key": "Accept",
 								"value": "application/vnd.api.v10+json",
 								"type": "text"
+							},
+							{
+								"key": "x-workspace-id",
+								"value": "69846068-eace-44a2-859b-d7fdf1b963c6",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -2761,7 +2766,25 @@
 								}
 							}
 						},
-						"url": "https://api.getpostman.com/webhooks"
+						"url": {
+							"raw": "https://api.getpostman.com/webhooks?",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getpostman",
+								"com"
+							],
+							"path": [
+								"webhooks"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"type": "text"
+								}
+							]
+						}
 					},
 					"response": []
 				}
