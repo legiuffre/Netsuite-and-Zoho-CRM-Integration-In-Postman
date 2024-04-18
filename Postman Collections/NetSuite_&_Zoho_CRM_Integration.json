@@ -2767,7 +2767,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://api.getpostman.com/webhooks?",
+							"raw": "https://api.getpostman.com/webhooks?workspace=69846068-eace-44a2-859b-d7fdf1b963c6",
 							"protocol": "https",
 							"host": [
 								"api",
@@ -2779,9 +2779,8 @@
 							],
 							"query": [
 								{
-									"key": "",
-									"value": null,
-									"type": "text"
+									"key": "workspace",
+									"value": "69846068-eace-44a2-859b-d7fdf1b963c6"
 								}
 							]
 						}
