@@ -1,0 +1,2796 @@
+{
+	"info": {
+		"_postman_id": "02408f09-9f03-47cd-8a4e-c89a5b188043",
+		"name": "Production",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Zoho CRM",
+			"item": [
+				{
+					"name": "POST Test - Zoho Resp Manipulation",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "bbf4a1e2-2e05-433f-af7a-8fd4d6f442dc",
+								"exec": [
+									"const cyptojs = require('crypto-js');\r",
+									"\r",
+									"const oauth_consumer_key = pm.environment.get('token_client_id');  \r",
+									"//const oauth_consumer_key = '5d2544ee52821edfe7f6ab9cfe8bee2f2cb37473b7e22c620cc4557949a82323Z'; // for testing: completely invalid\r",
+									"//const oauth_consumer_key = '4941f26f1007d63cb25aab078cdf0bf0efbf63d6b8f1e6af5e5195e0011f5ec1'; // for testing: exists, but not the intended app\r",
+									"\r",
+									"const oauth_consumer_secret = pm.environment.get('token_client_secret');\r",
+									"//const oauth_consumer_secret = '366f1c95144cf272df508907cd8b7b73303eda0ddddb06c72d2eda419d127471Z';\r",
+									"\r",
+									"const oauth_token_id = pm.environment.get('TOKEN_ID');\r",
+									"//const oauth_token_id = 'edb13811086083953e977af4ee2f81ed8e5740c2eb9f2d48d5eca5dd8d4876ffZ'; // for testing: invalid, does not represent valid user\r",
+									"//const oauth_token_id = 'b7af443691d2cab8edf854fc41ca75c1675a1fb736b9ba88c487218b5cf627b7'; // for testing: different user\r",
+									"\r",
+									"const oauth_token_secret = pm.environment.get('TOKEN_SECRET');\r",
+									"//const oauth_token_secret = '5e0aa25d969ab27820e421c97a988b09dbd9c4a776d4d94534d2129ff64de489';\r",
+									"\r",
+									"const oauth_account_id = pm.environment.get('ACCOUNT_ID'); \r",
+									"//const oauth_account_id = 'tstdrv2245019';   // Account IDs that have alpha characters are always in all uppercase, so this is invalid\r",
+									"//const oauth_account_id = 'TSTDRV2262076'; // If valid account id, but someone else's, so you will get an error \r",
+									"\r",
+									"const oauth_signing_key = `${encodeURIComponent(oauth_consumer_secret)}&${encodeURIComponent(oauth_token_secret)}`;\r",
+									"\r",
+									"const random_source = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';\r",
+									"let oauth_nonce = '';\r",
+									"for (var i = 0; i < 32; i++) {\r",
+									"    oauth_nonce += random_source.charAt(Math.floor(Math.random() * random_source.length));\r",
+									"}\r",
+									"const oauth_nonce_array = cyptojs.enc.Utf8.parse(oauth_nonce);\r",
+									"const oauth_nonce_final = encodeURIComponent(cyptojs.enc.Base64.stringify(oauth_nonce_array));\r",
+									"\r",
+									"const oauth_parameter_string_object = {};\r",
+									"\r",
+									"oauth_parameter_string_object.oauth_consumer_key = oauth_consumer_key;\r",
+									"oauth_parameter_string_object.oauth_token = oauth_token_id;\r",
+									"\r",
+									"//oauth_parameter_string_object.oauth_nonce = 'abcd1234'; // for testing: at same timestamp and nonce, you get NonceUsed error in Login Audit Trail\r",
+									"oauth_parameter_string_object.oauth_nonce = oauth_nonce_final;\r",
+									"\r",
+									"oauth_parameter_string_object.oauth_timestamp = Math.round((new Date()).getTime() / 1000);\r",
+									"//oauth_parameter_string_object.oauth_timestamp = 1632587834 // for testing: at same timestamp and nonce, you get NonceUsed error in Login Audit Trail\r",
+									"//oauth_parameter_string_object.oauth_timestamp = 163258783499 // for testing: with invalid timestamp, you get InvalidTimestamp error in Login Audit Trail\r",
+									"\r",
+									"oauth_parameter_string_object.oauth_signature_method = 'HMAC-SHA256';\r",
+									"\r",
+									"oauth_parameter_string_object.oauth_version = '1.0';\r",
+									"//oauth_parameter_string_object.oauth_version = '1.1'; // for testing: you get VersionRejected error in Login Audit Trail\r",
+									"\r",
+									"const oauth_authorization_header_object = {};\r",
+									"for (var key in oauth_parameter_string_object) {\r",
+									"    oauth_authorization_header_object[key] = oauth_parameter_string_object[key];\r",
+									"}\r",
+									"\r",
+									"oauth_authorization_header_object.realm = oauth_account_id;\r",
+									"\r",
+									"const url_query_string = pm.request.url.getQueryString({  // Postman method to get query string\r",
+									"    ignoreDisabled: true\r",
+									"});\r",
+									"console.log(\"url_query_string: \" + url_query_string);\r",
+									"let url_query_string_array = [];\r",
+									"\r",
+									"if (url_query_string != \"\"){\r",
+									"    url_query_string_array = url_query_string.split('&');\r",
+									"}\r",
+									"\r",
+									"let url_query_string_object = {};\r",
+									"if (url_query_string !== \"\") {\r",
+									"    url_query_string_object = JSON.parse(`{\"${url_query_string.replace(/&/g, '\",\"').replace(/=/g,'\":\"')}\"}`, function(key, value) {return key === \"\" ? value : encodeURIComponent(value)});\r",
+									"}\r",
+									"\r",
+									"// parse request.params\r",
+									"for (var key in url_query_string_object) {;\r",
+									"    oauth_parameter_string_object[key] = url_query_string_object[key];\r",
+									"}\r",
+									"\r",
+									"// sort object by key\r",
+									"const oauth_parameter_string_object_ordered = {};\r",
+									"Object.keys(oauth_parameter_string_object).sort().forEach(function(key) {\r",
+									"    oauth_parameter_string_object_ordered[key] = oauth_parameter_string_object[key];\r",
+									"});\r",
+									"\r",
+									"// convert object into array\r",
+									"const oauth_parameter_string_array = [];\r",
+									"for (var key in oauth_parameter_string_object_ordered) {\r",
+									"    oauth_parameter_string_array.push(`${key}=${oauth_parameter_string_object_ordered[key]}`);\r",
+									"}\r",
+									"\r",
+									"// generate parameter string\r",
+									"const oauth_parameter_string = oauth_parameter_string_array.join('&');\r",
+									"\r",
+									"let base_host = pm.request.url.getOAuth1BaseUrl();\r",
+									"let regexp = /{{(.*?)}}/g;\r",
+									"while (result = regexp.exec(base_host)) {\r",
+									"    let value = pm.environment.get(result[1]);\r",
+									"    base_host = base_host.replace(new RegExp(`{{${result[1]}}}`, 'g'), value);\r",
+									"}\r",
+									"\r",
+									"const oauth_base_string = `${pm.request.method}&${encodeURIComponent(base_host)}&${encodeURIComponent(oauth_parameter_string)}`;\r",
+									"let oauth_signature = cyptojs.HmacSHA256(oauth_base_string, oauth_signing_key).toString(cyptojs.enc.Base64);\r",
+									"oauth_authorization_header_object.oauth_signature = encodeURIComponent(oauth_signature);\r",
+									"\r",
+									"// convert object into array (for Authorization header string)\r",
+									"const oauth_authorization_header_array = [];\r",
+									"for (var key in oauth_authorization_header_object) {\r",
+									"    oauth_authorization_header_array.push(`${key}=\"${oauth_authorization_header_object[key]}\"`);\r",
+									"}\r",
+									"\r",
+									"const oauth_authorization_header = oauth_authorization_header_array.join(', ');\r",
+									"pm.environment.set(\"netsuite_auth_token\", 'OAuth ' + oauth_authorization_header);\r",
+									"// generate Authorization header, FINALLY!\r",
+									"pm.request.headers.add({\r",
+									"    key: 'Authorization',\r",
+									"    value: 'OAuth ' + oauth_authorization_header\r",
+									"});\r",
+									"console.log(pm.request);\r",
+									"console.log(\"here: \" + url_query_string_array.length);\r",
+									"// Escape URI parameters using encodeURIComponent => RFC3986\r",
+									"// This is encoding the query string params in the request.\r",
+									"if (url_query_string_array.length !== 0) {\r",
+									"    let request_parameter_array = [];\r",
+									"    for (var key in url_query_string_object) {\r",
+									"        request_parameter_array.push(key + '=' + url_query_string_object[key]);\r",
+									"    }\r",
+									"    const request_parameter_string = request_parameter_array.join('&');\r",
+									"    console.log(\"pm.request.url.getOAuth1BaseUrl: \" + pm.request.url.getOAuth1BaseUrl());\r",
+									"    pm.request.url = pm.request.url.getOAuth1BaseUrl() + \"?\" + request_parameter_string;\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3989d79-99a3-4cf1-b0f3-8af0a81f4d25",
+								"exec": [
+									"let invResp = pm.sendRequest({",
+									"    url: 'https://www.zohoapis.com/crm/v2/Invoices/search?criteria=(Status:equals:Approved)',",
+									"    method: 'GET',",
+									"    header: {",
+									"        'Content-Type': 'application/json',",
+									"        'Authorization': pm.request.headers.get('Authorization')",
+									"    }",
+									"}, function(err, response) {",
+									"    if (err) {",
+									"        console.error(err);",
+									"        return;",
+									"    }",
+									"",
+									"    const responseBody = response.json();",
+									"    let groupedInvoices = {};",
+									"    let currentGroup = [];",
+									"    let mergedInvoices = [];",
+									"",
+									"    console.log(responseBody.data);",
+									"    if(responseBody && responseBody.data) {",
+									"        responseBody.data.forEach(function(invoice, index) {                 ",
+									"            if(currentGroup.length > 0 && currentGroup[0].id !== invoice.id) {",
+									"                groupedInvoices[currentGroup[0].id] = currentGroup;",
+									"                currentGroup = [];",
+									"            }",
+									"",
+									"            console.log(\"Invoice \" + (index + 1) + \":\");",
+									"            console.log(\"Invoice: \" + invoice.id);",
+									"",
+									"            const prodDetails = invoice.Product_Details;",
+									"            const billingCode = invoice.Billing_Code;",
+									"            const billingState = invoice.Billing_State;",
+									"            const billingCity = invoice.Billing_City;",
+									"            const billingStreet = invoice.Billing_Street;",
+									"            const class_v = invoice.class;",
+									"            const inv_acct_id = invoice.Account_Name.id;",
+									"            pm.variables.set(\"inv_acct_id\",invoice.Account_Name.id);",
+									"            let so_id = \"\";",
+									"            let memo = \"\";",
+									"",
+									"            if(invoice.Sales_Order !== null) {",
+									"                so_id = invoice.Sales_Order.id;",
+									"                memo = invoice.Sales_Order.name;",
+									"            }",
+									"",
+									"            const inv_id = invoice.id;",
+									"                        ",
+									"            if(prodDetails) {",
+									"                prodDetails.forEach(function(product, i) {       ",
+									"                    let newProdDetailData = {",
+									"                        \"item\": { ",
+									"                            id: product.product.id,",
+									"                            item_display: product.product.name,",
+									"                            rate: product.list_price,",
+									"                            quantity: product.quantity",
+									"                        }",
+									"                    };",
+									"                    currentGroup.push(newProdDetailData);",
+									"                });",
+									"",
+									"                let newInvoiceData = {",
+									"                    entity: { id: inv_id },",
+									"                    otherrefnum: so_id,",
+									"                    memo: memo,",
+									"                    billaddr1: billingStreet,",
+									"                    billcity: billingCity,",
+									"                    billstate: billingState,",
+									"                    billzip: billingCode,",
+									"                    custbody_9997_is_for_ep_eft: true,",
+									"                    subsidiary: \"2\",",
+									"                    class: class_v,",
+									"                    item: {",
+									"                        items: currentGroup",
+									"                    }",
+									"                };",
+									"                mergedInvoices.push(newInvoiceData);",
+									"                if(currentGroup.length > 0) {",
+									"                    groupedInvoices[currentGroup[0].id] = currentGroup;",
+									"                }",
+									"            }",
+									"        });",
+									"    } else {",
+									"        console.log(\"No invoices found in the response.\")",
+									"    }",
+									"",
+									"    console.log(\"Merged Invoices: \" + JSON.stringify(mergedInvoices));",
+									"    // Set the modified response back to the current request",
+									"    pm.response.json(responseBody);",
+									"",
+									"    // Making a call to fetch trucks data based on inv_Acct_id",
+									"    let invAcctID = pm.variables.get(\"inv_acct_id\");",
+									"    let acctResp = pm.sendRequest({",
+									"        url: `https://www.zohoapis.com/crm/v2/Accounts/${invAcctID}`,",
+									"        method: 'GET',",
+									"        header: {",
+									"            'Content-Type': 'application/json',",
+									"            'Authorization': pm.request.headers.get('Authorization')",
+									"        }",
+									"    }, function(err, response) {",
+									"        if (err) {",
+									"            console.error(err);",
+									"            return;",
+									"        }",
+									"        const acctResponse = JSON.stringify(response.json());",
+									"        console.log(\"Account Response: \" + acctResponse);",
+									"        // let acctID = acctResponse.data.id;",
+									"",
+									"        if(invAcctID)",
+									"        {",
+									"            console.log(\"invAcctID: \" + invAcctID);",
+									"            // Send the modified request",
+									"            pm.sendRequest({",
+									"                url: 'https://7936739-sb1.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=960&deploy=1',",
+									"                method: 'POST',",
+									"                header: {",
+									"                    'Content-Type': 'application/json',",
+									"                    'Authorization':pm.environment.get(\"netsuite_auth_token\")",
+									"                },               ",
+									"                body: {",
+									"                    mode: 'raw', // Set mode to raw",
+									"                    raw: JSON.stringify({ // Set format to JSON",
+									"                        \"searchID\": 'customsearch1129',",
+									"                        \"searchColumn\": 'custentity1',",
+									"                        \"searchValue\": invAcctID ",
+									"                    })",
+									"                }",
+									"            }, function (err, res) {",
+									"                if (err) {",
+									"                    console.error(err);",
+									"                    return;",
+									"                }",
+									"                console.log(res.json());",
+									"            });",
+									"        }",
+									"    });",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "5865fc9c-1f6f-48e0-bea7-9fecfd17f9bb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "https://postman-echo.com/post"
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Access Token and Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "287232bf-b283-43e1-9b66-87053e2c3f5d",
+								"exec": [
+									"if (responseCode.code === 200)\r",
+									"{\r",
+									"    var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"    pm.environment.set(\"prod-refresh-token\", jsonData.refresh_token);\r",
+									"    pm.environment.set(\"prod-access-token\", jsonData.access_token);\r",
+									"    pm.environment.set(\"prod-expiry-time\", Date.now() + parseInt(jsonData.expires_in));\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "95918ad6-09d3-4ffa-82c6-787fc7976135",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://accounts.zoho.com/oauth/v2/token?access_type=offline&prompt=consent&client_id={{prod_zoho_client_id}}&client_secret={{prod_zoho_client_secret}}&redirect_uri=https://www.getpostman.com/oauth2/callback&code=1000.e564fb925c4756c039d965c56094b48e.37abcc199c5cd756709963b8ab3275d8&grant_type=authorization_code",
+							"protocol": "https",
+							"host": [
+								"accounts",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"v2",
+								"token"
+							],
+							"query": [
+								{
+									"key": "access_type",
+									"value": "offline"
+								},
+								{
+									"key": "prompt",
+									"value": "consent"
+								},
+								{
+									"key": "client_id",
+									"value": "{{prod_zoho_client_id}}"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{prod_zoho_client_secret}}"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://www.getpostman.com/oauth2/callback"
+								},
+								{
+									"key": "code",
+									"value": "1000.e564fb925c4756c039d965c56094b48e.37abcc199c5cd756709963b8ab3275d8"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Access Tokens",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "44ccb017-7ffd-47f8-be5b-2a59751cf7fd",
+								"exec": [
+									"pm.variables.set(\"client_id\", pm.environment.get(\"prod_zoho_client_id\"));\r",
+									"pm.variables.set(\"client_secret\", pm.environment.get(\"prod_zoho_client_secret\"));\r",
+									"pm.variables.set(\"refresh_token\", pm.environment.get(\"prod-refresh-token\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "817a62f9-33d0-47e8-9bb8-a3e59e1e81eb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "client_id",
+									"value": "{{prod_zoho_client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{prod_zoho_client_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{prod-refresh-token}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								}
+							]
+						},
+						"url": "https://accounts.zoho.com/oauth/v2/token"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Account by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5580f58b-f321-4967-9e2f-f0e0fbc525df",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"// Fixed TypeError by checking if jsonData.data is not null and has length\r",
+									"if(jsonData.data && jsonData.data.length > 0) {\r",
+									"    // pm.environment.set(\"z_Accounts_acct_id\", jsonData.data[0][\"id\"]);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "f7eb935f-8e45-45e0-b115-8ee9966263dd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": "https://www.zohoapis.com/crm/v2/Accounts/{{z_Accounts_acct_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Truck by VIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
+								"exec": [
+									"// // Test if the response status code is 200 OK\r",
+									"// pm.test(\"Status code is 200\", function () {\r",
+									"//     pm.response.to.have.status(200);\r",
+									"// });\r",
+									"\r",
+									"// // Test if the response body is a valid JSON\r",
+									"// pm.test(\"Response body is JSON\", function () {\r",
+									"//     pm.response.to.be.json;\r",
+									"// });\r",
+									"\r",
+									"// // Test if the response contains a specific key\r",
+									"// pm.test(\"Response contains key 'results'\", function () {\r",
+									"//     pm.expect(pm.response.json()).to.have.property('data');\r",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "f52c89cb-ee3e-4150-af96-d4c540d4f1eb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v6/Trucks/search?criteria=((Name:equals:{{z_VIN}})and(Last_Update_Escrow:less_than:{{today}}))",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v6",
+								"Trucks",
+								"search"
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "((Name:equals:{{z_VIN}})and(Last_Update_Escrow:less_than:{{today}}))"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Truck by VIN w/o Date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
+								"exec": [
+									"// // Test if the response status code is 200 OK\r",
+									"// pm.test(\"Status code is 200\", function () {\r",
+									"//     pm.response.to.have.status(200);\r",
+									"// });\r",
+									"\r",
+									"// // Test if the response body is a valid JSON\r",
+									"// pm.test(\"Response body is JSON\", function () {\r",
+									"//     pm.response.to.be.json;\r",
+									"// });\r",
+									"\r",
+									"// // Test if the response contains a specific key\r",
+									"// pm.test(\"Response contains key 'results'\", function () {\r",
+									"//     pm.expect(pm.response.json()).to.have.property('data');\r",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "ae8c2e0f-65bd-46f7-94a7-72350b73980d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v6/Trucks/search?criteria=((Name:equals:{{z_VIN}}))",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v6",
+								"Trucks",
+								"search"
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "((Name:equals:{{z_VIN}}))"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Truck by VIN - TEST",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9856aa7f-8bb8-4343-9f5c-adeda5edb6ff",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "477b1dff-6add-47d3-bd1d-82d8751e71ba",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 1000.f32b05bebd10012bd80f08e0eece5f5f.534bb60facd884df9a38f91ebe66fbc4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v6/Trucks/search?criteria=Name:equals:3AKJHHDR8KSKC1618 and Last_Update_Escrow:less_than:{{today}}",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v6",
+								"Trucks",
+								"search"
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "Name:equals:3AKJHHDR8KSKC1618 and Last_Update_Escrow:less_than:{{today}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Sales Order by ID",
+					"id": "0e27cb28-707b-43c7-aedf-d1594944a03c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": "https://www.zohoapis.com/crm/v2/Sales_Orders/{{z_so_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "GET SCO/PhysDam Invoices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a2f0fa3-1077-4607-8ada-09a036a6a5dc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"// Fixed TypeError by checking if jsonData.data is not null and has length",
+									"if(jsonData.data && jsonData.data.length > 0) {",
+									"    // pm.environment.set(\"inv_acct_id\", jsonData.data[0][\"Account_Name\"][\"id\"]);",
+									"    // pm.collectionVariables.set(\"inv_acct_id_c\", jsonData.data[0][\"Account_Name\"][\"id\"]);",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "c45f007e-9b98-4c10-a1fa-089bf2439ea0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v2/Invoices/search?criteria=((Status:equals:PhysDam/NTL Insurance Billing) or (Status:equals:SCO Billing) or (Status:equals:SCO Escrow Billing))",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v2",
+								"Invoices",
+								"search"
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "((Status:equals:PhysDam/NTL Insurance Billing) or (Status:equals:SCO Billing) or (Status:equals:SCO Escrow Billing))"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Approved Invoices",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a2f0fa3-1077-4607-8ada-09a036a6a5dc",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "a9dac620-a8b1-4f68-93fe-c80ec70492c3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v2/Invoices/search?criteria=(Status:equals:Approved)",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v2",
+								"Invoices",
+								"search"
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "(Status:equals:Approved)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Ready for NetLessor Lease",
+					"id": "a62ce557-4bde-47d1-955a-35500bb22321",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v2/Sales_Orders/search?criteria=(Status:equals:Ready For NetLessor Lease)",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v2",
+								"Sales_Orders",
+								"search"
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "(Status:equals:Ready For NetLessor Lease)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Product by ID",
+					"id": "fa8ddd69-eb6f-4e09-8e50-ca01194499a1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": "https://www.zohoapis.com/crm/v2/Products/{{z_prod_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Truck Monthly Loan Financials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c32652e6-c885-4802-92c5-aef76c853a7c",
+								"exec": [
+									"// Test if the response status code is 200 OK\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response body is a valid JSON\r",
+									"pm.test(\"Response body is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test if the response contains a specific key\r",
+									"pm.test(\"Response contains key 'data'\", function () {\r",
+									"    pm.expect(pm.response.json()).to.have.property('data');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0aebd6c5-124d-4af6-838b-71b41ad3f817",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "4a363c93-80f2-4bed-8a51-f2b924aab8ee",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"REL_Monthly_Pmt\": {{z_rel_monthly_pmt}},\r\n            \"Remaining_REL_Obligation\": {{z_remaining_rel_obligation}},\r\n            \"Acquisition_Cost\": {{z_acquisition_cost}}\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/Trucks/{{z_truck_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Invoice to Processed",
+					"id": "ce123462-6873-47c2-b2bb-bb7e56984542",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_Token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Status\": \"Processed\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/Invoices/{{inv_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Sales Order to Invoiced",
+					"id": "33c7b14f-848f-4fce-8e92-d4c6afd1354b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Status\": \"Invoiced\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/Sales_Orders/{{inv_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Truck Financials",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "94fc0d51-6a1b-4c72-ab97-de94ae5e9aed",
+								"exec": [
+									"// Parse the date string from the variables\r",
+									"const dateFunded = new Date(pm.variables.get(\"dateFunded\"));\r",
+									"const leaseExpiration = new Date(pm.variables.get(\"leaseExpiration\"));\r",
+									"\r",
+									"// Format the dates as YYYY-MM-DD\r",
+									"const dfFormatted = dateFunded.toISOString().split('T')[0];\r",
+									"const leFormatted = leaseExpiration.toISOString().split('T')[0];\r",
+									"\r",
+									"// Set the formatted date back to the variables\r",
+									"pm.variables.set(\"dateFunded\", dfFormatted);\r",
+									"pm.variables.set(\"leaseExpiration\", leFormatted);\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const wklyPmtValue = pm.variables.get(\"wklyPmt\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!wklyPmtValue) {\r",
+									"    pm.variables.set(\"wklyPmt\",0);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "426d77c3-60f1-4731-9125-bf62649dbb50",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": [\r\n    {\r\n    \"Financed_Amount\": \"{{salesPrice}}\",\r\n    \"Terms_Weeks\": \"{{leaseTerm}}\",\r\n    \"Residual\" : \"{{residual}}\",\r\n    \"Down_Payment\" : \"{{downPayment}}\",\r\n    \"Weekly_Payment\" : \"{{wklyPmt}}\",\r\n    \"Weekly_Escrow_Payment\" : \"{{wklyEscrow}}\",\r\n    \"Interest_Rate\" : \"{{interestRate}}\",\r\n    \"Lease_Expiration\" : \"{{leaseExpiration}}\",\r\n    \"Date_Funded\" : \"{{dateFunded}}\",\r\n    \"PhysDam_Payment\" : \"{{physDamWklyPmt}}\",\r\n    \"Property_Tax\" : \"{{propertyTax}}\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/Trucks/{{z_truck_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Lease Period Info on Truck",
+					"id": "ae677564-70f5-4041-bd84-a884cfabd644",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Lease_Period\": \"{{z_lease_period}}\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/Trucks/{{z_truck_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Sales Order to Processed",
+					"id": "b07468ad-8580-4edc-9ca0-c965ac38ba27",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Status\": \"Lease Processed\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/Sales_Orders/{{so_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Escrow on Truck",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d46f1496-a97b-4db1-8f99-d2301fefd000",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "88bb5a0d-f91e-4dfb-b9e0-575341f17775",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Escrow\": {{SUM(amount)}},\r\n            \"Last_Update_Escrow\": {{today}}\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/Trucks/{{z_truck_id}}"
+					},
+					"response": []
+				}
+			],
+			"id": "2a0dda68-06d3-46b0-b0de-87a7dec7fc54",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bb7d153d-2a03-4b5e-951b-86a586b85a31",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c445ee7-a0f8-4028-8da6-bc443d28167b",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "NetSuite",
+			"item": [
+				{
+					"name": "GET Custom Search - Test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fc1c4e1a-66db-41ac-874c-b5cbfa2d5c4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "490fa7a1-8167-4a63-9ddc-628727212148",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "fed12e65-a226-4f56-b1c9-015f7b551391",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch1037\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Custom Search - Prod",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fc1c4e1a-66db-41ac-874c-b5cbfa2d5c4b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "490fa7a1-8167-4a63-9ddc-628727212148",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "cdb3deb8-14b5-4c67-9b66-416fdc1cf374",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch1038\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Monthly Loan Financials by VIN",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2c2febd9-355e-4efe-8e8c-d21b63f37e33",
+								"exec": [
+									"if(pm.environment.get(\"enableProd\") === \"true\") {\r",
+									"    pm.environment.set(\"monthly_custom_search\",\"customsearch1037\");\r",
+									"} else {\r",
+									"    pm.environment.set(\"monthly_custom_search\",\"customsearch1037\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "df4bc6b9-049a-43e2-816d-4f5c1ba87faa",
+								"exec": [
+									"// Test if the response status code is 200 OK\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response body is a valid JSON\r",
+									"pm.test(\"Response body is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test if the response contains a specific key\r",
+									"pm.test(\"Response contains key 'results'\", function () {\r",
+									"    pm.expect(pm.response.json()).to.have.property('results');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "f5a93a57-bbbb-4f5e-87e6-7c5ea00f74e7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"{{monthly_custom_search}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Customer Lease Info",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f7b64d6-b70f-4abf-9de2-e09035a0e48e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f39c421-c71a-4306-b3e1-85a4e4679ebf",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "a3e765ac-c81d-464f-b6ac-11523c0fc88d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch1038\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Customer Remaining Balance Info",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f7b64d6-b70f-4abf-9de2-e09035a0e48e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f39c421-c71a-4306-b3e1-85a4e4679ebf",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "e659e2f6-5884-40c0-b17e-ed96383ad1ac",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch1048\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Truck Escrow",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f978d71-0e2a-4f7a-b9c8-f4372057e9c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "f114e630-f9e5-4ced-acf4-76ea123aa112",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch985\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://7936739.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=1001&deploy=1",
+							"protocol": "https",
+							"host": [
+								"7936739",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "1001"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Property Tax Escrow",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f978d71-0e2a-4f7a-b9c8-f4372057e9c9",
+								"exec": [
+									"//Property Tax Escrow - By VIN (CRM Input)\r",
+									"if(pm.environment.get(\"enableProd\") === \"true\") {\r",
+									"    pm.environment.set(\"prop_escrow_custom_search\",\"customsearch1095\");\r",
+									"} else {\r",
+									"    pm.environment.set(\"prop_escrow_custom_search\",\"customsearch1095\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "5da938c7-6911-48aa-8c39-0942551eccdf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"{{prop_escrow_custom_search}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Customer Info by Zoho ID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "95e37ebd-166d-4022-b831-6093d3471343",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "27f7e559-26eb-4ea9-8c6f-6234aa0a40eb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch1176\",\r\n    \"searchColumn\": \"externalid\",\r\n    \"searchValue\":\"{{searchValue}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_col_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_col_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Customer Info by Zoho ID -TEST",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "95e37ebd-166d-4022-b831-6093d3471343",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "60f09eed-e330-4aeb-8545-d3f34d64488e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"searchID\": \"customsearch1176\",\"searchColumn\": \"externalid\",\"searchValue\":\"4816208000000578745\",\"searchOperator\":\"search.Operator.IS\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_col_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_col_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET NetLessor Lease by SO Num",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "95e37ebd-166d-4022-b831-6093d3471343",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "5255ac13-16f0-4930-bfeb-2802bb6c4def",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch1178\",\r\n    \"searchColumn\": \"externalid\",\r\n    \"searchValue\":\"{{searchValue}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_col_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_col_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET NetLessor Lease by SO Num Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "95e37ebd-166d-4022-b831-6093d3471343",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "1640444f-8f15-4278-a64f-14a6282ea5f6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch1178\",\r\n    \"searchColumn\": \"externalid\",\r\n    \"searchValue\":\"4816208000101347068\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_col_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_col_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Sales Order for SCO/PhysDam",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5c61c790-4b0b-4edb-828e-65f89b43d664",
+								"exec": [
+									"// Get the value of the variable\r",
+									"const billAddr1Value = pm.variables.get(\"billing_addr1\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billAddr1Value) {\r",
+									"    pm.variables.set(\"billing_addr1\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const billCity = pm.variables.get(\"billing_city\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billCity) {\r",
+									"    pm.variables.set(\"billing_city\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const billState = pm.variables.get(\"billing_state\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billState) {\r",
+									"    pm.variables.set(\"billing_state\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const billCode = pm.variables.get(\"billing_code\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billCode) {\r",
+									"    pm.variables.set(\"billing_code\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const items = pm.variables.get(\"items\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (items) {\r",
+									"    // let itemsJson = JSON.parse(items);\r",
+									"    // let modifiedObject = {};\r",
+									"    // Object.keys(itemsJson).forEach(key => {\r",
+									"    //     let newKey = key.replace(/\\d+/g, '');\r",
+									"    //     modifiedObject[newKey] = itemsJson[key];\r",
+									"    // });\r",
+									"    // console.log(modifiedObject);\r",
+									"\r",
+									"    let modifiedJson = items.replace(/\\\"item\\d+\\\"/g, match => match.replace(/\\d+/g, ''));\r",
+									"    console.log(\"items: \" + modifiedJson);\r",
+									"    pm.variables.set(\"items\", modifiedJson);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e3d214b-1abb-4088-8ec7-a01854ac068d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "392a4a74-0cc7-44c9-9bf2-9363b7e65063",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"entity\": { \"id\": \"{{lastCustomer}}\" },\r\n\t\"item\": {\r\n\t\t\"items\": {{items}}\r\n\t},\r\n    \"memo\":\"{{memo}}\",\r\n    \"billaddr1\":\"{{billing_addr1}}\",\r\n    \"billcity\":\"{{billing_city}}\",\r\n    \"billstate\":\"{{billing_state}}\",\r\n    \"billzip\":\"{{billing_code}}\",\r\n    \"custbody_9997_is_for_ep_eft\":true,\r\n    \"subsidiary\":\"2\",\r\n    \"location\":\"2\",\r\n    \"custbody_esc_created_date\":\"{{invoice_date}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ns_acct_url_id}}.suitetalk.api.netsuite.com/services/rest/record/v1/salesOrder"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Sales Order for SCO/PhysDam Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5c61c790-4b0b-4edb-828e-65f89b43d664",
+								"exec": [
+									"// Get the value of the variable\r",
+									"const billAddr1Value = pm.variables.get(\"billing_addr1\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billAddr1Value) {\r",
+									"    pm.variables.set(\"billing_addr1\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const billCity = pm.variables.get(\"billing_city\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billCity) {\r",
+									"    pm.variables.set(\"billing_city\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const billState = pm.variables.get(\"billing_state\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billState) {\r",
+									"    pm.variables.set(\"billing_state\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const billCode = pm.variables.get(\"billing_code\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billCode) {\r",
+									"    pm.variables.set(\"billing_code\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const items = pm.variables.get(\"items\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (items) {\r",
+									"    // let itemsJson = JSON.parse(items);\r",
+									"    // let modifiedObject = {};\r",
+									"    // Object.keys(itemsJson).forEach(key => {\r",
+									"    //     let newKey = key.replace(/\\d+/g, '');\r",
+									"    //     modifiedObject[newKey] = itemsJson[key];\r",
+									"    // });\r",
+									"    // console.log(modifiedObject);\r",
+									"\r",
+									"    let modifiedJson = items.replace(/\\\"item\\d+\\\"/g, match => match.replace(/\\d+/g, ''));\r",
+									"    console.log(\"items: \" + modifiedJson);\r",
+									"    pm.variables.set(\"items\", modifiedJson);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e3d214b-1abb-4088-8ec7-a01854ac068d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "08a81cf1-beba-43d2-a5d9-8de42917006b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\t\"entity\": { \"id\": \"{{lastCustomer}}\" },\r\n\t\"item\": {\r\n\t\t\"items\": [{\"item\":{\"id\":\"64\"},\"item_display\":\"Phys Dmg Insurance Non-Leased\",\"rate\":57.69,\"quantity\":1,\"amount\":57.69},{\"item\":{\"id\":\"64\"},\"item_display\":\"Phys Dmg Insurance Non-Leased\",\"rate\":86.54,\"quantity\":1,\"amount\":86.54}]\r\n\t},\r\n    \"memo\":\"PhysDam/NTL Insurance for ZZ_Company2\",\r\n    \"billaddr1\":\"\",\r\n    \"billcity\":\"\",\r\n    \"billstate\":\"\",\r\n    \"billzip\":\"\",\r\n    \"custbody_9997_is_for_ep_eft\":true,\r\n    \"subsidiary\":\"2\",\r\n    \"location\":\"2\",\r\n    \"custbody_esc_created_date\":\"2024-02-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ns_acct_url_id}}.suitetalk.api.netsuite.com/services/rest/record/v1/salesOrder"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Sales Order from Invoice",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5c61c790-4b0b-4edb-828e-65f89b43d664",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2e3d214b-1abb-4088-8ec7-a01854ac068d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "d88289ad-2216-4a13-bfab-dd5f38d5368d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"entity\": { \"id\": \"{{lastCustomer}}\" },\r\n\t\"item\": {\r\n\t\t\"items\": {{items}}\r\n\t},\r\n    \"otherrefnum\": \"{{so_id}}\",\r\n    \"memo\":\"{{memo}}\",\r\n    \"billaddr1\":\"{{billing_addr1}}\",\r\n    \"billcity\":\"{{billing_city}}\",\r\n    \"billstate\":\"{{billing_state}}\",\r\n    \"billzip\":\"{{billing_code}}\",\r\n    \"custbody_9997_is_for_ep_eft\":true,\r\n    \"subsidiary\":\"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ns_acct_url_id}}.suitetalk.api.netsuite.com/services/rest/record/v1/salesOrder"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Customer",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3bb27be7-ddd2-450b-b254-5ba38ed7ecb1",
+								"exec": [
+									"// Get the value of the variable\r",
+									"const billStateValue = pm.variables.get(\"billing_state\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billStateValue) {\r",
+									"    pm.variables.set(\"billing_state\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const billCodeValue = pm.variables.get(\"billing_code\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billCodeValue) {\r",
+									"    pm.variables.set(\"billing_code\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const billAddrValue = pm.variables.get(\"billing_address\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billAddrValue) {\r",
+									"    pm.variables.set(\"billing_address\",\"\");\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const billCityValue = pm.variables.get(\"billing_city\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!billCityValue) {\r",
+									"    pm.variables.set(\"billing_city\",\"\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "dc469fcc-67a0-4c5d-9b0a-b82d4c2d8e51",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "be5151e0-20ac-43ec-8a00-977f6027fbeb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"companyName\": \"{{acct_name}}\",\r\n\t\"addressBook\": {\r\n\t\t\"items\": [{\r\n\t\t\t\"label\": \"{{acct_name}} HQ\",\r\n\t\t\t\"addressBookAddress\": {\r\n\t\t\t\t\"country\": { \"id\": \"US\" },\r\n\t\t\t\t\"state\": \"{{billing_state}}\",\r\n\t\t\t\t\"zip\": \"{{billing_code}}\",\r\n                \"addressee\": \"{{acct_name}}\",\r\n                \"addr1\": \"{{billing_address}}\",\r\n                \"city\": \"{{billing_city}}\",\r\n                \"phone\": \"{{acct_phone}}\"\r\n\t\t\t}\r\n\t\t}]\r\n\t},\r\n    \"externalid\": \"{{zoho_account_id}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ns_acct_url_id}}.suitetalk.api.netsuite.com/services/rest/record/v1/Customer"
+					},
+					"response": []
+				},
+				{
+					"name": "POST NetLessor Payment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7b6a3e38-6b2b-4de8-a146-4f7a4e2d81f0",
+								"exec": [
+									"// pm.variables.set(pm.environment.get(\"lastLease\"));\r",
+									"\r",
+									"// // Parse the date string from the variables\r",
+									"// const effectiveDate = new Date(pm.variables.get(\"Effective_Date\"));\r",
+									"// effectiveDate.setTime(effectiveDate.getTime() + 518400000);\r",
+									"// const updatedDate = effectiveDate.toISOString();\r",
+									"\r",
+									"// // Set the date back to the variables\r",
+									"// pm.variables.set(\"Effective_Date\", updatedDate);\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const wklyPropTaxPmtValue = pm.variables.get(\"Wkly_Property_Tax_Payment\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!wklyPropTaxPmtValue) {\r",
+									"    pm.variables.set(\"Wkly_Property_Tax_Payment\",0);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "157547bf-5522-49a3-925e-5784f0debbe5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"custrecord_lma_lpa_nonls_payment_1\": {{Wkly_Escrow_Payment}},\r\n    \"custrecord_lma_lpa_nonls_payment_2\": 15,\r\n    \"custrecord_lma_lpa_nonls_payment_3\": 8.50,\r\n    \"custrecord_lma_lpa_frequency\": 7,\r\n    \"custrecord_lma_lpa_lease\": \"{{lastLease}}\",\r\n    \"custrecord_lma_lpa_nonls_payment_4\": {{PhysDam_Wkly_Premium}},\r\n    \"custrecord_lma_lpa_nonls_payment_5\": {{Wkly_Property_Tax_Payment}},\r\n    \"custrecord_lma_lpa_effective_date\": \"{{Effective_Date}}\",\r\n    \"custrecord_lma_lpa_payment_amount\": {{Lease_Payment}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ns_acct_url_id}}.suitetalk.api.netsuite.com/services/rest/record/v1/customrecord_lma_lease_payment"
+					},
+					"response": []
+				},
+				{
+					"name": "POST NetLessor Lease",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1675bd9d-6836-4f5c-b57d-a6ac2bb9fb47",
+								"exec": [
+									" // Define the response body\r",
+									"const responseBody = {\r",
+									"    \"key\": \"value\"\r",
+									"};\r",
+									"\r",
+									"// Set the response body\r",
+									"pm.response.to.have.body(JSON.stringify(responseBody));\r",
+									"\r",
+									"// Send the response\r",
+									"pm.sendRequest({\r",
+									"    url: \"https://7936739-sb1.suitetalk.api.netsuite.com/services/rest/record/v1/customrecord_lma_lease\",\r",
+									"    method: \"POST\",\r",
+									"    body: JSON.stringify(responseBody),\r",
+									"    headers: {\r",
+									"        \"Content-Type\": \"application/json\"\r",
+									"    }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8c8ee2c4-7942-4f04-8af3-d112f3533405",
+								"exec": [
+									"// Get the value of the variable\r",
+									"const ntlValue = pm.variables.get(\"NTL\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!ntlValue) {\r",
+									"    pm.variables.set(\"NTL\",0);\r",
+									"}\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const vinValue = pm.variables.get(\"VIN\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!vinValue) {\r",
+									"    pm.variables.set(\"VIN\",\"\");\r",
+									"}\r",
+									"\r",
+									"const leaseTypeValue = pm.variables.get(\"Truck_Type\");\r",
+									"\r",
+									"if(leaseTypeValue) {\r",
+									"    if(leaseTypeValue.toUpperCase() == \"TEAM\") {\r",
+									"        //Team\r",
+									"        pm.variables.set(\"Truck_Type\",\"1\");\r",
+									"    } else if(leaseTypeValue.toUpperCase() == \"SOLO\") {\r",
+									"        //Solo\r",
+									"        pm.variables.set(\"Truck_Type\",\"2\");\r",
+									"    } else if(leaseTypeValue.toUpperCase() == \"DAY CAB\") {\r",
+									"        //Day Cab\r",
+									"        pm.variables.set(\"Truck_Type\",\"3\");\r",
+									"    } else if(leaseTypeValue.toUpperCase() == \"RE-FINANCE\") {\r",
+									"        //Re-Finance\r",
+									"        pm.variables.set(\"Truck_Type\",\"4\");\r",
+									"    }\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "e3d245bf-a3ea-45ff-96e1-fb76208551eb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"entity\": { \"id\": \"{{lastCustomer}}\" },\r\n\t\"altname\": \"{{Subject}}\",\r\n    \"custrecord_lma_ls_type\": \"{{Truck_Type}}\",\r\n    \"custrecord_lma_ls_subsidiary\": \"2\",\r\n    \"custrecord_lma_ls_currency\": \"1\",\r\n    \"custrecord_lma_ls_commencement_date\": \"{{In_Service_Date}}\",\r\n    \"custrecord_lma_ls_term\": {{Terms_Weeks}},\r\n    \"custrecord_fa_ast_vin\": \"{{VIN}}\",\r\n    \"custrecord_fa_ast_residual_value\": {{Residual_Value}},\r\n    \"custrecord_lma_ls_department\": \"3\",\r\n    \"custrecord_lma_ls_class\": \"{{Class}}\",\r\n    \"custrecord_lma_ls_location\": \"2\",\r\n    \"custrecord_lma_ls_carrying_costs\": {{Leased_Asset_Cost}},\r\n    \"custrecord_lma_ls_lease_res_guarantee\": {{Residual_Value_Guaranteed}},\r\n    \"custrecord_lma_ls_fair_asset_value\": {{Leased_Asset_Fair_Value}},\r\n    \"custrecord_lma_ls_lease_notes\": \"{{Notes}}\",\r\n    \"custrecord158\": \"{{SO_Num}}\",\r\n    \"custrecord_lma_ls_prepayment\": {{Lease_Prepayments}},\r\n    \"custrecordactual_int_rate\": {{Actual_Interest_Rate}},\r\n    \"custrecordsales_price\": {{Sales_Price}},\r\n    \"custrecord155\": {{NTL}},\r\n    \"custrecord156\": {{PhysDam}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://{{ns_acct_url_id}}.suitetalk.api.netsuite.com/services/rest/record/v1/customrecord_lma_lease"
+					},
+					"response": []
+				}
+			],
+			"id": "555694a4-d9ab-48d2-b5da-2d72eaebb596",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "533cff13-1d12-4145-aac3-55bbf2a535fa",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"const cyptojs = require('crypto-js');\r",
+							"\r",
+							"let tokenClientIDStr = 'prod_ns_token_client_id';\r",
+							"let tokenClientSecretStr = 'prod_ns_token_client_secret';\r",
+							"let tokenIDStr = 'PROD_NS_TOKEN_ID';\r",
+							"let tokenSecretStr = 'PROD_NS_TOKEN_SECRET';\r",
+							"let acctIDStr = 'PROD_NS_ACCOUNT_ID';\r",
+							"let ns_acct_url_id = \"7936739\";\r",
+							"let custom_search_script_id = \"1001\";\r",
+							"let custom_search_col_script_id = \"1002\";\r",
+							"\r",
+							"pm.environment.set(\"ns_acct_url_id\", ns_acct_url_id);\r",
+							"pm.environment.set(\"custom_search_script_id\", custom_search_script_id);\r",
+							"pm.environment.set(\"custom_search_col_script_id\", custom_search_col_script_id);\r",
+							"\r",
+							"const oauth_consumer_key = pm.environment.get(tokenClientIDStr);  \r",
+							"const oauth_consumer_secret = pm.environment.get(tokenClientSecretStr);\r",
+							"const oauth_token_id = pm.environment.get(tokenIDStr);\r",
+							"const oauth_token_secret = pm.environment.get(tokenSecretStr);\r",
+							"const oauth_account_id = pm.environment.get(acctIDStr); \r",
+							"\r",
+							"const oauth_signing_key = `${encodeURIComponent(oauth_consumer_secret)}&${encodeURIComponent(oauth_token_secret)}`;\r",
+							"\r",
+							"const random_source = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';\r",
+							"let oauth_nonce = '';\r",
+							"for (var i = 0; i < 32; i++) {\r",
+							"    oauth_nonce += random_source.charAt(Math.floor(Math.random() * random_source.length));\r",
+							"}\r",
+							"const oauth_nonce_array = cyptojs.enc.Utf8.parse(oauth_nonce);\r",
+							"const oauth_nonce_final = encodeURIComponent(cyptojs.enc.Base64.stringify(oauth_nonce_array));\r",
+							"\r",
+							"const oauth_parameter_string_object = {};\r",
+							"\r",
+							"oauth_parameter_string_object.oauth_consumer_key = oauth_consumer_key;\r",
+							"oauth_parameter_string_object.oauth_token = oauth_token_id;\r",
+							"\r",
+							"oauth_parameter_string_object.oauth_nonce = oauth_nonce_final;\r",
+							"\r",
+							"oauth_parameter_string_object.oauth_timestamp = Math.round((new Date()).getTime() / 1000);\r",
+							"\r",
+							"oauth_parameter_string_object.oauth_signature_method = 'HMAC-SHA256';\r",
+							"\r",
+							"oauth_parameter_string_object.oauth_version = '1.0';\r",
+							"\r",
+							"const oauth_authorization_header_object = {};\r",
+							"for (var key in oauth_parameter_string_object) {\r",
+							"    oauth_authorization_header_object[key] = oauth_parameter_string_object[key];\r",
+							"}\r",
+							"\r",
+							"oauth_authorization_header_object.realm = oauth_account_id;\r",
+							"\r",
+							"const url_query_string = pm.request.url.getQueryString({  // Postman method to get query string\r",
+							"    ignoreDisabled: true\r",
+							"});\r",
+							"\r",
+							"let url_query_string_array = [];\r",
+							"\r",
+							"if (url_query_string != \"\"){\r",
+							"    url_query_string_array = url_query_string.split('&');\r",
+							"}\r",
+							"\r",
+							"let url_query_string_object = {};\r",
+							"if (url_query_string !== \"\") {\r",
+							"    url_query_string_object = JSON.parse(`{\"${url_query_string.replace(/&/g, '\",\"').replace(/=/g,'\":\"')}\"}`, function(key, value) {return key === \"\" ? value : encodeURIComponent(value)});\r",
+							"}\r",
+							"\r",
+							"// parse request.params\r",
+							"for (var key in url_query_string_object) {;\r",
+							"    if(url_query_string_object[key] == \"%7B%7Bcustom_search_script_id%7D%7D\") {\r",
+							"        url_query_string_object[key] = custom_search_script_id;\r",
+							"    } else if (url_query_string_object[key] == \"%7B%7Bcustom_search_col_script_id%7D%7D\") {\r",
+							"        url_query_string_object[key] = custom_search_col_script_id;\r",
+							"    }\r",
+							"    oauth_parameter_string_object[key] = url_query_string_object[key];\r",
+							"    \r",
+							"}\r",
+							"\r",
+							"// sort object by key\r",
+							"const oauth_parameter_string_object_ordered = {};\r",
+							"Object.keys(oauth_parameter_string_object).sort().forEach(function(key) {\r",
+							"    oauth_parameter_string_object_ordered[key] = oauth_parameter_string_object[key];\r",
+							"});\r",
+							"\r",
+							"// convert object into array\r",
+							"const oauth_parameter_string_array = [];\r",
+							"for (var key in oauth_parameter_string_object_ordered) {\r",
+							"    oauth_parameter_string_array.push(`${key}=${oauth_parameter_string_object_ordered[key]}`);\r",
+							"}\r",
+							"\r",
+							"// generate parameter string\r",
+							"const oauth_parameter_string = oauth_parameter_string_array.join('&');\r",
+							"\r",
+							"let base_host = pm.request.url.getOAuth1BaseUrl();\r",
+							"let regexp = /{{(.*?)}}/g;\r",
+							"while (result = regexp.exec(base_host)) {\r",
+							"    let value = pm.environment.get(result[1]);\r",
+							"    base_host = base_host.replace(new RegExp(`{{${result[1]}}}`, 'g'), value);\r",
+							"}\r",
+							"\r",
+							"const oauth_base_string = `${pm.request.method}&${encodeURIComponent(base_host)}&${encodeURIComponent(oauth_parameter_string)}`;\r",
+							"let oauth_signature = cyptojs.HmacSHA256(oauth_base_string, oauth_signing_key).toString(cyptojs.enc.Base64);\r",
+							"oauth_authorization_header_object.oauth_signature = encodeURIComponent(oauth_signature);\r",
+							"\r",
+							"// convert object into array (for Authorization header string)\r",
+							"const oauth_authorization_header_array = [];\r",
+							"for (var key in oauth_authorization_header_object) {\r",
+							"    oauth_authorization_header_array.push(`${key}=\"${oauth_authorization_header_object[key]}\"`);\r",
+							"}\r",
+							"\r",
+							"const oauth_authorization_header = oauth_authorization_header_array.join(', ');\r",
+							"\r",
+							"// generate Authorization header, FINALLY!\r",
+							"pm.request.headers.add({\r",
+							"    key: 'Authorization',\r",
+							"    value: 'OAuth ' + oauth_authorization_header\r",
+							"});\r",
+							"\r",
+							"// Escape URI parameters using encodeURIComponent => RFC3986\r",
+							"// This is encoding the query string params in the request.\r",
+							"if (url_query_string_array.length !== 0) {\r",
+							"    let request_parameter_array = [];\r",
+							"    for (var key in url_query_string_object) {\r",
+							"        request_parameter_array.push(key + '=' + url_query_string_object[key]);\r",
+							"    }\r",
+							"    const request_parameter_string = request_parameter_array.join('&');\r",
+							"\r",
+							"    pm.request.url = pm.request.url.getOAuth1BaseUrl() + \"?\" + request_parameter_string;\r",
+							"}\r",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "168fe11a-3507-4284-8190-4a948370deb9",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Microsoft",
+			"item": [
+				{
+					"name": "POST Microsoft Access Token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0ef8592f-31e3-4240-897c-247ff35d917a",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "98486d14-7c7b-4b8c-afa9-8cf6c8e401ac",
+								"exec": [
+									"try {\r",
+									"    // Parse the response body as JSON\r",
+									"    const jsonResponse = JSON.parse(responseBody);\r",
+									"\r",
+									"    console.log(jsonResponse.access_token);\r",
+									"    \r",
+									"    pm.environment.set(\"microsoft_access_token\",jsonResponse.access_token);\r",
+									"\r",
+									"} catch (error) {\r",
+									"    console.error('Error parsing response body as JSON:', error);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "6ef1d03f-1b6a-40f6-b59e-4a47b6f70e1a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "{{prod_microsoft_client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{prod_microsoft_client_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "https://graph.microsoft.com/.default openid offline_access",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": "https://login.microsoftonline.com/{{microsoft_tenant_id}}/oauth2/v2.0/token"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Send Mail",
+					"id": "160c16ec-29fc-439a-b512-25ef8efefa4f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"message\": {\r\n    \"subject\": \"{{flow_name}} Failed to Run\",\r\n    \"body\": {\r\n      \"contentType\": \"html\",\r\n      \"content\": \"<html>{{flow_name}} flow failed to run with the following request: {{request_name}}.<br /><br /></html>\"\r\n    },\r\n    \"toRecipients\": [\r\n      {\r\n        \"emailAddress\": {\r\n          \"address\": \"lgiuffre@teamrel.com\"\r\n        }\r\n      }\r\n    ]\r\n  },\r\n  \"saveToSentItems\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://graph.microsoft.com/v1.0/users/{{microsoft_user_id}}/sendMail"
+					},
+					"response": []
+				}
+			],
+			"id": "3674dee9-314d-4045-9771-28c7d370e73f",
+			"auth": {
+				"type": "oauth2",
+				"oauth2": {
+					"authUrl": "https://login.microsoftonline.com/874315e0-a2fe-40f8-9587-a887d266e968/oauth2/v2.0/authorize?access_type=offline&prompt=consent",
+					"refreshTokenUrl": "https://login.microsoftonline.com/874315e0-a2fe-40f8-9587-a887d266e968/oauth2/v2.0/token",
+					"accessTokenUrl": "https://login.microsoftonline.com/874315e0-a2fe-40f8-9587-a887d266e968/oauth2/v2.0/token",
+					"client_authentication": "body",
+					"grant_type": "authorization_code",
+					"redirect_uri": "https://oauth.pstmn.io/v1/browser-callback",
+					"scope": "https://graph.microsoft.com/.default",
+					"state": "",
+					"clientSecret": "{{prod_microsoft_client_secret}}",
+					"clientId": "{{prod_microsoft_client_id}}",
+					"tokenName": "Microsoft Production",
+					"refreshRequestParams": [],
+					"tokenRequestParams": [],
+					"authRequestParams": [],
+					"challengeAlgorithm": "S256",
+					"addTokenTo": "header"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a5768134-4b6b-49ee-a7bf-5ab171b304c7",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a8fb73d-8caa-4fa1-a096-8425fae4d1d1",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Postman",
+			"item": [
+				{
+					"name": "Create Webhook",
+					"id": "822a4308-8fac-4b1d-b342-9b388c7d2d60",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": {
+								"value": "PMAK-662145afcce8640001f46fe6-193c9ee0349367ff46d6c83348996cae99",
+								"key": "X-API-Key",
+								"in": "header"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.api.v10+json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"webhook\":{\r\n        \"name\": \"Pull Truck Escrow from NetSuite to CRM\",\r\n        \"collection\": \"28539332-941fc987-946b-4004-9cf4-4ac1373bd1bd\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://api.getpostman.com/webhooks"
+					},
+					"response": []
+				}
+			],
+			"id": "f83a4627-3188-47d2-8543-77a900ac56a2"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8e19be1f-6ce4-4304-b72e-bad57ad18ea4",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "23a98215-2117-477b-9c99-99d5d0d11c81",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
