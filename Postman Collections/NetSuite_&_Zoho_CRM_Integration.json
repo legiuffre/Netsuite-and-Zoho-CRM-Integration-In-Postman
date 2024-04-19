@@ -336,7 +336,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://accounts.zoho.com/oauth/v2/token?access_type=offline&prompt=consent&client_id={{prod_zoho_client_id}}&client_secret={{prod_zoho_client_secret}}&redirect_uri=https://www.getpostman.com/oauth2/callback&code=1000.0c9984fe5d9f06b0e885979ac2279430.d5f0105206591973bbea524081376b55&grant_type=authorization_code",
+							"raw": "https://accounts.zoho.com/oauth/v2/token?access_type=offline&prompt=consent&client_id=1000.Y7JLMCZ2QC1B5JPZ2ZYTDNZOU6NW8E&client_secret=32f25d32671cdbf33e97fa15a16c7c57522ac67c0c&redirect_uri=https://www.getpostman.com/oauth2/callback&code=1000.7c295b345533927bfe3d2b159f7fe486.177e5124732b7cc780c8a0e9cd803ac1&grant_type=authorization_code",
 							"protocol": "https",
 							"host": [
 								"accounts",
@@ -359,11 +359,11 @@
 								},
 								{
 									"key": "client_id",
-									"value": "{{prod_zoho_client_id}}"
+									"value": "1000.Y7JLMCZ2QC1B5JPZ2ZYTDNZOU6NW8E"
 								},
 								{
 									"key": "client_secret",
-									"value": "{{prod_zoho_client_secret}}"
+									"value": "32f25d32671cdbf33e97fa15a16c7c57522ac67c0c"
 								},
 								{
 									"key": "redirect_uri",
@@ -371,7 +371,7 @@
 								},
 								{
 									"key": "code",
-									"value": "1000.0c9984fe5d9f06b0e885979ac2279430.d5f0105206591973bbea524081376b55"
+									"value": "1000.7c295b345533927bfe3d2b159f7fe486.177e5124732b7cc780c8a0e9cd803ac1"
 								},
 								{
 									"key": "grant_type",
