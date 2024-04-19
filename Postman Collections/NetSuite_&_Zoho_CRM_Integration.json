@@ -436,6 +436,59 @@
 					"response": []
 				},
 				{
+					"name": "Refresh Access Tokens Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "44ccb017-7ffd-47f8-be5b-2a59751cf7fd",
+								"exec": [
+									"pm.variables.set(\"client_id\", pm.environment.get(\"prod_zoho_client_id\"));\r",
+									"pm.variables.set(\"client_secret\", pm.environment.get(\"prod_zoho_client_secret\"));\r",
+									"pm.variables.set(\"refresh_token\", pm.environment.get(\"prod-refresh-token\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "dfc6277c-5b24-46dd-9f4f-6da29b20a6db",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "client_id",
+									"value": "{{prod_zoho_client_id}}",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{prod_zoho_client_secret}}",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{prod-refresh-token}}",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								}
+							]
+						},
+						"url": "https://accounts.zoho.com/oauth/v2/token"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Account by ID",
 					"event": [
 						{
