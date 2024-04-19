@@ -633,7 +633,11 @@
 								"id": "9856aa7f-8bb8-4343-9f5c-adeda5edb6ff",
 								"exec": [
 									"const moment = require('moment');\r",
-									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));"
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));\r",
+									"\r",
+									"let currentUrl = pm.request.url.toString();\r",
+									"console.log(\"current url: \" + currentUrl);\r",
+									"pm.request.url.update(encodeURIComponent(currentUrl));"
 								],
 								"type": "text/javascript",
 								"packages": {}
