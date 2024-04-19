@@ -436,7 +436,7 @@
 					"response": []
 				},
 				{
-					"name": "Refresh Access Tokens Copy",
+					"name": "Refresh Access Tokens - Client Credentials",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -461,7 +461,22 @@
 						"header": [],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
+							"formdata": []
+						},
+						"url": {
+							"raw": "https://accounts.zoho.com/oauth/v2/token?client_id={{prod_zoho_client_id}}&client_secret={{prod_zoho_client_secret}}&grant_type=client_credentials&scope=ZohoCRM.modules.ALL,ZohoCRM.settings.ALL&soid=ZohoCRM.747501552",
+							"protocol": "https",
+							"host": [
+								"accounts",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"v2",
+								"token"
+							],
+							"query": [
 								{
 									"key": "client_id",
 									"value": "{{prod_zoho_client_id}}",
@@ -473,18 +488,22 @@
 									"type": "text"
 								},
 								{
-									"key": "refresh_token",
-									"value": "{{prod-refresh-token}}",
+									"key": "grant_type",
+									"value": "client_credentials",
 									"type": "text"
 								},
 								{
-									"key": "grant_type",
-									"value": "refresh_token",
+									"key": "scope",
+									"value": "ZohoCRM.modules.ALL,ZohoCRM.settings.ALL",
+									"type": "text"
+								},
+								{
+									"key": "soid",
+									"value": "ZohoCRM.747501552",
 									"type": "text"
 								}
 							]
-						},
-						"url": "https://accounts.zoho.com/oauth/v2/token"
+						}
 					},
 					"response": []
 				},
