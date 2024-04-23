@@ -1254,7 +1254,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Property_Tax_Escrow\": {{SUM(amount)}},\r\n            \"Last_Update_Prop_Tax_Escrow\": {{today}}\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Property_Tax_Escrow\": {{SUM(gross)}},\r\n            \"Last_Update_Prop_Tax_Escrow\": {{today}}\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
