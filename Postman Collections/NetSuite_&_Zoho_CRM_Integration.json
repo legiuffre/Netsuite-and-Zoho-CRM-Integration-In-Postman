@@ -1222,6 +1222,48 @@
 						"url": "https://www.zohoapis.com/crm/v6/Trucks/{{z_truck_id}}"
 					},
 					"response": []
+				},
+				{
+					"name": "PUT Property Tax Escrow on Truck",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d46f1496-a97b-4db1-8f99-d2301fefd000",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "0ab1ac22-ecea-4552-96cb-f0663a5281d6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Property_Tax_Escrow\": {{SUM(amount)}},\r\n            \"Last_Update_Prop_Tax_Escrow\": {{today}}\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/Trucks/{{z_truck_id}}"
+					},
+					"response": []
 				}
 			],
 			"id": "2a0dda68-06d3-46b0-b0de-87a7dec7fc54",
