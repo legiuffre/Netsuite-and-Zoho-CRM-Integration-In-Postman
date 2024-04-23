@@ -543,7 +543,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Truck by VIN",
+					"name": "GET Truck by VIN - Last Update Escrow",
 					"event": [
 						{
 							"listen": "test",
@@ -613,6 +613,83 @@
 								{
 									"key": "criteria",
 									"value": "((Name%3Aequals%3A{{z_VIN}})and(Last_Update_Escrow%3Aless_than%3A{{today}}))"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Truck by VIN - Last Update Prop Tax Escrow",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
+								"exec": [
+									"// // Test if the response status code is 200 OK\r",
+									"// pm.test(\"Status code is 200\", function () {\r",
+									"//     pm.response.to.have.status(200);\r",
+									"// });\r",
+									"\r",
+									"// // Test if the response body is a valid JSON\r",
+									"// pm.test(\"Response body is JSON\", function () {\r",
+									"//     pm.response.to.be.json;\r",
+									"// });\r",
+									"\r",
+									"// // Test if the response contains a specific key\r",
+									"// pm.test(\"Response contains key 'results'\", function () {\r",
+									"//     pm.expect(pm.response.json()).to.have.property('data');\r",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "4a295ddd-c925-40ac-bbc2-264948e80e13",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v6/Trucks/search?criteria=((Name%3Aequals%3A{{z_VIN}})and(Last_Update_Prop_Tax_Escrow%3Aless_than%3A{{today}}))",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v6",
+								"Trucks",
+								"search"
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "((Name%3Aequals%3A{{z_VIN}})and(Last_Update_Prop_Tax_Escrow%3Aless_than%3A{{today}}))"
 								}
 							]
 						}
