@@ -904,63 +904,6 @@
 					"response": []
 				},
 				{
-					"name": "GET SCO/PhysDam Invoices Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "6a2f0fa3-1077-4607-8ada-09a036a6a5dc",
-								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"// Fixed TypeError by checking if jsonData.data is not null and has length",
-									"if(jsonData.data && jsonData.data.length > 0) {",
-									"    // pm.environment.set(\"inv_acct_id\", jsonData.data[0][\"Account_Name\"][\"id\"]);",
-									"    // pm.collectionVariables.set(\"inv_acct_id_c\", jsonData.data[0][\"Account_Name\"][\"id\"]);",
-									"}"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "21082d5a-59ac-4fd9-9bcd-b0c32f4f8b83",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{access_token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://www.zohoapis.com/crm/v2/Invoices/search?criteria=((Status:equals:PhysDam/NTL Insurance Billing) or (Status:equals:SCO Billing) or (Status:equals:SCO Escrow Billing))",
-							"protocol": "https",
-							"host": [
-								"www",
-								"zohoapis",
-								"com"
-							],
-							"path": [
-								"crm",
-								"v2",
-								"Invoices",
-								"search"
-							],
-							"query": [
-								{
-									"key": "criteria",
-									"value": "((Status:equals:PhysDam/NTL Insurance Billing) or (Status:equals:SCO Billing) or (Status:equals:SCO Escrow Billing))"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "GET Approved Invoices",
 					"event": [
 						{
@@ -2651,7 +2594,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"entity\": { \"id\": \"{{lastCustomer}}\" },\r\n\t\"altname\": \"{{Subject}}\",\r\n    \"custrecord_lma_ls_type\": \"{{Truck_Type}}\",\r\n    \"custrecord_lma_ls_subsidiary\": \"2\",\r\n    \"custrecord_lma_ls_currency\": \"1\",\r\n    \"custrecord_lma_ls_commencement_date\": \"{{In_Service_Date}}\",\r\n    \"custrecord_lma_ls_term\": {{Terms_Weeks}},\r\n    \"custrecord_fa_ast_vin\": \"{{VIN}}\",\r\n    \"custrecord_fa_ast_residual_value\": {{Residual_Value}},\r\n    \"custrecord_lma_ls_department\": \"3\",\r\n    \"custrecord_lma_ls_class\": \"{{Class}}\",\r\n    \"custrecord_lma_ls_location\": \"2\",\r\n    \"custrecord_lma_ls_carrying_costs\": {{Leased_Asset_Cost}},\r\n    \"custrecord_lma_ls_lease_res_guarantee\": {{Residual_Value_Guaranteed}},\r\n    \"custrecord_lma_ls_fair_asset_value\": {{Leased_Asset_Fair_Value}},\r\n    \"custrecord_lma_ls_lease_notes\": \"{{Notes}}\",\r\n    \"custrecord158\": \"{{SO_Num}}\",\r\n    \"custrecord_lma_ls_prepayment\": {{Lease_Prepayments}},\r\n    \"custrecordactual_int_rate\": {{Actual_Interest_Rate}},\r\n    \"custrecordsales_price\": {{Sales_Price}},\r\n    \"custrecord155\": {{NTL}},\r\n    \"custrecord156\": {{PhysDam}}\r\n}",
+							"raw": "{\r\n    \"entity\": { \"id\": \"{{lastCustomer}}\" },\r\n\t\"altname\": \"{{Subject}}\",\r\n    \"custrecord_lma_ls_type\": \"{{Truck_Type}}\",\r\n    \"custrecord_lma_ls_subsidiary\": \"2\",\r\n    \"custrecord_lma_ls_currency\": \"1\",\r\n    \"custrecord_lma_ls_commencement_date\": \"{{In_Service_Date}}\",\r\n    \"custrecord_lma_ls_term\": {{Terms_Weeks}},\r\n    \"custrecord_fa_ast_vin\": \"{{VIN}}\",\r\n    \"custrecord_fa_ast_residual_value\": {{Residual_Value}},\r\n    \"custrecord_lma_ls_department\": \"3\",\r\n    \"custrecord_lma_ls_class\": \"{{Class}}\",\r\n    \"custrecord_lma_ls_location\": \"2\",\r\n    \"custrecord_lma_ls_carrying_costs\": {{Leased_Asset_Cost}},\r\n    \"custrecord_lma_ls_lease_res_guarantee\": {{Residual_Value_Guaranteed}},\r\n    \"custrecord_lma_ls_fair_asset_value\": {{Leased_Asset_Fair_Value}},\r\n    \"custrecord_lma_ls_lease_notes\": \"{{Notes}}\",\r\n    \"externalid\": \"{{SO_Num}}\",\r\n    \"custrecord_lma_ls_prepayment\": {{Lease_Prepayments}},\r\n    \"custrecordactual_int_rate\": {{Actual_Interest_Rate}},\r\n    \"custrecordsales_price\": {{Sales_Price}},\r\n    \"custrecord155\": {{NTL}},\r\n    \"custrecord156\": {{PhysDam}}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
