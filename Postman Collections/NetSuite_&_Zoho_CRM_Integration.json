@@ -1989,7 +1989,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"searchID\": \"customsearch1176\",\"searchColumn\": \"externalid\",\"searchValue\":\"4816208000000578745\",\"searchOperator\":\"search.Operator.IS\"}",
+							"raw": "{\"searchID\": \"customsearch1176\",\"searchColumn\": \"externalid\",\"searchValue\":\"4816208000000578745\"}",
 							"options": {
 								"raw": {
 									"language": "json"
