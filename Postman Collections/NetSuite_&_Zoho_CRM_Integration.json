@@ -2985,7 +2985,72 @@
 		},
 		{
 			"name": "Zoho Analytics",
-			"item": [],
+			"item": [
+				{
+					"name": "Generate Access Token and Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a0fa0e6e-2790-4cd5-8a27-fdf36d799437",
+								"exec": [
+									"if (responseCode.code === 200)\r",
+									"{\r",
+									"    var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"    pm.environment.set(\"prod-refresh-token-analytics\", jsonData.refresh_token);\r",
+									"    pm.environment.set(\"prod-access-token-analytics\", jsonData.access_token);\r",
+									"    pm.environment.set(\"prod-expiry-time-analytics\", Date.now() + parseInt(jsonData.expires_in));\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "5b78667e-ec72-4c92-98b9-0cf19fa4985f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://accounts.zoho.com/oauth/v2/token?code=1000.ea6f93acc83e15178ae39b4126027860.1256dc61e4a80bce8178a57fc02d6893&client_id={{prod_zoho_client_id}}&client_secret={{prod_zoho_client_secret}}&grant_type=authorization_code",
+							"protocol": "https",
+							"host": [
+								"accounts",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"v2",
+								"token"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "1000.ea6f93acc83e15178ae39b4126027860.1256dc61e4a80bce8178a57fc02d6893"
+								},
+								{
+									"key": "client_id",
+									"value": "{{prod_zoho_client_id}}"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{prod_zoho_client_secret}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"id": "9c9dc0a4-ad69-42ea-a715-5974788ec2c1"
 		}
 	],
