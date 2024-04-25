@@ -3049,6 +3049,63 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Refresh Access Token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "312d235f-3e0b-457e-af00-5bd6538f00cc",
+								"exec": [
+									"pm.variables.set(\"analytics_refresh_token\", pm.environment.get(\"prod-refresh-token-analytics\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "40e77122-a9a5-4a2f-a385-99c0ee57498d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://accounts.zoho.com/oauth/v2/token?refresh_token={{prod-refresh-token-analytics}}&client_id={{prod_zoho_client_id}}&client_secret={{prod_zoho_client_secret}}&grant_type=refresh_token",
+							"protocol": "https",
+							"host": [
+								"accounts",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"oauth",
+								"v2",
+								"token"
+							],
+							"query": [
+								{
+									"key": "refresh_token",
+									"value": "{{prod-refresh-token-analytics}}"
+								},
+								{
+									"key": "client_id",
+									"value": "{{prod_zoho_client_id}}"
+								},
+								{
+									"key": "client_secret",
+									"value": "{{prod_zoho_client_secret}}"
+								},
+								{
+									"key": "grant_type",
+									"value": "refresh_token"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"id": "9c9dc0a4-ad69-42ea-a715-5974788ec2c1"
