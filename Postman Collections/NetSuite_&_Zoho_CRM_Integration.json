@@ -2614,7 +2614,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "533cff13-1d12-4145-aac3-55bbf2a535fa",
+						"id": "7fe21bce-4b7c-48e8-87d4-a53170553c8f",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
@@ -2672,7 +2672,7 @@
 							"const url_query_string = pm.request.url.getQueryString({  // Postman method to get query string\r",
 							"    ignoreDisabled: true\r",
 							"});\r",
-							"\r",
+							"console.log(\"url query string \" + url_query_string);\r",
 							"let url_query_string_array = [];\r",
 							"\r",
 							"if (url_query_string != \"\"){\r",
@@ -2711,6 +2711,7 @@
 							"const oauth_parameter_string = oauth_parameter_string_array.join('&');\r",
 							"\r",
 							"let base_host = pm.request.url.getOAuth1BaseUrl();\r",
+							"console.log(\"base host \" + base_host);\r",
 							"let regexp = /{{(.*?)}}/g;\r",
 							"while (result = regexp.exec(base_host)) {\r",
 							"    let value = pm.environment.get(result[1]);\r",
@@ -2753,7 +2754,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "168fe11a-3507-4284-8190-4a948370deb9",
+						"id": "3b111e9c-9b7d-4667-a9ea-1a7c3d8ab055",
 						"type": "text/javascript",
 						"packages": {},
 						"exec": [
