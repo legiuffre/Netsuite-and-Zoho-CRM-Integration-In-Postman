@@ -3353,7 +3353,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete All Rows",
+					"name": "Delete All Rows in NetSuiteAR",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -3389,7 +3389,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Zoho-oauthtoken 1000.0f9b3f0df9abaabdde73594345bc4fdc.e8d05544c71ae053e5053a9f2615f52c",
+								"value": "Zoho-oauthtoken {{analytics-token}}",
 								"type": "text"
 							}
 						],
