@@ -3262,6 +3262,157 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update Row in NetSuite AR",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "69fcec36-a060-4563-9188-f7c3aa321c99",
+								"exec": [
+									"const moment = require('moment');\r",
+									"let today = moment().format(\"YYYY-MM-DD\");\r",
+									"\r",
+									"let jsonObj = {\r",
+									"  \"columns\": {\r",
+									"    \"PD Creation Date\": today\r",
+									"  },\r",
+									"  \"criteria\": \"\\\"tblLeaseTimelinessKPIs\\\".\\\"Account Name\\\"='Daimler'\"\r",
+									"};\r",
+									"\r",
+									"let jsonString = JSON.stringify(jsonObj);\r",
+									"console.log(\"jsonString: \" + jsonString);\r",
+									"let encodedStr = encodeURIComponent(jsonString);\r",
+									"console.log(\"encoded json: \" + encodedStr);\r",
+									"pm.variables.set(\"config\", encodedStr);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "6c838624-9b10-45da-8d8a-e2894c6f858c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "ZANALYTICS-ORGID",
+								"value": "769480731",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Zoho-oauthtoken 1000.e9fb969c718d8ac27ff585921ea50980.2d0deddea6c7b06826a596dc6e4da2a0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://analyticsapi.zoho.com/restapi/v2/workspaces/2511359000014178125/views/2511359000014195322/rows?CONFIG={{config}}",
+							"protocol": "https",
+							"host": [
+								"analyticsapi",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"restapi",
+								"v2",
+								"workspaces",
+								"2511359000014178125",
+								"views",
+								"2511359000014195322",
+								"rows"
+							],
+							"query": [
+								{
+									"key": "CONFIG",
+									"value": "{{config}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Rows",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e61b3972-fb1e-4d11-9cdb-3d07ab6d3ad0",
+								"exec": [
+									"let jsonObj = {\r",
+									"  \"deleteAllRows\": \"true\"\r",
+									"};\r",
+									"\r",
+									"let jsonString = JSON.stringify(jsonObj);\r",
+									"console.log(\"jsonString: \" + jsonString);\r",
+									"let encodedStr = encodeURIComponent(jsonString);\r",
+									"console.log(\"encoded json: \" + encodedStr);\r",
+									"pm.variables.set(\"config\", encodedStr);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "5eda5c74-910f-4add-861b-9a617f3384e5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "ZANALYTICS-ORGID",
+								"value": "769480731",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Zoho-oauthtoken 1000.6d7b99bc88d3e804cc3f652f7637c4f9.7f8cc009e74aec01b6844e1f41bbd65c",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://analyticsapi.zoho.com/restapi/v2/workspaces/2511359000014178125/views/2511359000014195322/rows?CONFIG={{config}}",
+							"protocol": "https",
+							"host": [
+								"analyticsapi",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"restapi",
+								"v2",
+								"workspaces",
+								"2511359000014178125",
+								"views",
+								"2511359000014195322",
+								"rows"
+							],
+							"query": [
+								{
+									"key": "CONFIG",
+									"value": "{{config}}"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"id": "9c9dc0a4-ad69-42ea-a715-5974788ec2c1"
