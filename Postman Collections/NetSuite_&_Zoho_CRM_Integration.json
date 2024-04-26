@@ -3271,8 +3271,11 @@
 							"script": {
 								"id": "69fcec36-a060-4563-9188-f7c3aa321c99",
 								"exec": [
-									"const moment = require('moment');\r",
-									"let today = moment().format(\"YYYY-MM-DD\");\r",
+									"let maxCust = pm.variables.get(\"maxCust\");\r",
+									"let invNo = pm.variables.get(\"invNo\");\r",
+									"let sumRem = pm.variables.get(\"sumRem\");\r",
+									"let maxOfDueDate = pm.variables.get(\"maxOfDueDate\");\r",
+									"let maxOfDate = pm.variables.get(\"maxOfDate\");\r",
 									"\r",
 									"let jsonObj = {\r",
 									"  \"columns\": {\r",
