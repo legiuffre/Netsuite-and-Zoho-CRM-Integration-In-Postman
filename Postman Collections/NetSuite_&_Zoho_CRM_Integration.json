@@ -3271,27 +3271,27 @@
 							"script": {
 								"id": "69fcec36-a060-4563-9188-f7c3aa321c99",
 								"exec": [
-									"let maxCust = pm.variables.get(\"maxCust\");\r",
-									"let invNo = pm.variables.get(\"invNo\");\r",
-									"let sumRem = pm.variables.get(\"sumRem\");\r",
-									"let maxOfDueDate = pm.variables.get(\"maxOfDueDate\");\r",
-									"let maxOfDate = pm.variables.get(\"maxOfDate\");\r",
+									"// let maxCust = pm.variables.get(\"maxCust\");\r",
+									"// let invNo = pm.variables.get(\"invNo\");\r",
+									"// let sumRem = pm.variables.get(\"sumRem\");\r",
+									"// let maxOfDueDate = pm.variables.get(\"maxOfDueDate\");\r",
+									"// let maxOfDate = pm.variables.get(\"maxOfDate\");\r",
 									"\r",
-									"let jsonObj = {\r",
-									"  \"columns\": {\r",
-									"    \"Maximum of Customer\": maxCust,\r",
-									"    \"Invoice Number\": invNo,\r",
-									"    \"Sum of Amount Remaining\": sumRem,\r",
-									"    \"Maximum of Due Date\": maxOfDueDate,\r",
-									"    \"Maximum of Date\": maxOfDate\r",
-									"  }\r",
-									"};\r",
+									"// let jsonObj = {\r",
+									"//   \"columns\": {\r",
+									"//     \"Maximum of Customer\": maxCust,\r",
+									"//     \"Invoice Number\": invNo,\r",
+									"//     \"Sum of Amount Remaining\": sumRem,\r",
+									"//     \"Maximum of Due Date\": maxOfDueDate,\r",
+									"//     \"Maximum of Date\": maxOfDate\r",
+									"//   }\r",
+									"// };\r",
 									"\r",
-									"let jsonString = JSON.stringify(jsonObj);\r",
-									"console.log(\"jsonString: \" + jsonString);\r",
-									"let encodedStr = encodeURIComponent(jsonString);\r",
-									"console.log(\"encoded json: \" + encodedStr);\r",
-									"pm.variables.set(\"config\", encodedStr);"
+									"// let jsonString = JSON.stringify(jsonObj);\r",
+									"// console.log(\"jsonString: \" + jsonString);\r",
+									"// let encodedStr = encodeURIComponent(jsonString);\r",
+									"// console.log(\"encoded json: \" + encodedStr);\r",
+									"// pm.variables.set(\"config\", encodedStr);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -3312,7 +3312,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Zoho-oauthtoken 1000.e9fb969c718d8ac27ff585921ea50980.2d0deddea6c7b06826a596dc6e4da2a0",
+								"value": "Zoho-oauthtoken {{analytics-token}}",
 								"type": "text"
 							}
 						],
@@ -3389,7 +3389,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Zoho-oauthtoken 1000.6d7b99bc88d3e804cc3f652f7637c4f9.7f8cc009e74aec01b6844e1f41bbd65c",
+								"value": "Zoho-oauthtoken 1000.0f9b3f0df9abaabdde73594345bc4fdc.e8d05544c71ae053e5053a9f2615f52c",
 								"type": "text"
 							}
 						],
