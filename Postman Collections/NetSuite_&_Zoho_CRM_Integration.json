@@ -3271,6 +3271,9 @@
 							"script": {
 								"id": "69fcec36-a060-4563-9188-f7c3aa321c99",
 								"exec": [
+									"let config = JSON.stringify(pm.variables.get(\"config\"));\r",
+									"console.log(\"config \" + config);\r",
+									"\r",
 									"// let maxCust = pm.variables.get(\"maxCust\");\r",
 									"// let invNo = pm.variables.get(\"invNo\");\r",
 									"// let sumRem = pm.variables.get(\"sumRem\");\r",
