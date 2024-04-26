@@ -3264,7 +3264,7 @@
 					"response": []
 				},
 				{
-					"name": "Update Row in NetSuite AR",
+					"name": "Add Row in NetSuite AR",
 					"event": [
 						{
 							"listen": "prerequest",
