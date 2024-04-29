@@ -503,6 +503,34 @@
 					"response": []
 				},
 				{
+					"name": "COQL Request",
+					"id": "6038bb28-d5ad-448f-9a84-200837a9a436",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 1000.626da89d3a378dc8123000140af4c2f6.8b06f829ce64fa54a7078717dca3c5d7",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"select_query\" : \"SELECT id FROM Trucks WHERE Name = '1M1AN4GY4NM027257'\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/coql"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Account by ID",
 					"event": [
 						{
