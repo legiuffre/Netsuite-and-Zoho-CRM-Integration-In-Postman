@@ -573,6 +573,48 @@
 					"response": []
 				},
 				{
+					"name": "POST Select Truck by VIN & Last_Update_Escrow",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "90ee470d-9fb6-4c87-b781-44e8ab6de41c",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "1b20c412-e442-408f-a8b0-1bf4de6f49df",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '{{truckVIN}}' AND Last_Update_Escrow < '{{today}}'\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/coql"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Account by ID",
 					"event": [
 						{
