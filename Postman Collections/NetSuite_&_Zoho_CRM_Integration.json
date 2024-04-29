@@ -519,7 +519,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id FROM Trucks WHERE Name = '1M1AN4GY4NM027257'\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Last_Update_Escrow FROM Trucks WHERE Name = '1M1AN4GY4NM027257' AND Last_Update_Escrow < '2024-04-29'\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
