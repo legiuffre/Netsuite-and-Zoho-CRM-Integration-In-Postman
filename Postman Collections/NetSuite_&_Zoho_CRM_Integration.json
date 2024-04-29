@@ -519,7 +519,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Last_Update_Escrow FROM Trucks WHERE Name = '1M1AN4GY4NM027257' AND Last_Update_Escrow < '2024-04-29'\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Last_Update_Escrow FROM Trucks WHERE Name = '1M1AN4GY4NM027257' AND Last_Update_Escrow < '2024-04-30'\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -531,7 +531,7 @@
 					"response": []
 				},
 				{
-					"name": "POST Select Truck by VIN & COQL",
+					"name": "POST Select Truck by VIN & Last_Update_Prop_Tax_Escrow COQL",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -561,7 +561,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '{{truckVIN}}' AND Last_Update_Escrow < '{{today}}'\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '{{truckVIN}}' AND Last_Update_Prop_Tax_Escrow < '{{today}}'\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
