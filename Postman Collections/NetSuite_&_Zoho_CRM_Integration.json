@@ -532,6 +532,20 @@
 				},
 				{
 					"name": "POST Select Truck by VIN COQL",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "90ee470d-9fb6-4c87-b781-44e8ab6de41c",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "8d5ac6b3-9ed8-45b1-b198-a020a3c412e9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -547,7 +561,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id FROM Trucks WHERE Name = '{{truckVIN}}'\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '{{truckVIN}}' AND Last_Update_Escrow < '{{today}}'\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
