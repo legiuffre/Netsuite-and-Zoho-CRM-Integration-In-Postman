@@ -336,7 +336,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://accounts.zoho.com/oauth/v2/token?access_type=offline&prompt=consent&client_id=1000.Y7JLMCZ2QC1B5JPZ2ZYTDNZOU6NW8E&client_secret=32f25d32671cdbf33e97fa15a16c7c57522ac67c0c&redirect_uri=https://www.getpostman.com/oauth2/callback&code=1000.7c295b345533927bfe3d2b159f7fe486.177e5124732b7cc780c8a0e9cd803ac1&grant_type=authorization_code",
+							"raw": "https://accounts.zoho.com/oauth/v2/token?access_type=offline&prompt=consent&client_id=1000.Y7JLMCZ2QC1B5JPZ2ZYTDNZOU6NW8E&client_secret=32f25d32671cdbf33e97fa15a16c7c57522ac67c0c&redirect_uri=https://www.getpostman.com/oauth2/callback&code=1000.9ec8b3281554971faa0426bce0d59d9c.fe2d17acf709fb16a453b40450d0c41f&grant_type=authorization_code",
 							"protocol": "https",
 							"host": [
 								"accounts",
@@ -371,7 +371,7 @@
 								},
 								{
 									"key": "code",
-									"value": "1000.7c295b345533927bfe3d2b159f7fe486.177e5124732b7cc780c8a0e9cd803ac1"
+									"value": "1000.9ec8b3281554971faa0426bce0d59d9c.fe2d17acf709fb16a453b40450d0c41f"
 								},
 								{
 									"key": "grant_type",
@@ -464,7 +464,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "https://accounts.zoho.com/oauth/v2/token?client_id={{prod_zoho_client_id}}&client_secret={{prod_zoho_client_secret}}&grant_type=client_credentials&scope=ZohoCRM.modules.ALL,ZohoCRM.settings.ALL&soid=ZohoCRM.747501552",
+							"raw": "https://accounts.zoho.com/oauth/v2/token?client_id={{prod_zoho_client_id}}&client_secret={{prod_zoho_client_secret}}&grant_type=client_credentials&scope=ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.coql.READ&soid=ZohoCRM.747501552",
 							"protocol": "https",
 							"host": [
 								"accounts",
@@ -479,28 +479,23 @@
 							"query": [
 								{
 									"key": "client_id",
-									"value": "{{prod_zoho_client_id}}",
-									"type": "text"
+									"value": "{{prod_zoho_client_id}}"
 								},
 								{
 									"key": "client_secret",
-									"value": "{{prod_zoho_client_secret}}",
-									"type": "text"
+									"value": "{{prod_zoho_client_secret}}"
 								},
 								{
 									"key": "grant_type",
-									"value": "client_credentials",
-									"type": "text"
+									"value": "client_credentials"
 								},
 								{
 									"key": "scope",
-									"value": "ZohoCRM.modules.ALL,ZohoCRM.settings.ALL",
-									"type": "text"
+									"value": "ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.coql.READ"
 								},
 								{
 									"key": "soid",
-									"value": "ZohoCRM.747501552",
-									"type": "text"
+									"value": "ZohoCRM.747501552"
 								}
 							]
 						}
