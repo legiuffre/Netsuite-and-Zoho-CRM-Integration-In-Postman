@@ -503,7 +503,7 @@
 					"response": []
 				},
 				{
-					"name": "COQL Request",
+					"name": "COQL Request - TEST",
 					"id": "6038bb28-d5ad-448f-9a84-200837a9a436",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -531,7 +531,7 @@
 					"response": []
 				},
 				{
-					"name": "POST Select Truck by VIN COQL",
+					"name": "POST Select Truck by VIN & COQL",
 					"event": [
 						{
 							"listen": "prerequest",
