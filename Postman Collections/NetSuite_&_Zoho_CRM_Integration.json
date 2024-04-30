@@ -513,13 +513,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer 1000.626da89d3a378dc8123000140af4c2f6.8b06f829ce64fa54a7078717dca3c5d7",
+								"value": "Bearer 1000.0c043fa21d9d457d35088cbefb76fd46.820f3daf52641e23cd0c247b8fd08899",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Last_Update_Escrow FROM Trucks WHERE Name = '1M1AN4GY4NM027257' AND Last_Update_Escrow < '2024-04-30'\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Last_Update_Escrow FROM Trucks WHERE Name = '3AKJHHDR5PSNZ9052' AND Last_Update_Escrow < '2024-04-30'\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
