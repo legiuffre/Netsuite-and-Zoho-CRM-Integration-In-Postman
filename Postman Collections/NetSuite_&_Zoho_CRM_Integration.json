@@ -2308,7 +2308,7 @@
 					"response": []
 				},
 				{
-					"name": "GET NetLessor Lease by SO Num Copy",
+					"name": "GET NetLessor Lease by SO Num Test",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -2331,7 +2331,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"searchID\": \"customsearch1178\",\r\n    \"searchColumn\": \"externalid\",\r\n    \"searchValue\":\"4816208000100638089\"\r\n}",
+							"raw": "{\r\n    \"searchID\": \"customsearch1178\",\r\n    \"searchColumn\": \"externalid\",\r\n    \"searchValue\":\"4816208000023323315\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
