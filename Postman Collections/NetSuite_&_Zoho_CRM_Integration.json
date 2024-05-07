@@ -2895,7 +2895,25 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/groups"
+						"url": "https://graph.microsoft.com/v1.0/groups/7d9f4924-99d9-46ec-9ece-f1b5a369fa56/sites/root"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Upload File to Sharepoint",
+					"id": "9074ab1c-6a79-4c7e-8f62-ba015af2424a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com,16f546e6-73a8-4e41-aeb9-5b4063ed000f,9caa620f-1c3c-4fde-9a08-af354acbeb07/drive/items/Test%20CSV%20Upload:/filename.csv:/createUploadSession"
 					},
 					"response": []
 				}
