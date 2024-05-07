@@ -2841,7 +2841,7 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
@@ -2857,7 +2857,7 @@
 								}
 							}
 						},
-						"url": "https://graph.microsoft.com/v1.0/users/{{microsoft_user_id}}/sendMail"
+						"url": "https://postman-echo.com"
 					},
 					"response": []
 				}
