@@ -2900,6 +2900,24 @@
 					"response": []
 				},
 				{
+					"name": "GET Library Collection",
+					"id": "f0988dc4-1ad5-4cf9-9d2e-843d44f8d75c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com,16f546e6-73a8-4e41-aeb9-5b4063ed000f,9caa620f-1c3c-4fde-9a08-af354acbeb07/Drives"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Site ID of Group",
 					"id": "7724739c-6c87-4906-a296-163142146b2f",
 					"protocolProfileBehavior": {
