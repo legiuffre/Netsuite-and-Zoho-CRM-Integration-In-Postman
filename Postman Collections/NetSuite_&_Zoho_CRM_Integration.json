@@ -2794,7 +2794,47 @@
 					"response": []
 				},
 				{
-					"name": "POST Send Mail Copy",
+					"name": "POST Create CSV",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41e39ed5-643e-4b62-8295-4e5e30b671f4",
+								"exec": [
+									"// Location of the file\r",
+									"var filepath = \"C:\\\\Test\\\\Test.xlsx\";\r",
+									"\r",
+									"// Read the file content\r",
+									"var content = pm.files.read(filepath, 'binary');\r",
+									"\r",
+									"// Access Token\r",
+									"var token = \"xxx\";\r",
+									"\r",
+									"// Set headers\r",
+									"var headers = {\r",
+									"    \"Content-Type\": \"text/plain\",\r",
+									"    \"Authorization\": \"Bearer \" + token\r",
+									"};\r",
+									"\r",
+									"// Set URI\r",
+									"var uri = \"https://graph.microsoft.com/v1.0/sites/xxxxx.sharepoint.com,12e6af7e-xxx-xxxx-xxxx-97c7701ff794,96a56094-xxxx-xxxx-xxxx-b03157bced52/drive/items/01OIH52LV6Y2GOVW7725BZO354PWSELRRZ:/testnew.xlsx:/content\";\r",
+									"\r",
+									"// Set request options\r",
+									"pm.request.url = uri;\r",
+									"pm.request.method = \"PUT\";\r",
+									"pm.request.headers.clear();\r",
+									"pm.request.headers.add(headers);\r",
+									"pm.request.body = {\r",
+									"    mode: 'raw',\r",
+									"    raw: content.toString('base64')\r",
+									"};\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "ed5da37a-e10d-4f7e-95e7-69c4975ff509",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -2804,8 +2844,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{microsoft_access_token}}",
-								"type": "text"
+								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
 						"body": {
