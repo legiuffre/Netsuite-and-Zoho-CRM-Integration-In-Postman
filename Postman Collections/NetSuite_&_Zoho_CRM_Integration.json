@@ -2882,6 +2882,24 @@
 					"response": []
 				},
 				{
+					"name": "GET Drives",
+					"id": "08682c3c-0b4c-4262-8535-baf14dd6bec9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com,16f546e6-73a8-4e41-aeb9-5b4063ed000f,9caa620f-1c3c-4fde-9a08-af354acbeb07/Drives"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Site ID of Group",
 					"id": "7724739c-6c87-4906-a296-163142146b2f",
 					"protocolProfileBehavior": {
@@ -2913,7 +2931,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com,16f546e6-73a8-4e41-aeb9-5b4063ed000f,9caa620f-1c3c-4fde-9a08-af354acbeb07/drive/items/Test%20CSV%20Upload:/filename.csv:/createUploadSession"
+						"url": "https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com,16f546e6-73a8-4e41-aeb9-5b4063ed000f,9caa620f-1c3c-4fde-9a08-af354acbeb07/drive/items/Test%20CSV%20Upload:/filename.csv:/content"
 					},
 					"response": []
 				}
