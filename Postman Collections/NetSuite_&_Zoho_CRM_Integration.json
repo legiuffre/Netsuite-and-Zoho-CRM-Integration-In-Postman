@@ -2751,7 +2751,7 @@
 								},
 								{
 									"key": "scope",
-									"value": "https://graph.microsoft.com/.default openid offline_access",
+									"value": "https://graph.microsoft.com/.default openid offline_access ",
 									"type": "text"
 								},
 								{
