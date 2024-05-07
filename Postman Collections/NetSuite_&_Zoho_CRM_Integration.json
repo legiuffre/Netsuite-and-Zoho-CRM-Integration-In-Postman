@@ -2958,7 +2958,7 @@
 								}
 							}
 						},
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_/root:/test.csv:/content"
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_/items/01CCBEUGV6Y2GOVW7725BZO354PWSELRRZ:/test.csv:/content"
 					},
 					"response": []
 				}
