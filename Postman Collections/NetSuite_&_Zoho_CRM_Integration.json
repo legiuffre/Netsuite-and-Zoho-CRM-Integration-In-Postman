@@ -2900,7 +2900,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Library Collection",
+					"name": "GET Folder ID",
 					"id": "f0988dc4-1ad5-4cf9-9d2e-843d44f8d75c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -2913,7 +2913,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_/root:/Test%20CSV%20Upload:/Children"
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_/root:/Test%20CSV%20Upload"
 					},
 					"response": []
 				},
@@ -2949,6 +2949,15 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "test,test,test",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
 						"url": "https://graph.microsoft.com/v1.0/Drives/b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_/root:/test.csv:/content"
 					},
 					"response": []
