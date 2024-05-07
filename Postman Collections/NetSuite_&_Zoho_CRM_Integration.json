@@ -2801,6 +2801,10 @@
 							"script": {
 								"id": "41e39ed5-643e-4b62-8295-4e5e30b671f4",
 								"exec": [
+									"\r",
+									"var parentId = '01CCBEUGXLUZ73M5U7IFEJ5XYGX4DMTVAE';\r",
+									"var siteId = 'b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_';\r",
+									"\r",
 									"// Hardcoded JSON data\r",
 									"var jsonData = {\r",
 									"    \"key1\": \"value1\",\r",
@@ -2814,7 +2818,7 @@
 									"var jsonContent = JSON.stringify(jsonData);\r",
 									"\r",
 									"// Set URI\r",
-									"var apiUrl = \"https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com,4c14f6a7-3370-4f08-b634-c5775c3176ab,35134b78-9bd8-4c0f-affc-5f76b13c6452/drive/items/Test%20CSV%20Upload:/\" + encodeURIComponent(filename) + \":/createUploadSession\";\r",
+									"var apiUrl = `https://graph.microsoft.com/v1.0/Drives/${siteId}/items/${parentId}:/${filename}:/content`;\r",
 									"\r",
 									"// Set request options\r",
 									"pm.request.url = apiUrl;\r",
