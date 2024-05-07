@@ -2877,7 +2877,25 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com:/sites/General IT"
+						"url": "https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Site ID of Group",
+					"id": "7724739c-6c87-4906-a296-163142146b2f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/groups"
 					},
 					"response": []
 				}
