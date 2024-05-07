@@ -2895,7 +2895,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com,16f546e6-73a8-4e41-aeb9-5b4063ed000f,9caa620f-1c3c-4fde-9a08-af354acbeb07/Drives"
+						"url": "https://graph.microsoft.com/v1.0/sites/16f546e6-73a8-4e41-aeb9-5b4063ed000f/Drives"
 					},
 					"response": []
 				},
