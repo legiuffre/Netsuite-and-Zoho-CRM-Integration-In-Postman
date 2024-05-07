@@ -2814,7 +2814,7 @@
 									"var jsonContent = JSON.stringify(jsonData);\r",
 									"\r",
 									"// Set URI\r",
-									"var apiUrl = \"https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com,4c14f6a7-3370-4f08-b634-c5775c3176ab,35134b78-9bd8-4c0f-affc-5f76b13c6452/drive/items/Test%20CSV%20Upload:/${filename}:/content\";\r",
+									"var apiUrl = \"https://graph.microsoft.com/v1.0/sites/teamrelcom.sharepoint.com,4c14f6a7-3370-4f08-b634-c5775c3176ab,35134b78-9bd8-4c0f-affc-5f76b13c6452/drive/items/Test%20CSV%20Upload:/\" + encodeURIComponent(filename) + \":/content\";\r",
 									"\r",
 									"// Set request options\r",
 									"pm.request.url = apiUrl;\r",
