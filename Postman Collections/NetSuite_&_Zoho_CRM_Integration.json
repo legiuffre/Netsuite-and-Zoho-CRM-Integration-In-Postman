@@ -2792,6 +2792,34 @@
 						"url": "https://graph.microsoft.com/v1.0/users/{{microsoft_user_id}}/sendMail"
 					},
 					"response": []
+				},
+				{
+					"name": "POST Send Mail Copy",
+					"id": "ed5da37a-e10d-4f7e-95e7-69c4975ff509",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"message\": {\r\n    \"subject\": \"{{flow_name}} Failed to Run\",\r\n    \"body\": {\r\n      \"contentType\": \"html\",\r\n      \"content\": \"<html>{{flow_name}} flow failed to run with the following request: {{request_name}}.<br /><br /></html>\"\r\n    },\r\n    \"toRecipients\": [\r\n      {\r\n        \"emailAddress\": {\r\n          \"address\": \"lgiuffre@teamrel.com\"\r\n        }\r\n      }\r\n    ]\r\n  },\r\n  \"saveToSentItems\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://graph.microsoft.com/v1.0/users/{{microsoft_user_id}}/sendMail"
+					},
+					"response": []
 				}
 			],
 			"id": "3674dee9-314d-4045-9771-28c7d370e73f",
