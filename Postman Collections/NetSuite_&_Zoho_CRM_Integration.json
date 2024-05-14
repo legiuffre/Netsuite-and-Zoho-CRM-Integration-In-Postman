@@ -1035,13 +1035,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{access_token}}",
-								"type": "text"
+								"value": "Bearer {{access_token}}"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"data\": [\r\n    {\r\n    \"Financed_Amount\": \"{{salesPrice}}\",\r\n    \"Terms_Weeks\": \"{{leaseTerm}}\",\r\n    \"Residual\" : \"{{residual}}\",\r\n    \"Down_Payment\" : \"{{downPayment}}\",\r\n    \"Weekly_Payment\" : \"{{wklyPmt}}\",\r\n    \"Weekly_Escrow_Payment\" : \"{{wklyEscrow}}\",\r\n    \"Interest_Rate\" : \"{{interestRate}}\",\r\n    \"Lease_Expiration\" : \"{{leaseExpiration}}\",\r\n    \"Date_Funded\" : \"{{dateFunded}}\",\r\n    \"PhysDam_Payment\" : \"{{physDamWklyPmt}}\",\r\n    \"Property_Tax\" : \"{{propertyTax}}\"\r\n    }\r\n  ]\r\n}",
+							"raw": "{\r\n  \"data\": [\r\n    {\r\n    \"Financed_Amount\": \"{{salesPrice}}\",\r\n    \"Terms_Weeks\": \"{{leaseTerm}}\",\r\n    \"Residual\" : \"{{residual}}\",\r\n    \"Down_Payment\" : \"{{downPayment}}\",\r\n    \"Weekly_Payment\" : \"{{wklyPmt}}\",\r\n    \"Weekly_Escrow_Payment\" : \"{{wklyEscrow}}\",\r\n    \"Interest_Rate\" : \"{{interestRate}}\",\r\n    \"Lease_Expiration\" : \"{{leaseExpiration}}\",\r\n    \"Date_Funded\" : \"{{dateFunded}}\",\r\n    \"PhysDam_Wkly_Premium\" : \"{{physDamWklyPmt}}\",\r\n    \"Property_Tax\" : \"{{propertyTax}}\"\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
