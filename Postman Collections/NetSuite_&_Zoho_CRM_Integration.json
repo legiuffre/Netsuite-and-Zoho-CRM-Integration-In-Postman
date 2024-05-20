@@ -3041,6 +3041,24 @@
 						"url": "https://graph.microsoft.com/v1.0/Drives/b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_/items/01CCBEUGXLUZ73M5U7IFEJ5XYGX4DMTVAE:/test.csv:/content"
 					},
 					"response": []
+				},
+				{
+					"name": "Get List of Groups",
+					"id": "612c3757-6fbd-40b9-b73b-9e92d48097cd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/groups/7d9f4924-99d9-46ec-9ece-f1b5a369fa56/sites/groups"
+					},
+					"response": []
 				}
 			],
 			"id": "3674dee9-314d-4045-9771-28c7d370e73f",
