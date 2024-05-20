@@ -2962,7 +2962,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Drives",
+					"name": "GET List of Drives from IT",
 					"id": "08682c3c-0b4c-4262-8535-baf14dd6bec9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -2976,6 +2976,24 @@
 							}
 						],
 						"url": "https://graph.microsoft.com/v1.0/sites/16f546e6-73a8-4e41-aeb9-5b4063ed000f/Drives"
+					},
+					"response": []
+				},
+				{
+					"name": "GET list of Drives from Contracts",
+					"id": "31d4bb08-d4ba-4e58-bc8a-44226a7b4026",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/sites/42dffe85-6c8e-4985-abf7-e2ec5d8448b5/Drives"
 					},
 					"response": []
 				},
@@ -3016,7 +3034,7 @@
 					"response": []
 				},
 				{
-					"name": "Get List of Groups",
+					"name": "GET List of Groups",
 					"id": "612c3757-6fbd-40b9-b73b-9e92d48097cd",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -3034,7 +3052,7 @@
 					"response": []
 				},
 				{
-					"name": "Get List of Sites",
+					"name": "GET List of Sites",
 					"id": "84f07687-679c-4ebb-afff-8b9c2aae2ac1",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
