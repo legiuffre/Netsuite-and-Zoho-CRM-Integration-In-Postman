@@ -3016,6 +3016,42 @@
 					"response": []
 				},
 				{
+					"name": "Get List of Groups",
+					"id": "612c3757-6fbd-40b9-b73b-9e92d48097cd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/groups/7d9f4924-99d9-46ec-9ece-f1b5a369fa56/sites/groups"
+					},
+					"response": []
+				},
+				{
+					"name": "Get List of Sites",
+					"id": "84f07687-679c-4ebb-afff-8b9c2aae2ac1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/sites"
+					},
+					"response": []
+				},
+				{
 					"name": "PUT Upload File to Sharepoint - TEST",
 					"id": "9074ab1c-6a79-4c7e-8f62-ba015af2424a",
 					"protocolProfileBehavior": {
@@ -3039,24 +3075,6 @@
 							}
 						},
 						"url": "https://graph.microsoft.com/v1.0/Drives/b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_/items/01CCBEUGXLUZ73M5U7IFEJ5XYGX4DMTVAE:/test.csv:/content"
-					},
-					"response": []
-				},
-				{
-					"name": "Get List of Groups",
-					"id": "612c3757-6fbd-40b9-b73b-9e92d48097cd",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{microsoft_access_token}}"
-							}
-						],
-						"url": "https://graph.microsoft.com/v1.0/groups/7d9f4924-99d9-46ec-9ece-f1b5a369fa56/sites/groups"
 					},
 					"response": []
 				}
