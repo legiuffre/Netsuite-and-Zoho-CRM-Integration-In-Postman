@@ -2944,7 +2944,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Site ID",
+					"name": "GET Site ID from Sharepoint",
 					"id": "b8fba20f-978e-4df5-b436-73e2ffe2d22d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -2980,7 +2980,7 @@
 					"response": []
 				},
 				{
-					"name": "GET list of Drives from Contracts",
+					"name": "GET List of Drives from Contracts",
 					"id": "31d4bb08-d4ba-4e58-bc8a-44226a7b4026",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -2998,7 +2998,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Folder ID",
+					"name": "GET Folder ID from Test CSV Folder",
 					"id": "f0988dc4-1ad5-4cf9-9d2e-843d44f8d75c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -3016,7 +3016,25 @@
 					"response": []
 				},
 				{
-					"name": "GET Site ID of Group",
+					"name": "GET Folder ID from FedEx Folder",
+					"id": "b232e6be-e77a-42a5-80f3-6e8bc645f97a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/root:/FedEx"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Site ID of Group - General IT",
 					"id": "7724739c-6c87-4906-a296-163142146b2f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
