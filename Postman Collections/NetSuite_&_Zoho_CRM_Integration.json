@@ -3034,6 +3034,24 @@
 					"response": []
 				},
 				{
+					"name": "GET Folder ID from FedEx Folder Copy",
+					"id": "a96ca9bc-6145-4d90-aad2-aaf379a51878",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/root:/FedEx"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Site ID of Group - General IT",
 					"id": "7724739c-6c87-4906-a296-163142146b2f",
 					"protocolProfileBehavior": {
@@ -3065,7 +3083,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/groups/7d9f4924-99d9-46ec-9ece-f1b5a369fa56/sites/groups"
+						"url": "https://graph.microsoft.com/v1.0/groups"
 					},
 					"response": []
 				},
