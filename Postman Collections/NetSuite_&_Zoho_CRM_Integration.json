@@ -2998,6 +2998,24 @@
 					"response": []
 				},
 				{
+					"name": "GET List of Drives from Contracts Copy",
+					"id": "a7b7a93b-15d5-4752-a2d2-13db57b6091c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/sites/42dffe85-6c8e-4985-abf7-e2ec5d8448b5/Drives"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Folder ID from Test CSV Folder",
 					"id": "f0988dc4-1ad5-4cf9-9d2e-843d44f8d75c",
 					"protocolProfileBehavior": {
