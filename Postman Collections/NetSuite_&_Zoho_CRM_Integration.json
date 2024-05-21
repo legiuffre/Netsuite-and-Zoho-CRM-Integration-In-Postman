@@ -1825,6 +1825,78 @@
 					"response": []
 				},
 				{
+					"name": "GET Prior Month Escrow Detail Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f978d71-0e2a-4f7a-b9c8-f4372057e9c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9026a1f3-be2b-4760-bd65-3ee44efb6fc2",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "7493ec09-301d-49e6-942f-453ee5bd242c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch1188\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://7936739.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=1001&deploy=1",
+							"protocol": "https",
+							"host": [
+								"7936739",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "1001"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET Property Tax Escrow",
 					"event": [
 						{
