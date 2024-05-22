@@ -3035,6 +3035,24 @@
 				},
 				{
 					"name": "GET Folder ID from FedEx Folder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d33817e-725c-4f3b-a866-c11bfeb2ce62",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"var results = jsonData.value;\r",
+									"\r",
+									"pm.visualizer.set(`<pre>{{response}}</pre>`, {\r",
+									"    response: JSON.stringify(results, null, 2)\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "b232e6be-e77a-42a5-80f3-6e8bc645f97a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
