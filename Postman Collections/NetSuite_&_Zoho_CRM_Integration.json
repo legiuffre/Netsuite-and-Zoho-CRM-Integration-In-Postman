@@ -3016,7 +3016,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Folder ID from Test CSV Folder",
+					"name": "GET Folder ID from Test FedEx Folder",
 					"id": "f0988dc4-1ad5-4cf9-9d2e-843d44f8d75c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -3029,7 +3029,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_/root:/Test%20CSV%20Upload/Apr-2024"
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_/root:/FedEx"
 					},
 					"response": []
 				},
