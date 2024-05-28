@@ -3065,7 +3065,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/root:/FedEx/Agile%20Logistics%20Inc%20-%20Kush%20Patel"
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/root:/FedEx"
 					},
 					"response": []
 				},
