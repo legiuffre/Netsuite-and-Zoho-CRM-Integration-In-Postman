@@ -316,6 +316,47 @@
 					"response": []
 				},
 				{
+					"name": "POST Select Truck by VIN & Last_Update_Escrow Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "90ee470d-9fb6-4c87-b781-44e8ab6de41c",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "e4c76075-cc24-4ea9-9f0a-4b0150e1c62f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access-token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '3AKJHLDV0SDVN4677' AND (Last_Update_Escrow < '{{today}}' OR Last_Update_Escrow IS NULL)\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/coql"
+					},
+					"response": []
+				},
+				{
 					"name": "POST Select Truck by VIN",
 					"event": [
 						{
