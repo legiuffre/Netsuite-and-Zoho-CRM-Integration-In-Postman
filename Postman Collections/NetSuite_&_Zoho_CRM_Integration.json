@@ -299,13 +299,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{access-token}}",
-								"type": "text"
+								"value": "Bearer {{access-token}}"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '{{truckVIN}}' AND Last_Update_Escrow < '{{today}}'\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '{{truckVIN}}' AND (Last_Update_Escrow < '{{today}}' OR Last_Update_Escrow IS NULL)\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
