@@ -304,7 +304,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '{{truckVIN}}' AND (Last_Update_Escrow < '{{today}}' OR Last_Update_Escrow IS NULL)\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '{{truckVIN}}' AND (Last_Update_Escrow < '{{today}}' OR Last_Update_Escrow is null)\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -316,7 +316,7 @@
 					"response": []
 				},
 				{
-					"name": "POST Select Truck by VIN & Last_Update_Escrow Copy",
+					"name": "POST Select Truck by VIN & Last_Update_Escrow COQL TEST",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -340,12 +340,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{access-token}}"
+								"value": "Bearer 1000.c62feb1c2c3e24e00df3a202e3d11336.32bf5befd3ef017c26130f2b7956cbce"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '3AKJHLDV0SDVN4677' AND (Last_Update_Escrow < '{{today}}' OR Last_Update_Escrow IS NULL)\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '3AKJHLDV0SDVN4677' AND (Last_Update_Escrow < '{{today}}' OR Last_Update_Escrow is null)\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
