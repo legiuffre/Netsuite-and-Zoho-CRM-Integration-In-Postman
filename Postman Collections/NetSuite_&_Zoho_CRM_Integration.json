@@ -579,7 +579,7 @@
 									"                        const pathEvents = actResp.pathevents;\r",
 									"                        const asset = pathEvents.assets;\r",
 									"                        const recordCount = asset[0].eventcount;\r",
-									"\r",
+									"                        console.log(\"here\");\r",
 									"                        if (recordCount > 0) {\r",
 									"                            const events = asset[0].events;\r",
 									"                            let last_odometer = 0, first_odometer = 0, last_distance = 0, first_distance = 0, last_fuel_counter = 0, first_fuel_counter = 0, distance_traveled = 0, mpg = 0;\r",
