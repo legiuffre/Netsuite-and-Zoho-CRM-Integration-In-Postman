@@ -565,7 +565,7 @@
 									"                        reqtype: \"vin\",\r",
 									"                        target: vin\r",
 									"                    };\r",
-									"\r",
+									"                    console.log(\"zonar paramMap: \" + paramMap);\r",
 									"                    try {\r",
 									"                        const actResp = await fetchZonarData(paramMap);\r",
 									"\r",
