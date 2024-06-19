@@ -416,6 +416,12 @@
 							"script": {
 								"id": "2f725373-7b35-4b93-a71e-f01712c0e4d9",
 								"exec": [
+									"function buildQueryString(params) {\r",
+									"    return Object.keys(params)\r",
+									"        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)\r",
+									"        .join('&');\r",
+									"}\r",
+									"\r",
 									"const loop = [1];\r",
 									"// const loop = [1, 2, 3, 4, 5, 6];\r",
 									"let RecCnt = 0;\r",
