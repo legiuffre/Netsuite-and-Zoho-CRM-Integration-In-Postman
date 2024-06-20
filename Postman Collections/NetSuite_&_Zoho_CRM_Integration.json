@@ -729,8 +729,11 @@
 									"\r",
 									"    if (flag_error === 1) {\r",
 									"        await sendEmail('Schedule - Zonar Updates for Truck and PM Records', `Schedule Failed: <br><br>${JSON.stringify(pm_map_error, null, 2)}<br><br>`, csvFileName, csvContent);\r",
+									"        console.log(\"Schedule - Zonar Updates for Truck and PM Records Failed: \" + JSON.stringify(pm_map_error, null, 2));\r",
 									"    } else {\r",
 									"        await sendEmail('Schedule - Zonar Updates for Truck and PM Records - Completed Update', `Odometer Script Completed Update<br><br>Total Records Updated = ${UpdtCnt}<br><br>Total Record Count = ${RecCnt}<br><br>`, csvFileName, csvContent);\r",
+									"\r",
+									"        console.log(\"Schedule - Zonar Updates for Truck and PM Records - Completed Update: \" + `Total Records Updated = ${UpdtCnt}, Total Record Count = ${RecCnt}`);\r",
 									"    }\r",
 									"})();\r",
 									""
