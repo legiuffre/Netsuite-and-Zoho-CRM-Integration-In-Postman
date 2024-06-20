@@ -479,7 +479,7 @@
 									"const zonarP = pm.environment.get(\"zonar_p\");\r",
 									"const zonarU = pm.environment.get(\"zonar_u\");\r",
 									"const enableUpdates = true;\r",
-									"const perPage = 5;\r",
+									"const perPage = 200;\r",
 									"\r",
 									"console.log(\"enableUpdates: \" + enableUpdates);\r",
 									"\r",
