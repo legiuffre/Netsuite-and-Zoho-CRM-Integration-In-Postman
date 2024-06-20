@@ -2388,7 +2388,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Prior Month Escrow Detail Copy",
+					"name": "GET Prior Month Escrow Detail - Single Record",
 					"event": [
 						{
 							"listen": "prerequest",
