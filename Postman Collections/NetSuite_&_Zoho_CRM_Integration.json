@@ -478,7 +478,7 @@
 									"\r",
 									"const zonarP = pm.environment.get(\"zonar_p\");\r",
 									"const zonarU = pm.environment.get(\"zonar_u\");\r",
-									"const enableUpdates = false;\r",
+									"const enableUpdates = true;\r",
 									"const perPage = 10;\r",
 									"const maxRecords = 10; // Maximum number of records to process\r",
 									"let offset = 0;\r",
