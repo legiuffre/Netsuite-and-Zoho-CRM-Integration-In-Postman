@@ -629,7 +629,7 @@
 									"                            if (enableUpdates) {\r",
 									"                                try {\r",
 									"                                    const update = await updateRecord('Trucks', trkID, final);\r",
-									"\r",
+									"                                    console.log(\"Rec Update Modified Time: \" + update.data[0].Modified_Time);\r",
 									"                                    if (!update.data[0].Modified_Time) {\r",
 									"                                        throw new Error(`Truck Rec Failed to Update: ${vin}`);\r",
 									"                                    } else {\r",
