@@ -1033,7 +1033,7 @@
 								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
 								"exec": [
 									"const moment = require('moment');\r",
-									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));"
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DDT01:00:01\")));"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1054,7 +1054,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Trucks/search?criteria=(Truck_Status%3Aequals%3A-Delivered)and(Mileage_Last_Updated%3Aless_than%3A{{today}})",
+							"raw": "https://www.zohoapis.com/crm/v6/Trucks/search?criteria=(Truck_Status%3Aequals%3A-Delivered)and(Mileage_Last_Updated%3Aequals%3A{{today}})",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -1070,7 +1070,7 @@
 							"query": [
 								{
 									"key": "criteria",
-									"value": "(Truck_Status%3Aequals%3A-Delivered)and(Mileage_Last_Updated%3Aless_than%3A{{today}})"
+									"value": "(Truck_Status%3Aequals%3A-Delivered)and(Mileage_Last_Updated%3Aequals%3A{{today}})"
 								}
 							]
 						}
