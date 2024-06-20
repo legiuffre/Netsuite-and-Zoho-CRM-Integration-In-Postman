@@ -1054,7 +1054,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Trucks/search?criteria=((Truck_Status:equals:-Delivered)and(Mileage_Last_Updated%3Aless_than%3A{{today}}))",
+							"raw": "https://www.zohoapis.com/crm/v6/Trucks/search?criteria=((Truck_Status%3Aequals%3A-Delivered)and(Mileage_Last_Updated%3Aless_than%3A{{today}}))",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -1070,7 +1070,7 @@
 							"query": [
 								{
 									"key": "criteria",
-									"value": "((Truck_Status:equals:-Delivered)and(Mileage_Last_Updated%3Aless_than%3A{{today}}))"
+									"value": "((Truck_Status%3Aequals%3A-Delivered)and(Mileage_Last_Updated%3Aless_than%3A{{today}}))"
 								}
 							]
 						}
