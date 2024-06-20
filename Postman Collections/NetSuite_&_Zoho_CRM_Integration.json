@@ -2422,7 +2422,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"searchID\": \"customsearch1188\",\r\n    \"searchColumn\": \"custbody4\",\r\n    \"searchValue\":\"1FUJHHDR2RLUY0812\"\r\n}",
+							"raw": "{\r\n    \"searchID\": \"customsearch1188\",\r\n    \"searchColumn\": \"custcol1\",\r\n    \"searchValue\":\"1FUJHHDR2RLUY0812\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
