@@ -812,6 +812,60 @@
 					"response": []
 				},
 				{
+					"name": "GET Delivered Trucks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "94a4ba71-23d3-4b64-8947-29753b96e632",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 1000.703c546b2d082ef2b46c71733d3a3cee.17e80b0d58f887366795f3bf7518ee42",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated FROM Trucks WHERE Truck_Status = '-Delivered' AND Mileage_Last_Updated < '{{today}}'\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/coql"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Account by ID",
 					"event": [
 						{
@@ -997,58 +1051,6 @@
 								}
 							]
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET Delivered Trucks",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "94a4ba71-23d3-4b64-8947-29753b96e632",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer 1000.703c546b2d082ef2b46c71733d3a3cee.17e80b0d58f887366795f3bf7518ee42",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated FROM Trucks WHERE Name = '3AKJHHDR5PSNZ9052' AND Last_Update_Escrow < '2024-04-30'\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "https://www.zohoapis.com/crm/v6/coql"
 					},
 					"response": []
 				},
