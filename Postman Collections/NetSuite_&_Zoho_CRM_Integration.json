@@ -215,7 +215,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer 1000.0c043fa21d9d457d35088cbefb76fd46.820f3daf52641e23cd0c247b8fd08899",
+								"value": "Bearer {{zoho_access_token}}",
 								"type": "text"
 							}
 						],
