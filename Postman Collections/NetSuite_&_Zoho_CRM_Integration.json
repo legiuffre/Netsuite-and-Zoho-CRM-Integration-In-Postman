@@ -659,6 +659,7 @@
 									"            }\r",
 									"\r",
 									"            const records = await fetchAllTrucks(offset, perPage);\r",
+									"            console.log(\"records length: \" + records.length);\r",
 									"            if (records.length === 0) {\r",
 									"                break;\r",
 									"            }\r",
