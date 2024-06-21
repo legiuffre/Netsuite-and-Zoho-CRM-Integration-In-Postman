@@ -4653,6 +4653,18 @@
 								"type": "text/javascript",
 								"packages": {}
 							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a3ffdc7f-532e-444e-b8f1-7e001abcb945",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"zoho_analytics_token\",jsonData.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
 					],
 					"id": "40e77122-a9a5-4a2f-a385-99c0ee57498d",
@@ -4740,7 +4752,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Zoho-oauthtoken ",
+								"value": "Zoho-oauthtoken {{zoho_analytics_token}}",
 								"type": "text"
 							}
 						],
