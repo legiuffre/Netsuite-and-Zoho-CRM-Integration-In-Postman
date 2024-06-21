@@ -147,7 +147,20 @@
 								"exec": [
 									"pm.variables.set(\"client_id\", pm.environment.get(\"prod_zoho_client_id\"));\r",
 									"pm.variables.set(\"client_secret\", pm.environment.get(\"prod_zoho_client_secret\"));\r",
-									"pm.variables.set(\"refresh_token\", pm.environment.get(\"prod-refresh-token\"));"
+									"pm.variables.set(\"refresh_token\", pm.environment.get(\"prod-refresh-token\"));\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f86d904e-e44f-4fbb-90a6-a6c2ba0f22ba",
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"zoho_access_token\",jsonData.access_token);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -221,7 +234,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Last_Update_Escrow FROM Trucks WHERE Name = '3AKJHHDR5PSNZ9052' AND Last_Update_Escrow < '2024-04-30'\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Last_Update_Escrow FROM Trucks WHERE Name = '3AKJHHDR5PSNZ9052' AND Last_Update_Escrow < '2025-04-30'\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -340,7 +353,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer 1000.c62feb1c2c3e24e00df3a202e3d11336.32bf5befd3ef017c26130f2b7956cbce"
+								"value": "Bearer {{zoho_access_token}}"
 							}
 						],
 						"body": {
@@ -875,7 +888,7 @@
 					"response": []
 				},
 				{
-					"name": "Update Zonar on Trucks in Zoho CRM Copy",
+					"name": "Update Zonar on Trucks in Zoho CRM BACKUP",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -1661,7 +1674,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer 1000.703c546b2d082ef2b46c71733d3a3cee.17e80b0d58f887366795f3bf7518ee42",
+								"value": "{{zoho_access_token}}",
 								"type": "text"
 							}
 						],
