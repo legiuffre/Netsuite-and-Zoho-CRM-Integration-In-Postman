@@ -1109,7 +1109,7 @@
 									"                    },\r",
 									"                    toRecipients: [{\r",
 									"                        emailAddress: {\r",
-									"                            address: \"lgiuffre@teamrel.com\"\r",
+									"                            address: pm.environment.get(\"it_email\")\r",
 									"                        }\r",
 									"                    }],\r",
 									"                    attachments: [{\r",
