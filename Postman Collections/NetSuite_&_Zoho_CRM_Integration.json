@@ -4740,7 +4740,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Zoho-oauthtoken 1000.e9fb969c718d8ac27ff585921ea50980.2d0deddea6c7b06826a596dc6e4da2a0",
+								"value": "Zoho-oauthtoken ",
 								"type": "text"
 							}
 						],
@@ -4773,8 +4773,7 @@
 							"query": [
 								{
 									"key": "CONFIG",
-									"value": "{{config}}",
-									"type": "text"
+									"value": "{{config}}"
 								}
 							]
 						}
