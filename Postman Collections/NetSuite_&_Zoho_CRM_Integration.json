@@ -1380,6 +1380,47 @@
 					"response": []
 				},
 				{
+					"name": "POST Update Zonar on Trucks in CRM - TEST",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "90ee470d-9fb6-4c87-b781-44e8ab6de41c",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", encodeURIComponent(moment().format(\"YYYY-MM-DD\")));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "894a04ae-4661-46ea-9964-7f0a2696b668",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{zoho_access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated, Zonar_GPS_ID, Lease_Start_Date FROM Trucks WHERE Truck_Status = '-Delivered' and Zonar_GPS_ID is not null and Mileage_Last_Updated < '2024-06-24'\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/coql"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Delivered Trucks",
 					"event": [
 						{
@@ -5005,6 +5046,102 @@
 				}
 			],
 			"id": "9c9dc0a4-ad69-42ea-a715-5974788ec2c1"
+		},
+		{
+			"name": "Zonar",
+			"item": [
+				{
+					"name": "Jbus Trip Report",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "62afd770-b196-48c1-9726-1906a8a1177d",
+								"exec": [
+									"const currentDate = new Date();\r",
+									"const endtime = Math.floor(currentDate.getTime() / 1000);\r",
+									"const stime = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000);\r",
+									"const starttime = Math.floor(stime.getTime() / 1000);\r",
+									"\r",
+									"pm.environment.set(\"starttime\", starttime.toString());\r",
+									"pm.environment.set(\"endtime\", endtime.toString());\r",
+									"pm.environment.set(\"zonar_truck_vin\",\"4V4NC9EHXRN652662\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "d6aa5b78-e866-4d3c-a81b-5bc0236b63f8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://omi.zonarsystems.net/interface.php?action=showopen&operation=jbustrip&format=xml&start={{starttime}}&end={{endtime}}&customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&target={{zonar_truck_vin}}&reqtype=vin&logvers=1",
+							"protocol": "https",
+							"host": [
+								"omi",
+								"zonarsystems",
+								"net"
+							],
+							"path": [
+								"interface.php"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "showopen"
+								},
+								{
+									"key": "operation",
+									"value": "jbustrip"
+								},
+								{
+									"key": "format",
+									"value": "xml"
+								},
+								{
+									"key": "start",
+									"value": "{{starttime}}"
+								},
+								{
+									"key": "end",
+									"value": "{{endtime}}"
+								},
+								{
+									"key": "customer",
+									"value": "{{zonar_customer_id}}"
+								},
+								{
+									"key": "username",
+									"value": "{{zonar_u}}"
+								},
+								{
+									"key": "password",
+									"value": "{{zonar_p}}"
+								},
+								{
+									"key": "target",
+									"value": "{{zonar_truck_vin}}"
+								},
+								{
+									"key": "reqtype",
+									"value": "vin"
+								},
+								{
+									"key": "logvers",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "d8589a7b-fcfc-496d-a4af-d26c4722b01a"
 		}
 	],
 	"event": [
