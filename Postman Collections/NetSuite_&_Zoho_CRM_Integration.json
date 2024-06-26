@@ -4201,7 +4201,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://omi.zonarsystems.net/interface.php?action=showopen&operation=jbustrip&format=xml&start={{starttime}}&end={{endtime}}&customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&target={{zonar_truck_vin}}&reqtype=vin&logvers=1",
+							"raw": "https://omi.zonarsystems.net/interface.php?action=showposition&operation=path&format=json&start={{starttime}}&end={{endtime}}&customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&target={{zonar_truck_vin}}&reqtype=vin&logvers=3.8&version=2",
 							"protocol": "https",
 							"host": [
 								"omi",
@@ -4214,15 +4214,15 @@
 							"query": [
 								{
 									"key": "action",
-									"value": "showopen"
+									"value": "showposition"
 								},
 								{
 									"key": "operation",
-									"value": "jbustrip"
+									"value": "path"
 								},
 								{
 									"key": "format",
-									"value": "xml"
+									"value": "json"
 								},
 								{
 									"key": "start",
@@ -4254,7 +4254,12 @@
 								},
 								{
 									"key": "logvers",
-									"value": "1"
+									"value": "3.8"
+								},
+								{
+									"key": "version",
+									"value": "2",
+									"type": "text"
 								}
 							]
 						}
