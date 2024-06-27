@@ -4201,7 +4201,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://omi.zonarsystems.net/interface.php?action=showposition&operation=path&format=json&start={{starttime}}&end={{endtime}}&customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&target={{zonar_truck_vin}}&reqtype=vin&logvers=3.8&version=2",
+							"raw": "https://omi.zonarsystems.net/interface.php?customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&action=showposition&operation=path&format=json&start={{starttime}}&end={{endtime}}&target={{zonar_truck_vin}}&reqtype=vin&logvers=3.8&version=2",
 							"protocol": "https",
 							"host": [
 								"omi",
@@ -4212,6 +4212,18 @@
 								"interface.php"
 							],
 							"query": [
+								{
+									"key": "customer",
+									"value": "{{zonar_customer_id}}"
+								},
+								{
+									"key": "username",
+									"value": "{{zonar_u}}"
+								},
+								{
+									"key": "password",
+									"value": "{{zonar_p}}"
+								},
 								{
 									"key": "action",
 									"value": "showposition"
@@ -4233,18 +4245,6 @@
 									"value": "{{endtime}}"
 								},
 								{
-									"key": "customer",
-									"value": "{{zonar_customer_id}}"
-								},
-								{
-									"key": "username",
-									"value": "{{zonar_u}}"
-								},
-								{
-									"key": "password",
-									"value": "{{zonar_p}}"
-								},
-								{
 									"key": "target",
 									"value": "{{zonar_truck_vin}}"
 								},
@@ -4258,8 +4258,7 @@
 								},
 								{
 									"key": "version",
-									"value": "2",
-									"type": "text"
+									"value": "2"
 								}
 							]
 						}
