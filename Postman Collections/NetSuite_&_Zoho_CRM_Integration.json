@@ -4201,7 +4201,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://omi.zonarsystems.net/interface.php?customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&action=showposition&operation=path&format=json&start={{starttime}}&end={{endtime}}&target={{zonar_truck_vin}}&reqtype=vin&logvers=3.8&version=2",
+							"raw": "https://omi.zonarsystems.net/interface.php?customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&action=showposition&operation=path&format=json&starttime={{starttime}}&endtime={{endtime}}&version=2&logvers=3.8&reqtype=vin&target={{zonar_truck_vin}}",
 							"protocol": "https",
 							"host": [
 								"omi",
@@ -4237,28 +4237,28 @@
 									"value": "json"
 								},
 								{
-									"key": "start",
+									"key": "starttime",
 									"value": "{{starttime}}"
 								},
 								{
-									"key": "end",
+									"key": "endtime",
 									"value": "{{endtime}}"
 								},
 								{
-									"key": "target",
-									"value": "{{zonar_truck_vin}}"
-								},
-								{
-									"key": "reqtype",
-									"value": "vin"
+									"key": "version",
+									"value": "2"
 								},
 								{
 									"key": "logvers",
 									"value": "3.8"
 								},
 								{
-									"key": "version",
-									"value": "2"
+									"key": "reqtype",
+									"value": "vin"
+								},
+								{
+									"key": "target",
+									"value": "{{zonar_truck_vin}}"
 								}
 							]
 						}
