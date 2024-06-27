@@ -4186,7 +4186,7 @@
 									"\r",
 									"pm.environment.set(\"starttime\", starttime.toString());\r",
 									"pm.environment.set(\"endtime\", endtime.toString());\r",
-									"pm.environment.set(\"zonar_truck_vin\",\"4V4NC9EHXRN652662\");"
+									"// pm.environment.set(\"zonar_truck_vin\",\"4V4NC9EHXRN652662\");"
 								],
 								"type": "text/javascript",
 								"packages": {}
