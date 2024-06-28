@@ -1174,7 +1174,13 @@
 								"id": "0aebd6c5-124d-4af6-838b-71b41ad3f817",
 								"exec": [
 									"const moment = require('moment');\r",
-									"pm.variables.set(\"today\", moment().format(\"YYYY-MM-DD\"));"
+									"pm.variables.set(\"today\", moment().format(\"YYYY-MM-DD\"));\r",
+									"\r",
+									"const newOdometer = pm.variables.get(\"New_Odometer\");\r",
+									"\r",
+									"if (!newOdometer) {\r",
+									"    \r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1196,7 +1202,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Mileage_Driven\": {{Odometer}},\r\n            \"MPG\": {{MPG}},\r\n            \"Mileage_Last_Updated\": {{today}}\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Mileage_Driven\": {{New_Odometer}},\r\n            \"MPG\": {{MPG}},\r\n            \"Mileage_Last_Updated\": {{today}}\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
