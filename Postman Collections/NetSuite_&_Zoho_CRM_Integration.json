@@ -1155,6 +1155,72 @@
 					"response": []
 				},
 				{
+					"name": "PUT Truck Mileage & MPG",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c32652e6-c885-4802-92c5-aef76c853a7c",
+								"exec": [
+									"// Test if the response status code is 200 OK\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response body is a valid JSON\r",
+									"pm.test(\"Response body is JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"// Test if the response contains a specific key\r",
+									"pm.test(\"Response contains key 'data'\", function () {\r",
+									"    pm.expect(pm.response.json()).to.have.property('data');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0aebd6c5-124d-4af6-838b-71b41ad3f817",
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.variables.set(\"today\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "72f735d8-4abe-4c62-9cd8-d70141f76850",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Mileage_Driven\": {{z_rel_monthly_pmt}},\r\n            \"MPG\": {{z_remaining_rel_obligation}},\r\n            \"Mileage_Last_Updated\": {{z_acquisition_cost}}\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/Trucks/{{z_truck_id}}"
+					},
+					"response": []
+				},
+				{
 					"name": "PUT Invoice to Processed",
 					"id": "ce123462-6873-47c2-b2bb-bb7e56984542",
 					"protocolProfileBehavior": {
