@@ -810,7 +810,7 @@
 								"type": "text"
 							}
 						],
-						"url": "https://www.zohoapis.com/crm/v6/Trucks/{{z_truck_id}}/Truck_PM"
+						"url": "https://www.zohoapis.com/crm/v2/Trucks/{{z_truck_id}}/Truck_PM"
 					},
 					"response": []
 				},
