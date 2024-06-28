@@ -772,7 +772,7 @@
 					"response": []
 				},
 				{
-					"name": "GETTruck PM Rec ID",
+					"name": "GET Truck PM Rec ID",
 					"event": [
 						{
 							"listen": "test",
