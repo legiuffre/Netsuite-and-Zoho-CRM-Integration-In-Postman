@@ -4291,13 +4291,22 @@
 								"id": "62afd770-b196-48c1-9726-1906a8a1177d",
 								"exec": [
 									"const currentDate = new Date();\r",
-									"const endtime = Math.floor(currentDate.getTime() / 1000);\r",
-									"const stime = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000);\r",
-									"const starttime = Math.floor(stime.getTime() / 1000);\r",
+									"const endOfDayToday = new Date(currentDate.setHours(23, 59, 59, 999));\r",
+									"\r",
+									"// Calculate the start of yesterday\r",
+									"const startOfYesterday = new Date(currentDate);\r",
+									"startOfYesterday.setDate(currentDate.getDate() - 1);\r",
+									"startOfYesterday.setHours(0, 0, 0, 0);\r",
+									"\r",
+									"const starttime = Math.floor(startOfYesterday.getTime() / 1000);\r",
+									"const endtime = Math.floor(endOfDayToday.getTime() / 1000);\r",
 									"\r",
 									"pm.environment.set(\"starttime\", starttime.toString());\r",
-									"pm.environment.set(\"endtime\", starttime.toString());\r",
-									"pm.environment.set(\"zonar_truck_vin\",\"1M1AN4GY7NM027608\");"
+									"pm.environment.set(\"endtime\", endtime.toString());\r",
+									"pm.environment.set(\"zonar_truck_vin\", \"1M1AN4GY7NM027608\");\r",
+									"\r",
+									"console.log(\"starttime: \" + starttime.toString());\r",
+									"console.log(\"endtime: \" + endtime.toString());"
 								],
 								"type": "text/javascript",
 								"packages": {}
