@@ -4380,13 +4380,6 @@
 							"script": {
 								"id": "62afd770-b196-48c1-9726-1906a8a1177d",
 								"exec": [
-									"const currentDate = new Date();\r",
-									"const endtime = Math.floor(currentDate.getTime() / 1000);\r",
-									"const stime = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000);\r",
-									"const starttime = Math.floor(stime.getTime() / 1000);\r",
-									"\r",
-									"pm.environment.set(\"starttime\", starttime.toString());\r",
-									"pm.environment.set(\"endtime\", endtime.toString());\r",
 									"pm.environment.set(\"zonar_truck_vin\",\"4V4NC9EHXRN652662\");"
 								],
 								"type": "text/javascript",
@@ -4402,7 +4395,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://omi.zonarsystems.net/interface.php?action=showposition&operation=currewnt&format=xml&customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&target={{zonar_truck_vin}}&reqtype=vin&logvers=3.7&version=2",
+							"raw": "https://omi.zonarsystems.net/interface.php?action=showposition&operation=current&format=xml&customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&target={{zonar_truck_vin}}&reqtype=vin&logvers=3.6&version=2",
 							"protocol": "https",
 							"host": [
 								"omi",
@@ -4419,7 +4412,7 @@
 								},
 								{
 									"key": "operation",
-									"value": "currewnt"
+									"value": "current"
 								},
 								{
 									"key": "format",
@@ -4447,12 +4440,11 @@
 								},
 								{
 									"key": "logvers",
-									"value": "3.7"
+									"value": "3.6"
 								},
 								{
 									"key": "version",
-									"value": "2",
-									"type": "text"
+									"value": "2"
 								}
 							]
 						}
