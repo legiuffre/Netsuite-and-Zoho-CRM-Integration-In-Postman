@@ -1174,13 +1174,7 @@
 								"id": "0aebd6c5-124d-4af6-838b-71b41ad3f817",
 								"exec": [
 									"const moment = require('moment');\r",
-									"pm.variables.set(\"today\", moment().format(\"YYYY-MM-DD\"));\r",
-									"\r",
-									"const newOdometer = pm.variables.get(\"New_Odometer\");\r",
-									"\r",
-									"if (!newOdometer) {\r",
-									"    \r",
-									"}"
+									"const today = moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\");"
 								],
 								"type": "text/javascript",
 								"packages": {}
