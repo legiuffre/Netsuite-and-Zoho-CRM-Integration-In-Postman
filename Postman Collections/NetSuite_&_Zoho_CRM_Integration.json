@@ -1239,7 +1239,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Mileage_Driven\": {{Mileage_Driven}},\r\n            \"MPG\": {{MPG}},\r\n            \"Mileage_Last_Updated\": {{today}},\r\n            \"Current_Mileage\": {{New_Odometer}}\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Mileage_Driven\": {{Mileage_Driven}},\r\n            \"MPG\": {{MPG}},\r\n            \"Mileage_Last_Updated\": \"{{today}}\",\r\n            \"Current_Mileage\": {{New_Odometer}}\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
