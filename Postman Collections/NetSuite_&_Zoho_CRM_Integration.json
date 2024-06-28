@@ -4296,8 +4296,8 @@
 									"const starttime = Math.floor(stime.getTime() / 1000);\r",
 									"\r",
 									"pm.environment.set(\"starttime\", starttime.toString());\r",
-									"pm.environment.set(\"endtime\", endtime.toString());\r",
-									"pm.environment.set(\"zonar_truck_vin\",\"4V4NC9EHXRN652662\");"
+									"pm.environment.set(\"endtime\", starttime.toString());\r",
+									"pm.environment.set(\"zonar_truck_vin\",\"1M1AN4GY7NM027608\");"
 								],
 								"type": "text/javascript",
 								"packages": {}
