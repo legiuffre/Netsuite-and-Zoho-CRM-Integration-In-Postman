@@ -541,6 +541,49 @@
 					"response": []
 				},
 				{
+					"name": "GET Timeline of Truck Record",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5580f58b-f321-4967-9e2f-f0e0fbc525df",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9feb2b85-5aaa-4355-b3e4-57ac696f26f6",
+								"exec": [
+									"pm.variables.set(\"truck_id_timeline\",\"4816208000072394124\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "42e555ba-5e5f-45f6-bf06-a80a43f40ec2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": "https://www.zohoapis.com/crm/v2/Trucks/{{truck_id_timeline}}/timeilne"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Truck by VIN - Last Update Escrow",
 					"event": [
 						{
