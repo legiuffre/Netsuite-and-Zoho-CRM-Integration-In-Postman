@@ -1217,7 +1217,15 @@
 								"id": "0aebd6c5-124d-4af6-838b-71b41ad3f817",
 								"exec": [
 									"const moment = require('moment');\r",
-									"pm.variables.set(\"today\", moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\"));"
+									"pm.variables.set(\"today\", moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\"));\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const distanceTraveled = pm.variables.get(\"Mileage_Driven\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!distanceTraveled) {\r",
+									"    pm.variables.set(\"Mileage_Driven\",\"\");\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1270,7 +1278,15 @@
 								"id": "0aebd6c5-124d-4af6-838b-71b41ad3f817",
 								"exec": [
 									"const moment = require('moment');\r",
-									"pm.variables.set(\"today\", moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\"));"
+									"pm.variables.set(\"today\", moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\"));\r",
+									"\r",
+									"// Get the value of the variable\r",
+									"const distanceTraveled = pm.variables.get(\"Mileage_Driven\");\r",
+									"\r",
+									"// Check if the variable is empty or null\r",
+									"if (!distanceTraveled) {\r",
+									"    pm.variables.set(\"Mileage_Driven\",\"\");\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
