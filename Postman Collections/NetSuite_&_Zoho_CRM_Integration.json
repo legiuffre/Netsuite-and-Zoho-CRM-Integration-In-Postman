@@ -554,6 +554,8 @@
 									"console.log(timeline.length);\r",
 									"if (index < timeline.length && index <= 1) {\r",
 									"    console.log(\"timeline instance: \" + JSON.stringify(timeline[index]));\r",
+									"    const field_history = timeline[index].field_history;\r",
+									"    console.log(\"field_history: \" + JSON.stringify(field_history));\r",
 									"    index = index++;\r",
 									"}"
 								],
