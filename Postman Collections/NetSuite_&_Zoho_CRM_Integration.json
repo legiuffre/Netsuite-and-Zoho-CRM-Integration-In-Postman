@@ -1218,14 +1218,7 @@
 								"exec": [
 									"const moment = require('moment');\r",
 									"pm.variables.set(\"today\", moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\"));\r",
-									"\r",
-									"// Get the value of the variable\r",
-									"const distanceTraveled = pm.variables.get(\"Mileage_Driven\");\r",
-									"\r",
-									"// Check if the variable is empty or null\r",
-									"if (!distanceTraveled) {\r",
-									"    pm.variables.set(\"Mileage_Driven\",\"\");\r",
-									"}"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1247,7 +1240,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Mileage_Driven\": {{Mileage_Driven}},\r\n            \"MPG\": {{MPG}},\r\n            \"Mileage_Last_Updated\": \"{{today}}\",\r\n            \"Current_Mileage\": {{New_Odometer}}\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"MPG\": {{MPG}},\r\n            \"Mileage_Last_Updated\": \"{{today}}\",\r\n            \"Current_Mileage\": {{New_Odometer}}\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1279,14 +1272,7 @@
 								"exec": [
 									"const moment = require('moment');\r",
 									"pm.variables.set(\"today\", moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\"));\r",
-									"\r",
-									"// Get the value of the variable\r",
-									"const distanceTraveled = pm.variables.get(\"Mileage_Driven\");\r",
-									"\r",
-									"// Check if the variable is empty or null\r",
-									"if (!distanceTraveled) {\r",
-									"    pm.variables.set(\"Mileage_Driven\",\"\");\r",
-									"}"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1308,7 +1294,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Mileage_Driven\": {{Mileage_Driven}},\r\n            \"Mileage_Last_Updated\": \"{{today}}\",\r\n            \"Current_Mileage\": {{New_Odometer}}\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Mileage_Last_Updated\": \"{{today}}\",\r\n            \"Current_Mileage\": {{New_Odometer}}\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
