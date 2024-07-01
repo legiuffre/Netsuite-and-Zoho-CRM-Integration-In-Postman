@@ -4317,6 +4317,116 @@
 							"script": {
 								"id": "3fd5617c-48db-425a-b7c8-a5005c5baee3",
 								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "d6aa5b78-e866-4d3c-a81b-5bc0236b63f8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://omi.zonarsystems.net/interface.php?action=showopen&operation=jbustrip&format=xml&start={{starttime}}&end={{endtime}}&customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&target={{zonar_truck_vin}}&reqtype=vin&logvers=1",
+							"protocol": "https",
+							"host": [
+								"omi",
+								"zonarsystems",
+								"net"
+							],
+							"path": [
+								"interface.php"
+							],
+							"query": [
+								{
+									"key": "action",
+									"value": "showopen"
+								},
+								{
+									"key": "operation",
+									"value": "jbustrip"
+								},
+								{
+									"key": "format",
+									"value": "xml"
+								},
+								{
+									"key": "start",
+									"value": "{{starttime}}"
+								},
+								{
+									"key": "end",
+									"value": "{{endtime}}"
+								},
+								{
+									"key": "customer",
+									"value": "{{zonar_customer_id}}"
+								},
+								{
+									"key": "username",
+									"value": "{{zonar_u}}"
+								},
+								{
+									"key": "password",
+									"value": "{{zonar_p}}"
+								},
+								{
+									"key": "target",
+									"value": "{{zonar_truck_vin}}"
+								},
+								{
+									"key": "reqtype",
+									"value": "vin"
+								},
+								{
+									"key": "logvers",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Jbus Trip Report - Test",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "62afd770-b196-48c1-9726-1906a8a1177d",
+								"exec": [
+									"const currentDate = new Date();\r",
+									"const endOfDayToday = new Date(currentDate.setHours(23, 59, 59, 999));\r",
+									"\r",
+									"// Calculate the start of yesterday\r",
+									"const startOfYesterday = new Date(currentDate);\r",
+									"startOfYesterday.setDate(currentDate.getDate() - 1);\r",
+									"startOfYesterday.setHours(0, 0, 0, 0);\r",
+									"\r",
+									"const starttime = Math.floor(startOfYesterday.getTime() / 1000);\r",
+									"const endtime = Math.floor(endOfDayToday.getTime() / 1000);\r",
+									"\r",
+									"pm.environment.set(\"starttime\", starttime.toString());\r",
+									"pm.environment.set(\"endtime\", endtime.toString());\r",
+									"pm.environment.set(\"zonar_truck_vin\", \"1M1AN4GY7NM027608\");\r",
+									"\r",
+									"console.log(\"starttime: \" + starttime.toString());\r",
+									"console.log(\"endtime: \" + endtime.toString());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "3fd5617c-48db-425a-b7c8-a5005c5baee3",
+								"exec": [
 									"const xml2js = require('xml2js');\r",
 									"const parser = new xml2js.Parser({ explicitArray: false });\r",
 									"\r",
@@ -4374,7 +4484,7 @@
 							}
 						}
 					],
-					"id": "d6aa5b78-e866-4d3c-a81b-5bc0236b63f8",
+					"id": "09b169fe-2672-4b59-a8d3-04b83e0af285",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
