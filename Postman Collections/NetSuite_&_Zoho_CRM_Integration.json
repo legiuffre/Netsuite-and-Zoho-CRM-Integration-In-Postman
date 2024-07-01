@@ -550,8 +550,12 @@
 								"exec": [
 									"jsonData = pm.response.json();\r",
 									"timeline = jsonData.__timeline;\r",
-									"\r",
-									""
+									"let index = 0;\r",
+									"console.log(timeline.length);\r",
+									"if (index < timeline.length && index <= 1) {\r",
+									"    console.log(\"timeline instance: \" + JSON.stringify(timeline[index]));\r",
+									"    index = index++;\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}
