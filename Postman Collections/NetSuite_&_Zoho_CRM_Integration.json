@@ -583,7 +583,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Trucks/{{truck_id_timeline}}/__timeline?sort_by=audited_time&fields=audited_time,done_by,record,field_history&filters=%7B%22group_operator%22%3A%22AND%22%2C%22group%22%3A%5B%7B%22field%22%3A%7B%22api_name%22%3A%22done_by%22%7D%2C%22comparator%22%3A%22in%22%2C%22value%22%3A%5B%225843104000000424001%22%5D%7D%2C%7B%22field%22%3A%7B%22api_name%22%3A%22field_history.api_name%22%7D%2C%22comparator%22%3A%22in%22%2C%22value%22%3A%5B%22MPG%22%5D%7D%5D%7D",
+							"raw": "https://www.zohoapis.com/crm/v6/Trucks/{{truck_id_timeline}}/__timeline?sort_by=audited_time&fields=audited_time,done_by,record,field_history&filters=%7B%22field%22%3A%7B%22api_name%22%3A%22source%22%7D%2C%22comparator%22%3A%22equal%22%2C%22value%22%3A%22crm_api%22%7D%20%7B%22field%22%3A%7B%22api_name%22%3A%22done_by%22%7D%2C%22comparator%22%3A%22in%22%2C%22value%22%3A%5B%224816208000051698001%22%5D%7D",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -608,7 +608,7 @@
 								},
 								{
 									"key": "filters",
-									"value": "%7B%22group_operator%22%3A%22AND%22%2C%22group%22%3A%5B%7B%22field%22%3A%7B%22api_name%22%3A%22done_by%22%7D%2C%22comparator%22%3A%22in%22%2C%22value%22%3A%5B%225843104000000424001%22%5D%7D%2C%7B%22field%22%3A%7B%22api_name%22%3A%22field_history.api_name%22%7D%2C%22comparator%22%3A%22in%22%2C%22value%22%3A%5B%22MPG%22%5D%7D%5D%7D"
+									"value": "%7B%22field%22%3A%7B%22api_name%22%3A%22source%22%7D%2C%22comparator%22%3A%22equal%22%2C%22value%22%3A%22crm_api%22%7D%20%7B%22field%22%3A%7B%22api_name%22%3A%22done_by%22%7D%2C%22comparator%22%3A%22in%22%2C%22value%22%3A%5B%224816208000051698001%22%5D%7D"
 								}
 							]
 						}
