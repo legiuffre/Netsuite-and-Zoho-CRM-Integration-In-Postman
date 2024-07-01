@@ -579,7 +579,7 @@
 								"type": "text"
 							}
 						],
-						"url": "https://www.zohoapis.com/crm/v2/Trucks/{{truck_id_timeline}}/timeilne"
+						"url": "https://www.zohoapis.com/crm/v6/Trucks/{{truck_id_timeline}}/__timeline"
 					},
 					"response": []
 				},
