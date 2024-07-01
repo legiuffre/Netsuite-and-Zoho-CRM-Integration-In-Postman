@@ -4306,8 +4306,8 @@
 									"pm.environment.set(\"starttime\", starttime.toString());\r",
 									"pm.environment.set(\"endtime\", endtime.toString());\r",
 									"\r",
-									"console.log(\"starttime: \" + starttime.toString());\r",
-									"console.log(\"endtime: \" + endtime.toString());"
+									"// console.log(\"starttime: \" + starttime.toString());\r",
+									"// console.log(\"endtime: \" + endtime.toString());"
 								],
 								"type": "text/javascript",
 								"packages": {}
