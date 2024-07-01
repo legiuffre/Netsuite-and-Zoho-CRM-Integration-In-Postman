@@ -583,7 +583,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Trucks/{{truck_id_timeline}}/__timeline?sort_by=audited_time&include_inner_details=field_history.data_type, field_history.field_label, field_history.enable_colour_code, field_history.pick_list_values, done_by.type__s, done_by.profile",
+							"raw": "https://www.zohoapis.com/crm/v6/Trucks/{{truck_id_timeline}}/__timeline?sort_by=audited_time&include_inner_details=field_history.data_type, field_history.field_label, done_by.type__s, done_by.profile",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -604,7 +604,7 @@
 								},
 								{
 									"key": "include_inner_details",
-									"value": "field_history.data_type, field_history.field_label, field_history.enable_colour_code, field_history.pick_list_values, done_by.type__s, done_by.profile"
+									"value": "field_history.data_type, field_history.field_label, done_by.type__s, done_by.profile"
 								}
 							]
 						}
