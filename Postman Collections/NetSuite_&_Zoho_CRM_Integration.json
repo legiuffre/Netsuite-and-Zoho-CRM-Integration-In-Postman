@@ -471,7 +471,7 @@
 								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
 								"exec": [
 									"const moment = require('moment');\r",
-									"pm.variables.set(\"today\", moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\"));\r",
+									"pm.variables.set(\"today\", moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ss\"));\r",
 									""
 								],
 								"type": "text/javascript",
