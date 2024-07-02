@@ -494,7 +494,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated, Zonar_GPS_ID, Lease_Start_Date, Current_Mileage FROM Trucks WHERE (Truck_Status = '-Delivered' and Zonar_GPS_ID is not null and Mileage_Last_Updated < {{today}}) LIMIT {{limit}} OFFSET {{offset}}\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated, Zonar_GPS_ID, Lease_Start_Date, Current_Mileage FROM Trucks WHERE (Truck_Status = '-Delivered' and Zonar_GPS_ID is not null) and (Mileage_Last_Updated < {{today}}) LIMIT {{limit}} OFFSET {{offset}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
