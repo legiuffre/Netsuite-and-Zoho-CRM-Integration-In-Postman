@@ -506,6 +506,60 @@
 					"response": []
 				},
 				{
+					"name": "POST Get SUMS on Truck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
+								"exec": [
+									"const moment = require('moment');\r",
+									"const today = moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\");\r",
+									"pm.environment.set(\"today\",today);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "5b1add5a-15e6-4e24-8f93-9caa2be054b3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{zoho_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"select_query\" : \"SELECT SUM(Escrow) AS s_Escrow, SUM(Cust_Balance), Financial_Status AS s_Truck_Balance FROM Trucks WHERE Owner1 = '4816208000001511193'\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/coql"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Account by ID",
 					"event": [
 						{
