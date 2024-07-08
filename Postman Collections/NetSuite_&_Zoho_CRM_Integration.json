@@ -3271,7 +3271,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "https://{{ns_acct_url_id}}.suitetalk.api.netsuite.com/services/rest/record/v1/analytics/report/283"
+						"url": "https://{{ns_acct_url_id}}.suitetalk.api.netsuite.com/services/rest/record/v1/reporting/report/283"
 					},
 					"response": []
 				}
