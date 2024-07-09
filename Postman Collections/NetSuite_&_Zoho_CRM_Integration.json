@@ -4601,6 +4601,72 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete All Rows in NetSuiteAR Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e61b3972-fb1e-4d11-9cdb-3d07ab6d3ad0",
+								"exec": [
+									"let jsonObj = {\r",
+									"  \"deleteAllRows\": \"true\"\r",
+									"};\r",
+									"\r",
+									"let jsonString = JSON.stringify(jsonObj);\r",
+									"console.log(\"jsonString: \" + jsonString);\r",
+									"let encodedStr = encodeURIComponent(jsonString);\r",
+									"console.log(\"encoded json: \" + encodedStr);\r",
+									"pm.variables.set(\"config\", encodedStr);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "d27de7b0-75b5-4050-b50f-35f8d6c785b7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "ZANALYTICS-ORGID",
+								"value": "769480731"
+							},
+							{
+								"key": "Authorization",
+								"value": "Zoho-oauthtoken {{analytics-token}}"
+							}
+						],
+						"url": {
+							"raw": "https://analyticsapi.zoho.com/restapi/v2/workspaces/2511359000014178125/views/2511359000014178237/rows?CONFIG={{config}}",
+							"protocol": "https",
+							"host": [
+								"analyticsapi",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"restapi",
+								"v2",
+								"workspaces",
+								"2511359000014178125",
+								"views",
+								"2511359000014178237",
+								"rows"
+							],
+							"query": [
+								{
+									"key": "CONFIG",
+									"value": "{{config}}"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"id": "9c9dc0a4-ad69-42ea-a715-5974788ec2c1"
