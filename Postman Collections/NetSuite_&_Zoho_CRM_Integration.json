@@ -4535,6 +4535,96 @@
 					"response": []
 				},
 				{
+					"name": "Add Row in NetSuite AR Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "69fcec36-a060-4563-9188-f7c3aa321c99",
+								"exec": [
+									"let config = JSON.parse(pm.variables.get(\"config\"));\r",
+									"console.log(\"config \" + config[\"GROUP(invoicenum)\"]);\r",
+									"\r",
+									"let maxCust = config[\"MAX(entity)\"];\r",
+									"let invNo = config[\"GROUP(invoicenum)\"];\r",
+									"let sumRem = config[\"SUM(amountremaining)\"];\r",
+									"let maxOfDueDate = config[\"MAX(duedate)\"];\r",
+									"let maxOfDate = config[\"MAX(trandate)\"];\r",
+									"\r",
+									"let jsonObj = {\r",
+									"  \"columns\": {\r",
+									"    \"Maximum of Customer\": maxCust,\r",
+									"    \"Invoice Number\": invNo,\r",
+									"    \"Sum of Amount Remaining\": sumRem,\r",
+									"    \"Maximum of Due Date\": maxOfDueDate,\r",
+									"    \"Maximum of Date\": maxOfDate\r",
+									"  }\r",
+									"};\r",
+									"\r",
+									"let jsonString = JSON.stringify(jsonObj);\r",
+									"console.log(\"jsonString: \" + jsonString);\r",
+									"let encodedStr = encodeURIComponent(jsonString);\r",
+									"console.log(\"encoded json: \" + encodedStr);\r",
+									"pm.variables.set(\"config\", encodedStr);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "7171b3d9-4075-4661-a17f-5d250261a23d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "ZANALYTICS-ORGID",
+								"value": "769480731"
+							},
+							{
+								"key": "Authorization",
+								"value": "Zoho-oauthtoken {{analytics-token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://analyticsapi.zoho.com/restapi/v2/workspaces/2511359000014178125/views/2511359000014178237/rows?CONFIG={{config}}",
+							"protocol": "https",
+							"host": [
+								"analyticsapi",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"restapi",
+								"v2",
+								"workspaces",
+								"2511359000014178125",
+								"views",
+								"2511359000014178237",
+								"rows"
+							],
+							"query": [
+								{
+									"key": "CONFIG",
+									"value": "{{config}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete All Rows in NetSuiteAR",
 					"event": [
 						{
