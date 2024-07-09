@@ -2320,7 +2320,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Open AR CRM Input - Analytics Copy",
+					"name": "GET AP CRM Input - Analytics",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -4535,7 +4535,7 @@
 					"response": []
 				},
 				{
-					"name": "Add Row in NetSuite AR Copy",
+					"name": "Add Row in NetSuite AP",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -4693,7 +4693,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete All Rows in NetSuiteAR Copy",
+					"name": "Delete All Rows in NetSuiteAP",
 					"event": [
 						{
 							"listen": "prerequest",
