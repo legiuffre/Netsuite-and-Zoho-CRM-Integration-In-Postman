@@ -2320,6 +2320,78 @@
 					"response": []
 				},
 				{
+					"name": "GET Open AR CRM Input - Analytics Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f7b64d6-b70f-4abf-9de2-e09035a0e48e",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f39c421-c71a-4306-b3e1-85a4e4679ebf",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "84074db5-7ca7-4dec-9c05-4a7a4ae1c763",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch1198\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET Customer Remaining Balance Info",
 					"event": [
 						{
