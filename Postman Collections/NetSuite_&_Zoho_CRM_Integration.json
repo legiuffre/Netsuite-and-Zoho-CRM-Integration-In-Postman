@@ -548,7 +548,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"select_query\": \"SELECT SUM(Escrow) AS s_Escrow, SUM(Cust_Balance) AS s_Truck_Balance, Truck_Status FROM Trucks WHERE Owner1 = \\\"4816208000001511193\\\" AND (((Truck_Status = \\\"-Delivered\\\") OR (Truck_Status = \\\"Virtual\\\")) OR Truck_Status = \\\"REL Solution Only\\\") GROUP BY Truck_Status\"\r\n}\r\n",
+							"raw": "{\r\n  \"select_query\": \"SELECT SUM(Escrow) AS s_Escrow, SUM(Cust_Balance) AS s_Truck_Balance, Truck_Status FROM Trucks WHERE Owner1 = \\\"4816208000016960147\\\" AND (((Truck_Status = \\\"-Delivered\\\") OR (Truck_Status = \\\"Virtual\\\")) OR Truck_Status = \\\"REL Solution Only\\\") GROUP BY Truck_Status\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
