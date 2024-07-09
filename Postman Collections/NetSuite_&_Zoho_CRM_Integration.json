@@ -560,6 +560,60 @@
 					"response": []
 				},
 				{
+					"name": "POST Get Trucks that Haven't Moved",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
+								"exec": [
+									"const moment = require('moment');\r",
+									"const today = moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\");\r",
+									"pm.environment.set(\"today\",today);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "22c966cf-f29b-4c90-8d8f-6a28cd971cc5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{zoho_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated, Zonar_GPS_ID, Lease_Start_Date, Current_Mileage from Trucks where Mileage_Driven = 0 or Mileage_Driven is null\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/coql"
+					},
+					"response": []
+				},
+				{
 					"name": "POST Get SUMS on Truck",
 					"event": [
 						{
