@@ -681,7 +681,8 @@
 									"    // pm.environment.set(\"z_Accounts_acct_id\", jsonData.data[0][\"id\"]);\r",
 									"}"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -4360,89 +4361,6 @@
 					"response": []
 				},
 				{
-					"name": "Update Row - Test",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "69fcec36-a060-4563-9188-f7c3aa321c99",
-								"exec": [
-									"const moment = require('moment');\r",
-									"let today = moment().format(\"YYYY-MM-DD\");\r",
-									"\r",
-									"let jsonObj = {\r",
-									"  \"columns\": {\r",
-									"    \"PD Creation Date\": today\r",
-									"  },\r",
-									"  \"criteria\": \"\\\"tblLeaseTimelinessKPIs\\\".\\\"Account Name\\\"='Daimler'\"\r",
-									"};\r",
-									"\r",
-									"let jsonString = JSON.stringify(jsonObj);\r",
-									"console.log(\"jsonString: \" + jsonString);\r",
-									"let encodedStr = encodeURIComponent(jsonString);\r",
-									"console.log(\"encoded json: \" + encodedStr);\r",
-									"pm.variables.set(\"config\", encodedStr);"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "4d389a03-866d-4dba-a821-8c77d231796f",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "ZANALYTICS-ORGID",
-								"value": "769480731",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Zoho-oauthtoken {{zoho_analytics_token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://analyticsapi.zoho.com/restapi/v2/workspaces/2511359000010621002/views/2511359000010934056/rows?CONFIG={{config}}",
-							"protocol": "https",
-							"host": [
-								"analyticsapi",
-								"zoho",
-								"com"
-							],
-							"path": [
-								"restapi",
-								"v2",
-								"workspaces",
-								"2511359000010621002",
-								"views",
-								"2511359000010934056",
-								"rows"
-							],
-							"query": [
-								{
-									"key": "CONFIG",
-									"value": "{{config}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Add Row in NetSuite AR",
 					"event": [
 						{
@@ -4613,6 +4531,89 @@
 								"2511359000014178125",
 								"views",
 								"2511359000014178237",
+								"rows"
+							],
+							"query": [
+								{
+									"key": "CONFIG",
+									"value": "{{config}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Row - Test",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "69fcec36-a060-4563-9188-f7c3aa321c99",
+								"exec": [
+									"const moment = require('moment');\r",
+									"let today = moment().format(\"YYYY-MM-DD\");\r",
+									"\r",
+									"let jsonObj = {\r",
+									"  \"columns\": {\r",
+									"    \"PD Creation Date\": today\r",
+									"  },\r",
+									"  \"criteria\": \"\\\"tblLeaseTimelinessKPIs\\\".\\\"Account Name\\\"='Daimler'\"\r",
+									"};\r",
+									"\r",
+									"let jsonString = JSON.stringify(jsonObj);\r",
+									"console.log(\"jsonString: \" + jsonString);\r",
+									"let encodedStr = encodeURIComponent(jsonString);\r",
+									"console.log(\"encoded json: \" + encodedStr);\r",
+									"pm.variables.set(\"config\", encodedStr);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "4d389a03-866d-4dba-a821-8c77d231796f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "ZANALYTICS-ORGID",
+								"value": "769480731",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Zoho-oauthtoken {{zoho_analytics_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://analyticsapi.zoho.com/restapi/v2/workspaces/2511359000010621002/views/2511359000010934056/rows?CONFIG={{config}}",
+							"protocol": "https",
+							"host": [
+								"analyticsapi",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"restapi",
+								"v2",
+								"workspaces",
+								"2511359000010621002",
+								"views",
+								"2511359000010934056",
 								"rows"
 							],
 							"query": [
