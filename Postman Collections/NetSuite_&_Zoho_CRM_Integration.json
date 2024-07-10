@@ -1150,12 +1150,7 @@
 							"script": {
 								"id": "6a2f0fa3-1077-4607-8ada-09a036a6a5dc",
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);",
-									"// Fixed TypeError by checking if jsonData.data is not null and has length",
-									"if(jsonData.data && jsonData.data.length > 0) {",
-									"    // pm.environment.set(\"inv_acct_id\", jsonData.data[0][\"Account_Name\"][\"id\"]);",
-									"    // pm.collectionVariables.set(\"inv_acct_id_c\", jsonData.data[0][\"Account_Name\"][\"id\"]);",
-									"}"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -1176,7 +1171,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=((Status:equals:PhysDam/NTL Insurance Billing) or (Status:equals:SCO Billing) or (Status:equals:SCO Escrow Billing))",
+							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=((Status:equals:PhysDam/NTL Insurance Billing)or(Status:equals:SCO Billing)or(Status:equals:SCO Escrow Billing))",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -1192,7 +1187,7 @@
 							"query": [
 								{
 									"key": "criteria",
-									"value": "((Status:equals:PhysDam/NTL Insurance Billing) or (Status:equals:SCO Billing) or (Status:equals:SCO Escrow Billing))"
+									"value": "((Status:equals:PhysDam/NTL Insurance Billing)or(Status:equals:SCO Billing)or(Status:equals:SCO Escrow Billing))"
 								}
 							]
 						}
