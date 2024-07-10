@@ -699,7 +699,7 @@
 								"type": "text"
 							}
 						],
-						"url": "https://www.zohoapis.com/crm/v2/Accounts/{{z_Accounts_acct_id}}"
+						"url": "https://www.zohoapis.com/crm/v6/Accounts/{{z_Accounts_acct_id}}"
 					},
 					"response": []
 				},
@@ -1065,7 +1065,7 @@
 								"type": "text"
 							}
 						],
-						"url": "https://www.zohoapis.com/crm/v2/Trucks/{{z_truck_id}}/Truck_PM"
+						"url": "https://www.zohoapis.com/crm/v6/Trucks/{{z_truck_id}}/Truck_PM"
 					},
 					"response": []
 				},
@@ -1138,7 +1138,7 @@
 								"type": "text"
 							}
 						],
-						"url": "https://www.zohoapis.com/crm/v2/Sales_Orders/{{z_so_id}}"
+						"url": "https://www.zohoapis.com/crm/v6/Sales_Orders/{{z_so_id}}"
 					},
 					"response": []
 				},
@@ -1223,7 +1223,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v2/Invoices/search?criteria=(Status:equals:Approved)",
+							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=(Status:equals:Approved)",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -1232,7 +1232,7 @@
 							],
 							"path": [
 								"crm",
-								"v2",
+								"v6",
 								"Invoices",
 								"search"
 							],
@@ -1271,7 +1271,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v2/Sales_Orders/search?criteria=(Status:equals:Ready For NetLessor Lease)",
+							"raw": "https://www.zohoapis.com/crm/v6/Sales_Orders/search?criteria=(Status:equals:Ready For NetLessor Lease)",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -1280,7 +1280,7 @@
 							],
 							"path": [
 								"crm",
-								"v2",
+								"v6",
 								"Sales_Orders",
 								"search"
 							],
@@ -1309,7 +1309,7 @@
 								"type": "text"
 							}
 						],
-						"url": "https://www.zohoapis.com/crm/v2/Products/{{z_prod_id}}"
+						"url": "https://www.zohoapis.com/crm/v6/Products/{{z_prod_id}}"
 					},
 					"response": []
 				},
