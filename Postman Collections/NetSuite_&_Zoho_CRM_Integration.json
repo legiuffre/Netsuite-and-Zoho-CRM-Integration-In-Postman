@@ -4462,7 +4462,7 @@
 									"let tranId = config[\"tranid\"];\r",
 									"let tranDate = config[\"trandate\"];\r",
 									"let dueDate = config[\"duedate\"];\r",
-									"let memoMaine = config[\"memomain\"];\r",
+									"let memoMain = config[\"memomain\"];\r",
 									"let amountDue = config[\"amountremaining\"];\r",
 									"\r",
 									"let jsonObj = {\r",
