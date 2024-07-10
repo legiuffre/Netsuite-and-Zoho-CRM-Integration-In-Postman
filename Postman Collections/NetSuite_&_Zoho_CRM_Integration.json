@@ -3437,19 +3437,6 @@
 						"url": "https://{{ns_acct_url_id}}.suitetalk.api.netsuite.com/services/rest/record/v1/customrecord_lma_lease"
 					},
 					"response": []
-				},
-				{
-					"name": "GET Accounts Billable Report",
-					"id": "0d2cb829-9fbe-4a0b-8e05-4b4214ac3ef8",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "https://{{ns_acct_url_id}}.suitetalk.api.netsuite.com/services/rest/record/v1/reporting/report/283"
-					},
-					"response": []
 				}
 			],
 			"id": "555694a4-d9ab-48d2-b5da-2d72eaebb596",
