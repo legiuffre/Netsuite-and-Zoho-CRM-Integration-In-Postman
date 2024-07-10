@@ -1171,12 +1171,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{access_token}}",
+								"value": "Bearer {{zoho_access_token}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v2/Invoices/search?criteria=((Status:equals:PhysDam/NTL Insurance Billing) or (Status:equals:SCO Billing) or (Status:equals:SCO Escrow Billing))",
+							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=((Status:equals:PhysDam/NTL Insurance Billing) or (Status:equals:SCO Billing) or (Status:equals:SCO Escrow Billing))",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -1185,7 +1185,7 @@
 							],
 							"path": [
 								"crm",
-								"v2",
+								"v6",
 								"Invoices",
 								"search"
 							],
