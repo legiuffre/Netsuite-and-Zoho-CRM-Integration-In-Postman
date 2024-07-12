@@ -512,6 +512,58 @@
 					"response": []
 				},
 				{
+					"name": "POST Get Delivered Trucks - dev",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "4c92930c-d616-4ab7-ae66-87a7205a2a0f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{zoho_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated, Zonar_GPS_ID, Lease_Start_Date, Current_Mileage from Trucks where (Truck_Status = '-Delivered' and (Mileage_Last_Updated < '2024-07-12T00:00:00.000Z' or Mileage_Last_Updated is null)) and (Zonar_GPS_ID is not null) limit 1000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/coql"
+					},
+					"response": []
+				},
+				{
 					"name": "POST Get Single Truck",
 					"event": [
 						{
