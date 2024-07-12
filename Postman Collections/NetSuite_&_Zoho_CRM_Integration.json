@@ -3942,7 +3942,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Folder ID from FedEx Folder",
+					"name": "GET Folder ID from Accounts Folder",
 					"event": [
 						{
 							"listen": "test",
@@ -3973,7 +3973,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/root:/FedEx"
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/root:/Accounts"
 					},
 					"response": []
 				},
