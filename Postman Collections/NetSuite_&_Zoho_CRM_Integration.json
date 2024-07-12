@@ -470,9 +470,9 @@
 							"script": {
 								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
 								"exec": [
-									"const moment = require('moment');\r",
-									"const today = moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\");\r",
-									"pm.environment.set(\"today\",today);"
+									"// const moment = require('moment');\r",
+									"// const today = moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\");\r",
+									"// pm.environment.set(\"today\",today);"
 								],
 								"type": "text/javascript",
 								"packages": {}
