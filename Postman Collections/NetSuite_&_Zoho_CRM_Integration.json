@@ -470,9 +470,15 @@
 							"script": {
 								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
 								"exec": [
-									"// const moment = require('moment');\r",
-									"// const today = moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\");\r",
-									"// pm.environment.set(\"today\",today);"
+									"try {\r",
+									"    const moment = require('moment');\r",
+									"    const today = moment().startOf('day').format(\"YYYY-MM-DDTHH:mm:ssZ\");\r",
+									"    pm.environment.set(\"today\", today);\r",
+									"    console.log(\"Environment variable 'today' set to:\", today);\r",
+									"} catch (error) {\r",
+									"    console.error(\"Error setting environment variable:\", error.message);\r",
+									"}\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
