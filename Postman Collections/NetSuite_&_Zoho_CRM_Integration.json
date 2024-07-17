@@ -934,7 +934,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Trucks from Account ID Copy",
+					"name": "GET Trucks from Account ID - dev",
 					"event": [
 						{
 							"listen": "test",
@@ -962,7 +962,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Accounts/{{acct_id}}/Trucks?fields=id,Name",
+							"raw": "https://www.zohoapis.com/crm/v6/Accounts/4816208000001511193/Trucks?fields=id,Name",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -973,7 +973,7 @@
 								"crm",
 								"v6",
 								"Accounts",
-								"{{acct_id}}",
+								"4816208000001511193",
 								"Trucks"
 							],
 							"query": [
