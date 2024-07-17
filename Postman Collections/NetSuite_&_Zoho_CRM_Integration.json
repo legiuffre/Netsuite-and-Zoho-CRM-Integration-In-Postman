@@ -3995,7 +3995,9 @@
 							"script": {
 								"id": "98486d14-7c7b-4b8c-afa9-8cf6c8e401ac",
 								"exec": [
-									""
+									"var jsonData = pm.response.json();\r",
+									"var accessToken = jsonData.access_token;\r",
+									"pm.environment.set(\"microsoft_access_token\",accessToken);"
 								],
 								"type": "text/javascript",
 								"packages": {}
