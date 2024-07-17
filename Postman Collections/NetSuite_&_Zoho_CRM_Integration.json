@@ -4088,7 +4088,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": {{acctName}},\r\n  \"folder\": { },\r\n  \"@microsoft.graph.conflictBehavior\": \"rename\"\r\n}",
+							"raw": "{\r\n  \"name\": \"{{acctName}}\",\r\n  \"folder\": { },\r\n  \"@microsoft.graph.conflictBehavior\": \"rename\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
