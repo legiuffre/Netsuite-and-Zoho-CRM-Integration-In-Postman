@@ -4294,6 +4294,20 @@
 				},
 				{
 					"name": "PUT Upload File to General IT - TEST",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c75def5b-7a82-44e2-9812-70d5edc20f47",
+								"exec": [
+									"var body = `test,test,test\\ntest,test,test`.replace(/\\n/g,'');\r",
+									"pm.variables.set(\"bodyToSend\", body);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "9074ab1c-6a79-4c7e-8f62-ba015af2424a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -4308,7 +4322,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "\"test,test,test\\ntest,test,test\"",
+							"raw": "{{bodyToSend}}",
 							"options": {
 								"raw": {
 									"language": "text"
