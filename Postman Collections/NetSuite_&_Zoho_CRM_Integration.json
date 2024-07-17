@@ -4376,7 +4376,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{{bodyToSend}}",
+							"raw": "`{{bodyToSend}}`",
 							"options": {
 								"raw": {
 									"language": "text"
