@@ -4354,7 +4354,7 @@
 								"exec": [
 									"const csvData = pm.request.body.raw;\r",
 									"console.log(\"csvData \" + csvData);\r",
-									"pm.variables.set(\"bodyToSend\",String(csvData));\r",
+									"pm.variables.set(\"bodyToSend\",`${csvData}`);\r",
 									"console.log(\"body \" + pm.variables.get(\"bodyToSend\"));"
 								],
 								"type": "text/javascript",
@@ -4376,7 +4376,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "`{{bodyToSend}}`",
+							"raw": "{{bodyToSend}}",
 							"options": {
 								"raw": {
 									"language": "text"
