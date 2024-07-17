@@ -4300,7 +4300,7 @@
 							"script": {
 								"id": "c75def5b-7a82-44e2-9812-70d5edc20f47",
 								"exec": [
-									"var body = `test,test,test\\ntest,test,test`.replace(/\\n/g,'');\r",
+									"var body = `test,test,test\\ntest,test,test`;\r",
 									"pm.variables.set(\"bodyToSend\", body);"
 								],
 								"type": "text/javascript",
@@ -4329,7 +4329,7 @@
 								}
 							}
 						},
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/test4.csv:/content"
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/test6.csv:/content"
 					},
 					"response": []
 				},
