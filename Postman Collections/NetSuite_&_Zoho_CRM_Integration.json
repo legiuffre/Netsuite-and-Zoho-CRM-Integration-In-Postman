@@ -4049,6 +4049,33 @@
 						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/test.csv:/content"
 					},
 					"response": []
+				},
+				{
+					"name": "PUT Upload File to Accounts",
+					"id": "45a79af7-d2db-42fa-a2ea-b029e4969e96",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "test,test,test",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/test.csv:/content"
+					},
+					"response": []
 				}
 			],
 			"id": "3674dee9-314d-4045-9771-28c7d370e73f",
