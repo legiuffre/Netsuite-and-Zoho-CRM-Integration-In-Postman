@@ -909,7 +909,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Accounts/{{acct_id}}/Trucks?fields=id,Name,Account_Name",
+							"raw": "https://www.zohoapis.com/crm/v6/Accounts/{{acct_id}}/Trucks?fields=id,Name,Owner1",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -926,7 +926,7 @@
 							"query": [
 								{
 									"key": "fields",
-									"value": "id,Name,Account_Name"
+									"value": "id,Name,Owner1"
 								}
 							]
 						}
