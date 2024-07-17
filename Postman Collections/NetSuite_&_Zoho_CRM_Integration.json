@@ -4302,14 +4302,13 @@
 							}
 						],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "",
-									"value": "",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{{csvData}}",
+							"options": {
+								"raw": {
+									"language": "text"
 								}
-							]
+							}
 						},
 						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/items/{{microsoft_prod_accounts_path}}:/{{filename}}:/content"
 					},
