@@ -4341,6 +4341,17 @@
 							"script": {
 								"id": "4a00db11-bd24-4a81-9bf9-622e86882653",
 								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f40cbb3f-54f2-4395-8d24-d4dc3774a405",
+								"exec": [
 									"const csvData = pm.request.body.raw;\r",
 									"console.log(\"csvData \" + csvData);\r",
 									"pm.variables.set(\"bodyToSend\",String(csvData));\r",
