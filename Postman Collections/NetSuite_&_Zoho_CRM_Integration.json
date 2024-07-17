@@ -908,7 +908,28 @@
 								"type": "text"
 							}
 						],
-						"url": "https://www.zohoapis.com/crm/v6/Accounts/{{acct_id}}/Trucks"
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v6/Accounts/{{acct_id}}/Trucks?fields=id,Name",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v6",
+								"Accounts",
+								"{{acct_id}}",
+								"Trucks"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "id,Name"
+								}
+							]
+						}
 					},
 					"response": []
 				},
