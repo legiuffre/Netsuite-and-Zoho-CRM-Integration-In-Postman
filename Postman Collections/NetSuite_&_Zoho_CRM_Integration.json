@@ -4084,7 +4084,16 @@
 								"type": "text"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/root:/Accounts:/{{acctName}}/children"
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": {{acctName}},\r\n  \"folder\": { },\r\n  \"@microsoft.graph.conflictBehavior\": \"rename\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/root:/Accounts:/children"
 					},
 					"response": []
 				},
