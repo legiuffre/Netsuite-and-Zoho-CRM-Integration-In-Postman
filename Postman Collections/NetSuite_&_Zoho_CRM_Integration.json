@@ -934,6 +934,59 @@
 					"response": []
 				},
 				{
+					"name": "GET Trucks from Account ID Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5580f58b-f321-4967-9e2f-f0e0fbc525df",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "08dcbe2f-4133-4762-bc36-661d5752e376",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{zoho_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v6/Accounts/{{acct_id}}/Trucks?fields=id,Name",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v6",
+								"Accounts",
+								"{{acct_id}}",
+								"Trucks"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "id,Name"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET Timeline of Truck Record",
 					"event": [
 						{
