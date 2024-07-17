@@ -4321,6 +4321,20 @@
 				},
 				{
 					"name": "PUT Upload File to Accounts",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4a00db11-bd24-4a81-9bf9-622e86882653",
+								"exec": [
+									"const csvData = pm.request.body;\r",
+									"pm.environment.set(\"csvData\",csvData);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "45a79af7-d2db-42fa-a2ea-b029e4969e96",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
