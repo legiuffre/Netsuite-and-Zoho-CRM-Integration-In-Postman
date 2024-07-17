@@ -850,7 +850,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Accounts?fields=id,Account_Name",
+							"raw": "https://www.zohoapis.com/crm/v6/Accounts?fields=id,Account_Name&page={{page}}&per_page={{per_page}}",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -866,6 +866,14 @@
 								{
 									"key": "fields",
 									"value": "id,Account_Name"
+								},
+								{
+									"key": "page",
+									"value": "{{page}}"
+								},
+								{
+									"key": "per_page",
+									"value": "{{per_page}}"
 								}
 							]
 						}
