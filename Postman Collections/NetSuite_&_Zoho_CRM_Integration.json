@@ -4070,6 +4070,25 @@
 					"response": []
 				},
 				{
+					"name": "POST Create Account Name Folder",
+					"id": "77e0d011-c154-4fcf-a683-b785c5c7baf1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/root:/Accounts:/{{acctName}}/children"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Site ID from Sharepoint",
 					"id": "b8fba20f-978e-4df5-b436-73e2ffe2d22d",
 					"protocolProfileBehavior": {
