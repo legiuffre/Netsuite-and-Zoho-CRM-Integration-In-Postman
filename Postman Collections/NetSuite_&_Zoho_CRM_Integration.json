@@ -3995,17 +3995,6 @@
 							"script": {
 								"id": "98486d14-7c7b-4b8c-afa9-8cf6c8e401ac",
 								"exec": [
-									"try {\r",
-									"    // Parse the response body as JSON\r",
-									"    const jsonResponse = JSON.parse(responseBody);\r",
-									"\r",
-									"    console.log(jsonResponse.access_token);\r",
-									"    \r",
-									"    pm.environment.set(\"microsoft_access_token\",jsonResponse.access_token);\r",
-									"\r",
-									"} catch (error) {\r",
-									"    console.error('Error parsing response body as JSON:', error);\r",
-									"}\r",
 									""
 								],
 								"type": "text/javascript",
@@ -4160,12 +4149,7 @@
 							"script": {
 								"id": "4d33817e-725c-4f3b-a866-c11bfeb2ce62",
 								"exec": [
-									"var jsonData = pm.response.json();\r",
-									"var results = jsonData.value;\r",
-									"\r",
-									"pm.visualizer.set(`<pre>{{response}}</pre>`, {\r",
-									"    response: JSON.stringify(results, null, 2)\r",
-									"});"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -4184,7 +4168,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/root:/Accounts"
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/root:/Accounts"
 					},
 					"response": []
 				},
@@ -4203,6 +4187,24 @@
 							}
 						],
 						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/root:/Accounts:/search(q='{zztest-truck-record}')"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Search by VIN in Accounts Folder",
+					"id": "d5865790-3f58-47f1-971e-d09c82a6e47b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							}
+						],
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/root:/{{microsoft_prod_accounts_path}}:/search(q='{zztest-truck-record}')"
 					},
 					"response": []
 				},
