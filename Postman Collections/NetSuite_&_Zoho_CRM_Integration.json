@@ -4066,14 +4066,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "test,test,test",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "text"
 								}
 							}
 						},
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/test.csv:/content"
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/items/{{microsoft_prod_accounts_path}}:/{{filename}}:/content"
 					},
 					"response": []
 				}
