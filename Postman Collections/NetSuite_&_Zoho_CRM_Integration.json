@@ -4191,7 +4191,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Search by VIN in Accounts Folder",
+					"name": "GET Search by Name in Accounts Folder",
 					"id": "d5865790-3f58-47f1-971e-d09c82a6e47b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -4204,7 +4204,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/root:/{{microsoft_prod_accounts_path}}:/search(q='{zztest-truck-record}')"
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/root:/Accounts:/search(q='{{{acctName}}}')"
 					},
 					"response": []
 				},
