@@ -4361,7 +4361,10 @@
 					],
 					"id": "45a79af7-d2db-42fa-a2ea-b029e4969e96",
 					"protocolProfileBehavior": {
-						"disableBodyPruning": true
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
 					},
 					"request": {
 						"method": "PUT",
