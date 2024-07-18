@@ -4341,7 +4341,7 @@
 							"script": {
 								"id": "4a00db11-bd24-4a81-9bf9-622e86882653",
 								"exec": [
-									""
+									"console.log(\"body in pre-request \" + pm.request.body);"
 								],
 								"type": "text/javascript",
 								"packages": {}
