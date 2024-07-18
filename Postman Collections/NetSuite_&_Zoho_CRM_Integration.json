@@ -4520,11 +4520,20 @@
 					],
 					"id": "8bd2449b-f7a4-495b-b1f2-32c9cdbde4c6",
 					"protocolProfileBehavior": {
-						"disableBodyPruning": true
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
 					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/csv",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{{csvContent}}",
