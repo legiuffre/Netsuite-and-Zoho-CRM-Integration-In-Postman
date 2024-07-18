@@ -358,7 +358,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '3AKJHLDV0SDVN4677' AND (Last_Update_Escrow < '{{today}}' OR Last_Update_Escrow is null)\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name FROM Trucks WHERE Name = '4V4WC9EH5NN304928-A' AND (Last_Update_Escrow < '{{today}}' OR Last_Update_Escrow is null)\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
