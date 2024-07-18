@@ -4369,6 +4369,11 @@
 							{
 								"key": "Authorization",
 								"value": "Bearer {{microsoft_access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "text/csv",
+								"type": "text"
 							}
 						],
 						"body": {
