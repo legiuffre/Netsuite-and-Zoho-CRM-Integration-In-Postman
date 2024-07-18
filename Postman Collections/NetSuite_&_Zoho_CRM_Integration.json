@@ -4503,6 +4503,21 @@
 				},
 				{
 					"name": "POST Update CSV Content in Environment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9354f825-9596-47bb-9d3f-5ee03d1f42dc",
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"const csvData = jsonData.data;\r",
+									"console.log(\"csvData \" + csvData);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"id": "8bd2449b-f7a4-495b-b1f2-32c9cdbde4c6",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
