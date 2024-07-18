@@ -4500,6 +4500,28 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "POST Update CSV Content in Environment",
+					"id": "8bd2449b-f7a4-495b-b1f2-32c9cdbde4c6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{csvContent}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://postman-echo.com/post"
+					},
+					"response": []
 				}
 			],
 			"id": "f83a4627-3188-47d2-8543-77a900ac56a2"
