@@ -4384,7 +4384,7 @@
 							"raw": "{{bodyToSend}}",
 							"options": {
 								"raw": {
-									"language": "text"
+									"language": "json"
 								}
 							}
 						},
