@@ -1745,8 +1745,6 @@
 							"script": {
 								"id": "0aebd6c5-124d-4af6-838b-71b41ad3f817",
 								"exec": [
-									"const moment = require('moment');\r",
-									"pm.variables.set(\"today\", moment().format(\"YYYY-MM-DDTHH:mm:ssZ\"));\r",
 									""
 								],
 								"type": "text/javascript",
