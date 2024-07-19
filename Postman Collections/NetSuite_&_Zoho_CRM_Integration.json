@@ -1843,7 +1843,7 @@
 					"response": []
 				},
 				{
-					"name": "PUT Truck Mileage & MPG W/O MPG",
+					"name": "PUT Truck Mileage W/O MPG",
 					"event": [
 						{
 							"listen": "test",
