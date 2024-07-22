@@ -4483,7 +4483,7 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "text/csv",
+								"value": "application/json",
 								"type": "text"
 							}
 						],
@@ -4492,7 +4492,7 @@
 							"raw": "{{bodyToSend}}",
 							"options": {
 								"raw": {
-									"language": "text"
+									"language": "json"
 								}
 							}
 						},
