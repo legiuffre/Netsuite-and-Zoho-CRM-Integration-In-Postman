@@ -4140,6 +4140,125 @@
 					"response": []
 				},
 				{
+					"name": "GET Gather CSV Data and Upload",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c75def5b-7a82-44e2-9812-70d5edc20f47",
+								"exec": [
+									"// var body = `VIN,Date,Memo,Amount,Type\\r\\n3AKJHTDV6NDNB8959,6/6/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/13/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/20/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/27/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n`;\r",
+									"// pm.variables.set(\"bodyToSend\", body);\r",
+									"\r",
+									"var requestGetMSToken = {\r",
+									"    url: `https://login.microsoftonline.com/${pm.environment.get(\"microsoft_tenant_id\")}/oauth2/v2.0/token`,\r",
+									"    method: 'POST',\r",
+									"    header: {\r",
+									"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'urlencoded',\r",
+									"        urlencoded: [\r",
+									"            { key: 'grant_type', value: 'client_credentials' },\r",
+									"            { key: 'client_id', value: pm.environment.get(\"prod_microsoft_client_id\") },\r",
+									"            { key: 'client_secret', value: pm.environment.get(\"prod_microsoft_client_secret\") },\r",
+									"            { key: 'scope', value: 'https://graph.microsoft.com/.default openid offline_access' }\r",
+									"        ]\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.sendRequest(requestGetMSToken, function (err, tokenMSResponse) {\r",
+									"    if (err) {\r",
+									"        console.error('Error:', err);\r",
+									"        return;\r",
+									"    }\r",
+									"    console.log('Response: ', tokenMSResponse.json());\r",
+									"    var parsedToken = tokenMSResponse.json();\r",
+									"    // console.log(\"ms access token: \",parsedToken);\r",
+									"    var accessToken = parsedToken.access_token;\r",
+									"    pm.variables.set(\"microsoft_access_token\",accessToken);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "bd7e421a-018c-4764-a2b5-4139ea15abfc",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"console.log(\"data: \" + JSON.stringify(jsonData.data));\r",
+									"let data = jsonData.data;\r",
+									"let csvData = data.replace(/\\\\n/g, '\\n');\r",
+									"console.log(\"csvData: \" + csvData);\r",
+									"var requestPutCSV = {\r",
+									"    url: pm.variables.get(\"url\"),\r",
+									"    method: 'PUT',\r",
+									"    header: {\r",
+									"        \"Authorization\": \"Bearer \" + pm.variables.get(\"microsoft_access_token\"),\r",
+									"        'Content-Type': 'text/csv'\r",
+									"    },\r",
+									"    body: {\r",
+									"        mode: 'raw',\r",
+									"        raw: csvData\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"pm.sendRequest(requestPutCSV, function (err, putCSVResponse) {\r",
+									"    if (err) {\r",
+									"        console.error('Error sending request:', err);\r",
+									"    } else {\r",
+									"        console.log('put CSV response: ', putCSVResponse.json());\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "b42f5dd1-cfb3-48cb-811a-dbbabdd07279",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{bodyToSend}}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://postman-echo.com/post?url={{url}}",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"post"
+							],
+							"query": [
+								{
+									"key": "url",
+									"value": "{{url}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET Site ID from Sharepoint",
 					"id": "b8fba20f-978e-4df5-b436-73e2ffe2d22d",
 					"protocolProfileBehavior": {
@@ -4329,125 +4448,6 @@
 							}
 						],
 						"url": "https://graph.microsoft.com/v1.0/sites"
-					},
-					"response": []
-				},
-				{
-					"name": "GET Gather CSV Data and Upload",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "c75def5b-7a82-44e2-9812-70d5edc20f47",
-								"exec": [
-									"// var body = `VIN,Date,Memo,Amount,Type\\r\\n3AKJHTDV6NDNB8959,6/6/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/13/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/20/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/27/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n`;\r",
-									"// pm.variables.set(\"bodyToSend\", body);\r",
-									"\r",
-									"var requestGetMSToken = {\r",
-									"    url: `https://login.microsoftonline.com/${pm.environment.get(\"microsoft_tenant_id\")}/oauth2/v2.0/token`,\r",
-									"    method: 'POST',\r",
-									"    header: {\r",
-									"        'Content-Type': 'application/x-www-form-urlencoded'\r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'urlencoded',\r",
-									"        urlencoded: [\r",
-									"            { key: 'grant_type', value: 'client_credentials' },\r",
-									"            { key: 'client_id', value: pm.environment.get(\"prod_microsoft_client_id\") },\r",
-									"            { key: 'client_secret', value: pm.environment.get(\"prod_microsoft_client_secret\") },\r",
-									"            { key: 'scope', value: 'https://graph.microsoft.com/.default openid offline_access' }\r",
-									"        ]\r",
-									"    }\r",
-									"};\r",
-									"\r",
-									"pm.sendRequest(requestGetMSToken, function (err, tokenMSResponse) {\r",
-									"    if (err) {\r",
-									"        console.error('Error:', err);\r",
-									"        return;\r",
-									"    }\r",
-									"    console.log('Response: ', tokenMSResponse.json());\r",
-									"    var parsedToken = tokenMSResponse.json();\r",
-									"    // console.log(\"ms access token: \",parsedToken);\r",
-									"    var accessToken = parsedToken.access_token;\r",
-									"    pm.variables.set(\"microsoft_access_token\",accessToken);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "bd7e421a-018c-4764-a2b5-4139ea15abfc",
-								"exec": [
-									"let jsonData = pm.response.json();\r",
-									"console.log(\"data: \" + JSON.stringify(jsonData.data));\r",
-									"let data = jsonData.data;\r",
-									"let csvData = data.replace(/\\\\n/g, '\\n');\r",
-									"console.log(\"csvData: \" + csvData);\r",
-									"var requestPutCSV = {\r",
-									"    url: pm.variables.get(\"url\"),\r",
-									"    method: 'PUT',\r",
-									"    header: {\r",
-									"        \"Authorization\": \"Bearer \" + pm.variables.get(\"microsoft_access_token\"),\r",
-									"        'Content-Type': 'text/csv'\r",
-									"    },\r",
-									"    body: {\r",
-									"        mode: 'raw',\r",
-									"        raw: csvData\r",
-									"    }\r",
-									"};\r",
-									"\r",
-									"pm.sendRequest(requestPutCSV, function (err, putCSVResponse) {\r",
-									"    if (err) {\r",
-									"        console.error('Error sending request:', err);\r",
-									"    } else {\r",
-									"        console.log('put CSV response: ', putCSVResponse.json());\r",
-									"    }\r",
-									"});\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "b42f5dd1-cfb3-48cb-811a-dbbabdd07279",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{{bodyToSend}}",
-							"options": {
-								"raw": {
-									"language": "text"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://postman-echo.com/post?url={{url}}",
-							"protocol": "https",
-							"host": [
-								"postman-echo",
-								"com"
-							],
-							"path": [
-								"post"
-							],
-							"query": [
-								{
-									"key": "url",
-									"value": "{{url}}"
-								}
-							]
-						}
 					},
 					"response": []
 				},
