@@ -4501,7 +4501,7 @@
 					"response": []
 				},
 				{
-					"name": "PUT Upload File to Accounts - TEST Copy",
+					"name": "GET CSV File Contents",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -4510,6 +4510,24 @@
 								"exec": [
 									"// var body = `VIN,Date,Memo,Amount,Type\\r\\n3AKJHTDV6NDNB8959,6/6/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/13/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/20/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/27/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n`;\r",
 									"// pm.variables.set(\"bodyToSend\", body);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "adc46446-060f-4e47-b468-0bb4f9f3eb47",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Save response to an environment variable\r",
+									"let fileContent = pm.response.text();\r",
+									"pm.environment.set(\"fileContent\", fileContent);\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
