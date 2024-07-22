@@ -5313,8 +5313,7 @@
 									"\r",
 									"const endtime = Math.floor(endOfDayToday.getTime() / 1000);\r",
 									"\r",
-									"pm.environment.set(\"endtime\", endtime.toString());\r",
-									""
+									"pm.environment.set(\"endtime\", endtime.toString());"
 								],
 								"type": "text/javascript",
 								"packages": {}
