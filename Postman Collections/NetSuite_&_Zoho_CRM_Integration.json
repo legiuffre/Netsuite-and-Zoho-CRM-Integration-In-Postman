@@ -4555,14 +4555,13 @@
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "{{bodyToSend}}",
-									"value": "",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{{bodyToSend}}",
+							"options": {
+								"raw": {
+									"language": "javascript"
 								}
-							]
+							}
 						},
 						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/{{filename}}:/content"
 					},
