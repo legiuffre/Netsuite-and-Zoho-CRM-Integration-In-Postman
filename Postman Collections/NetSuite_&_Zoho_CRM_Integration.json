@@ -5667,7 +5667,7 @@
 									"pm.environment.set(\"starttime\", starttime.toString());\r",
 									"pm.environment.set(\"endtime\", endtime.toString());\r",
 									"\r",
-									"pm.environment.set(\"zonar_truck_vin\", \"4V4WC9EH0NN304934\");\r",
+									"pm.environment.set(\"zonar_truck_vin\", \"1M1AN4GYXPM036645\");\r",
 									"\r",
 									"console.log(\"starttime: \" + starttime.toString());\r",
 									"console.log(\"endtime: \" + endtime.toString());"
