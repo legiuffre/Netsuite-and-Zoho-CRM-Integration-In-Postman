@@ -4333,7 +4333,7 @@
 					"response": []
 				},
 				{
-					"name": "PUT Upload File to General IT - TEST",
+					"name": "PUT Upload File to Accounts - TEST",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -4369,7 +4369,7 @@
 								}
 							}
 						},
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/test18.csv:/content"
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/{{filename}}:/content"
 					},
 					"response": []
 				},
