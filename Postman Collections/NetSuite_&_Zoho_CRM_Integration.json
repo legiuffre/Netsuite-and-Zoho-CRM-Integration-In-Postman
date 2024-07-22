@@ -1715,7 +1715,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"MPG\": {{MPG}},\r\n            \"Mileage_Last_Updated\": \"{{today}}\",\r\n            \"Current_Mileage\": {{New_Odometer}},\r\n            \"Mileage_Driven\": {{Distance_Travelled}}\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"MPG\": {{MPG}},\r\n            \"Mileage_Last_Updated\": \"{{today}}\",\r\n            \"Current_Mileage\": {{New_Odometer}},\r\n            \"Mileage_Driven\": {{Distance_Traveled_7_Days}},\r\n            \"Mileage_Driven_in_Last_Day\": {{Distance_Traveled_1_Day}}\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
