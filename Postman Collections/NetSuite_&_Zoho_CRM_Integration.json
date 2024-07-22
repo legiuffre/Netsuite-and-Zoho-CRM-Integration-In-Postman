@@ -4501,6 +4501,55 @@
 					"response": []
 				},
 				{
+					"name": "PUT Upload File to Accounts - TEST Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c75def5b-7a82-44e2-9812-70d5edc20f47",
+								"exec": [
+									"// var body = `VIN,Date,Memo,Amount,Type\\r\\n3AKJHTDV6NDNB8959,6/6/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/13/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/20/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/27/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n`;\r",
+									"// pm.variables.set(\"bodyToSend\", body);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "40e7661c-03f9-416e-a29d-e9e93112f678",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{microsoft_access_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "text/csv",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/{{filename}}:/content"
+					},
+					"response": []
+				},
+				{
 					"name": "PUT Upload File to Accounts",
 					"event": [
 						{
