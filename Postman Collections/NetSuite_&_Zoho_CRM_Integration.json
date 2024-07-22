@@ -4333,6 +4333,55 @@
 					"response": []
 				},
 				{
+					"name": "GET Gather CSV Data and Upload",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c75def5b-7a82-44e2-9812-70d5edc20f47",
+								"exec": [
+									"// var body = `VIN,Date,Memo,Amount,Type\\r\\n3AKJHTDV6NDNB8959,6/6/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/13/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/20/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/27/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n`;\r",
+									"// pm.variables.set(\"bodyToSend\", body);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "bd7e421a-018c-4764-a2b5-4139ea15abfc",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"console.log(\"data: \" + JSON.stringify(jsonData.data));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "b42f5dd1-cfb3-48cb-811a-dbbabdd07279",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{bodyToSend}}",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": "https://postman-echo.com/post"
+					},
+					"response": []
+				},
+				{
 					"name": "PUT Upload File to Accounts - TEST",
 					"event": [
 						{
@@ -4378,55 +4427,6 @@
 							}
 						},
 						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/{{filename}}:/content"
-					},
-					"response": []
-				},
-				{
-					"name": "PUT Upload File to Accounts - TEST code",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "c75def5b-7a82-44e2-9812-70d5edc20f47",
-								"exec": [
-									"// var body = `VIN,Date,Memo,Amount,Type\\r\\n3AKJHTDV6NDNB8959,6/6/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/13/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/20/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n3AKJHTDV6NDNB8959,6/27/2024,LR00186 - Monthly Amortization Entry,100.00,Custom\\r\\n`;\r",
-									"// pm.variables.set(\"bodyToSend\", body);"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "bd7e421a-018c-4764-a2b5-4139ea15abfc",
-								"exec": [
-									"let jsonData = pm.response.json();\r",
-									"console.log(\"data: \" + jsonData);"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "b42f5dd1-cfb3-48cb-811a-dbbabdd07279",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true,
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{{bodyToSend}}",
-							"options": {
-								"raw": {
-									"language": "text"
-								}
-							}
-						},
-						"url": "https://postman-echo.com/post"
 					},
 					"response": []
 				},
