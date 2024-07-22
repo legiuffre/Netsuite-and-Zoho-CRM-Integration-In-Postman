@@ -544,7 +544,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated, Zonar_GPS_ID, Lease_Start_Date, Current_Mileage from Trucks where Zonar_GPS_ID = '34515245'\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated, Zonar_GPS_ID, Lease_Start_Date, Current_Mileage from Trucks where Zonar_GPS_ID = '30541414'\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4483,7 +4483,7 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
+								"value": "text/csv",
 								"type": "text"
 							}
 						],
@@ -4492,7 +4492,7 @@
 							"raw": "{{bodyToSend}}",
 							"options": {
 								"raw": {
-									"language": "json"
+									"language": "text"
 								}
 							}
 						},
