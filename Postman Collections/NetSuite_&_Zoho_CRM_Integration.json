@@ -4388,7 +4388,7 @@
 									"const csvData = convertJsonToCsv(jsonData.data); // Implement this function if needed\r",
 									"\r",
 									"var requestPutCSV = {\r",
-									"    url: `https://graph.microsoft.com/v1.0/Drives/${prodSiteId}/items/${acctFolderId}:${parsedWebUrl}/${folderName}/${csvFileName}:/content`,\r",
+									"    url: dataURL,\r",
 									"    method: 'PUT',\r",
 									"    header: {\r",
 									"        \"Authorization\": \"Bearer \" + pm.variables.get(\"microsoft_access_token\"),\r",
@@ -4433,7 +4433,23 @@
 								}
 							}
 						},
-						"url": "https://postman-echo.com/post"
+						"url": {
+							"raw": "https://postman-echo.com/post?url={{url}}",
+							"protocol": "https",
+							"host": [
+								"postman-echo",
+								"com"
+							],
+							"path": [
+								"post"
+							],
+							"query": [
+								{
+									"key": "url",
+									"value": "{{url}}"
+								}
+							]
+						}
 					},
 					"response": []
 				},
