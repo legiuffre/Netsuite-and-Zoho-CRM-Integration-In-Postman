@@ -4281,7 +4281,6 @@
 									"console.log(\"data: \" + JSON.stringify(jsonData.data));\r",
 									"let data = jsonData.data;\r",
 									"let csvData = data.replace(/\\\\n/g, '\\n');\r",
-									"pm.environment.set('requestBody', csvData);\r",
 									"console.log(\"csvData: \" + csvData);\r",
 									"\r",
 									"\r",
