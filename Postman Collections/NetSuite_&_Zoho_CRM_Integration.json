@@ -4281,7 +4281,7 @@
 									"console.log(\"data: \" + JSON.stringify(jsonData.data));\r",
 									"let data = jsonData.data;\r",
 									"let csvData = data.replace(/\\\\n/g, '\\n');\r",
-									"pm.variables.set(\"bodyToSend\",csvData);\r",
+									"pm.environment.set(\"requestBody\",csvData);\r",
 									"console.log(\"csvData: \" + csvData);\r",
 									"\r",
 									"\r",
@@ -4581,7 +4581,7 @@
 							"script": {
 								"id": "c75def5b-7a82-44e2-9812-70d5edc20f47",
 								"exec": [
-									"pm.variables.set(\"bodyToUpload\", pm.variables.get(\"bodyToSend\"));"
+									"pm.environment.set(\"bodyToUpload\", pm.environment.get(\"requestBody\"));"
 								],
 								"type": "text/javascript",
 								"packages": {}
