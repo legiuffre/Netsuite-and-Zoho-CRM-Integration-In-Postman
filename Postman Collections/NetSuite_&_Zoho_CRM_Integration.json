@@ -5667,7 +5667,7 @@
 									"pm.environment.set(\"starttime\", starttime.toString());\r",
 									"pm.environment.set(\"endtime\", endtime.toString());\r",
 									"\r",
-									"pm.environment.set(\"zonar_truck_vin\", \"1M1AN4GYXPM036645\");\r",
+									"pm.environment.set(\"zonar_truck_vin\", \"4V4NC9EH9PN621819\");\r",
 									"\r",
 									"console.log(\"starttime: \" + starttime.toString());\r",
 									"console.log(\"endtime: \" + endtime.toString());"
@@ -5746,117 +5746,6 @@
 								{
 									"key": "reqtype",
 									"value": "vin"
-								},
-								{
-									"key": "logvers",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Jbus Trip Report - Test Copy",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "62afd770-b196-48c1-9726-1906a8a1177d",
-								"exec": [
-									"const currentDate = new Date();\r",
-									"const endOfDayToday = new Date(currentDate.setHours(23, 59, 59, 999));\r",
-									"\r",
-									"// Calculate the start of 7 days prior\r",
-									"const startOfPriorPeriod = new Date(currentDate);\r",
-									"startOfPriorPeriod.setDate(currentDate.getDate() - 7);\r",
-									"startOfPriorPeriod.setHours(0, 0, 0, 0);\r",
-									"\r",
-									"const starttime = Math.floor(startOfPriorPeriod.getTime() / 1000);\r",
-									"const endtime = Math.floor(endOfDayToday.getTime() / 1000);\r",
-									"\r",
-									"pm.environment.set(\"starttime\", starttime.toString());\r",
-									"pm.environment.set(\"endtime\", endtime.toString());\r",
-									"\r",
-									"pm.environment.set(\"zonar_truck_vin\", \"RKA 622155\");\r",
-									"\r",
-									"console.log(\"starttime: \" + starttime.toString());\r",
-									"console.log(\"endtime: \" + endtime.toString());"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "3fd5617c-48db-425a-b7c8-a5005c5baee3",
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"id": "5b2805a1-f664-4ed3-b6ec-4a1da5806478",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://omi.zonarsystems.net/interface.php?action=showopen&operation=jbustrip&format=xml&start={{starttime}}&end={{endtime}}&customer={{zonar_customer_id}}&username={{zonar_u}}&password={{zonar_p}}&target={{zonar_truck_vin}}&reqtype=fleet&logvers=1",
-							"protocol": "https",
-							"host": [
-								"omi",
-								"zonarsystems",
-								"net"
-							],
-							"path": [
-								"interface.php"
-							],
-							"query": [
-								{
-									"key": "action",
-									"value": "showopen"
-								},
-								{
-									"key": "operation",
-									"value": "jbustrip"
-								},
-								{
-									"key": "format",
-									"value": "xml"
-								},
-								{
-									"key": "start",
-									"value": "{{starttime}}"
-								},
-								{
-									"key": "end",
-									"value": "{{endtime}}"
-								},
-								{
-									"key": "customer",
-									"value": "{{zonar_customer_id}}"
-								},
-								{
-									"key": "username",
-									"value": "{{zonar_u}}"
-								},
-								{
-									"key": "password",
-									"value": "{{zonar_p}}"
-								},
-								{
-									"key": "target",
-									"value": "{{zonar_truck_vin}}"
-								},
-								{
-									"key": "reqtype",
-									"value": "fleet"
 								},
 								{
 									"key": "logvers",
