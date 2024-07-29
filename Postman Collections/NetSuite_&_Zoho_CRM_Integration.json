@@ -785,11 +785,7 @@
 							"script": {
 								"id": "5580f58b-f321-4967-9e2f-f0e0fbc525df",
 								"exec": [
-									"var jsonData = JSON.parse(responseBody);\r",
-									"// Fixed TypeError by checking if jsonData.data is not null and has length\r",
-									"if(jsonData.data && jsonData.data.length > 0) {\r",
-									"    // pm.environment.set(\"z_Accounts_acct_id\", jsonData.data[0][\"id\"]);\r",
-									"}"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
