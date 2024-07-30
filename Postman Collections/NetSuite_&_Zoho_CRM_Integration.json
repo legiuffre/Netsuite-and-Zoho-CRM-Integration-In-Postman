@@ -4664,7 +4664,7 @@
 						"auth": {
 							"type": "apikey",
 							"apikey": {
-								"value": "PMAK-662145afcce8640001f46fe6-193c9ee0349367ff46d6c83348996cae99",
+								"value": "{{postman_x_api_key}}",
 								"key": "X-API-Key",
 								"in": "header"
 							}
@@ -4678,13 +4678,13 @@
 							},
 							{
 								"key": "x-workspace-id",
-								"value": "69846068-eace-44a2-859b-d7fdf1b963c6",
+								"value": "{{postman_workspace_id}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"webhook\":{\r\n        \"name\": \"Refresh Access Token\",\r\n        \"collection\": \"28539332-d56f4aa6-8dac-412d-b755-54004049624c\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"webhook\":{\r\n        \"name\": \"Refresh Access Token\",\r\n        \"collection\": {{postman_collection_id}}\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4692,7 +4692,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://api.getpostman.com/webhooks?workspace=69846068-eace-44a2-859b-d7fdf1b963c6",
+							"raw": "https://api.getpostman.com/webhooks?workspace={{postman_workspace_id}}",
 							"protocol": "https",
 							"host": [
 								"api",
@@ -4705,7 +4705,7 @@
 							"query": [
 								{
 									"key": "workspace",
-									"value": "69846068-eace-44a2-859b-d7fdf1b963c6"
+									"value": "{{postman_workspace_id}}"
 								}
 							]
 						}
