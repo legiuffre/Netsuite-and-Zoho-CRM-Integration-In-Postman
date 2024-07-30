@@ -4540,7 +4540,7 @@
 								}
 							}
 						},
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/{{filename}}:/content"
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/{{filename}}:/content"
 					},
 					"response": []
 				},
@@ -4944,7 +4944,7 @@
 						"header": [
 							{
 								"key": "ZANALYTICS-ORGID",
-								"value": "769480731",
+								"value": "{{zoho_analytics_org_id}}",
 								"type": "text"
 							},
 							{
