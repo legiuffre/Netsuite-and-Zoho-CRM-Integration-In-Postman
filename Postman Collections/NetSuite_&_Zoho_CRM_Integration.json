@@ -5197,7 +5197,7 @@
 						"header": [
 							{
 								"key": "ZANALYTICS-ORGID",
-								"value": "769480731",
+								"value": "{{zoho_analytics_org_id}}",
 								"type": "text"
 							},
 							{
@@ -5207,7 +5207,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://analyticsapi.zoho.com/restapi/v2/workspaces/2511359000014178125/views/2511359000014195322/rows?CONFIG={{config}}",
+							"raw": "https://analyticsapi.zoho.com/restapi/v2/workspaces/{{zoho_analytics_workspace_id}}/views/{{zoho_analytics_netsuite_ar_view_id}}/rows?CONFIG={{config}}",
 							"protocol": "https",
 							"host": [
 								"analyticsapi",
@@ -5218,9 +5218,9 @@
 								"restapi",
 								"v2",
 								"workspaces",
-								"2511359000014178125",
+								"{{zoho_analytics_workspace_id}}",
 								"views",
-								"2511359000014195322",
+								"{{zoho_analytics_netsuite_ar_view_id}}",
 								"rows"
 							],
 							"query": [
