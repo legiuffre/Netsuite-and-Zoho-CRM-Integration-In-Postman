@@ -3649,16 +3649,6 @@
 							"script": {
 								"id": "7b6a3e38-6b2b-4de8-a146-4f7a4e2d81f0",
 								"exec": [
-									"// pm.variables.set(pm.environment.get(\"lastLease\"));\r",
-									"\r",
-									"// // Parse the date string from the variables\r",
-									"// const effectiveDate = new Date(pm.variables.get(\"Effective_Date\"));\r",
-									"// effectiveDate.setTime(effectiveDate.getTime() + 518400000);\r",
-									"// const updatedDate = effectiveDate.toISOString();\r",
-									"\r",
-									"// // Set the date back to the variables\r",
-									"// pm.variables.set(\"Effective_Date\", updatedDate);\r",
-									"\r",
 									"// Get the value of the variable\r",
 									"const wklyPropTaxPmtValue = pm.variables.get(\"Wkly_Property_Tax_Payment\");\r",
 									"\r",
