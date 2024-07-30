@@ -4268,7 +4268,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/sites/16f546e6-73a8-4e41-aeb9-5b4063ed000f/Drives"
+						"url": "https://graph.microsoft.com/v1.0/sites/{{microsoft_it_group_id}}/Drives"
 					},
 					"response": []
 				},
@@ -5039,7 +5039,7 @@
 						"header": [
 							{
 								"key": "ZANALYTICS-ORGID",
-								"value": "769480731"
+								"value": "{{zoho_analytics_org_id}}"
 							},
 							{
 								"key": "Authorization",
