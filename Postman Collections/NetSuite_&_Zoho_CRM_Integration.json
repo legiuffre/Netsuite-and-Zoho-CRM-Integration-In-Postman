@@ -4389,7 +4389,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/groups/7d9f4924-99d9-46ec-9ece-f1b5a369fa56/sites/root"
+						"url": "https://graph.microsoft.com/v1.0/groups/{{microsoft_general_it_group_id}}/sites/root"
 					},
 					"response": []
 				},
@@ -4492,7 +4492,7 @@
 								}
 							}
 						},
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/{{filename}}:/content"
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/items/{{microsoft_prod_accounts_path}}:/{{filename}}:/content"
 					},
 					"response": []
 				},
@@ -4540,7 +4540,7 @@
 								}
 							}
 						},
-						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/items/01LA3HTCUCHP24UDZUUZFI25JEGB26AANN:/{{filename}}:/content"
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/items/{{microsoft_prod_accounts_path}}:/{{filename}}:/content"
 					},
 					"response": []
 				},
