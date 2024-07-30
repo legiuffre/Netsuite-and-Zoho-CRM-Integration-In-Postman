@@ -1074,20 +1074,7 @@
 							"script": {
 								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
 								"exec": [
-									"// // Test if the response status code is 200 OK\r",
-									"// pm.test(\"Status code is 200\", function () {\r",
-									"//     pm.response.to.have.status(200);\r",
-									"// });\r",
-									"\r",
-									"// // Test if the response body is a valid JSON\r",
-									"// pm.test(\"Response body is JSON\", function () {\r",
-									"//     pm.response.to.be.json;\r",
-									"// });\r",
-									"\r",
-									"// // Test if the response contains a specific key\r",
-									"// pm.test(\"Response contains key 'results'\", function () {\r",
-									"//     pm.expect(pm.response.json()).to.have.property('data');\r",
-									"// });"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
