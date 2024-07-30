@@ -4286,7 +4286,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/sites/42dffe85-6c8e-4985-abf7-e2ec5d8448b5/Drives"
+						"url": "https://graph.microsoft.com/v1.0/sites/{{microsoft_contracts_group_id}}/Drives"
 					},
 					"response": []
 				},
@@ -4304,7 +4304,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!5kb1FqhzQU6uuVtAY-0ADw9iqpw8HN5PmgivNUrL6wfw8L0CyVuzTrsBZ4apx6W_/root:/FedEx"
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/root:/FedEx"
 					},
 					"response": []
 				},
@@ -4353,7 +4353,7 @@
 								"value": "Bearer {{microsoft_access_token}}"
 							}
 						],
-						"url": "https://graph.microsoft.com/v1.0/Drives/b!hf7fQo5shUmr9-LsXYRItRdMXfuy1-lBicYuekA6JkEUVJvaVkInRpKsoKBDJaBq/root:/Accounts:/search(q='{zztest-truck-record}')"
+						"url": "https://graph.microsoft.com/v1.0/Drives/{{microsoft_prod_site_id}}/root:/Accounts:/search(q='{zztest-truck-record}')"
 					},
 					"response": []
 				},
