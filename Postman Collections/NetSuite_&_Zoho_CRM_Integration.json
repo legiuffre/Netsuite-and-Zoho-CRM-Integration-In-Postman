@@ -2385,11 +2385,7 @@
 							"script": {
 								"id": "2c2febd9-355e-4efe-8e8c-d21b63f37e33",
 								"exec": [
-									"if(pm.environment.get(\"enableProd\") === \"true\") {\r",
-									"    pm.environment.set(\"monthly_custom_search\",\"customsearch1037\");\r",
-									"} else {\r",
-									"    pm.environment.set(\"monthly_custom_search\",\"customsearch1037\");\r",
-									"}"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -2400,20 +2396,7 @@
 							"script": {
 								"id": "df4bc6b9-049a-43e2-816d-4f5c1ba87faa",
 								"exec": [
-									"// Test if the response status code is 200 OK\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"// Test if the response body is a valid JSON\r",
-									"pm.test(\"Response body is JSON\", function () {\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									"// Test if the response contains a specific key\r",
-									"pm.test(\"Response contains key 'results'\", function () {\r",
-									"    pm.expect(pm.response.json()).to.have.property('results');\r",
-									"});"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
