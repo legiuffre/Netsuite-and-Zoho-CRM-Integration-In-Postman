@@ -5021,30 +5021,7 @@
 							"script": {
 								"id": "69fcec36-a060-4563-9188-f7c3aa321c99",
 								"exec": [
-									"let config = JSON.parse(pm.variables.get(\"config\"));\r",
-									"console.log(\"config \" + config[\"GROUP(invoicenum)\"]);\r",
-									"\r",
-									"let maxCust = config[\"MAX(entity)\"];\r",
-									"let invNo = config[\"GROUP(invoicenum)\"];\r",
-									"let sumRem = config[\"SUM(amountremaining)\"];\r",
-									"let maxOfDueDate = config[\"MAX(duedate)\"];\r",
-									"let maxOfDate = config[\"MAX(trandate)\"];\r",
-									"\r",
-									"let jsonObj = {\r",
-									"  \"columns\": {\r",
-									"    \"Maximum of Customer\": maxCust,\r",
-									"    \"Invoice Number\": invNo,\r",
-									"    \"Sum of Amount Remaining\": sumRem,\r",
-									"    \"Maximum of Due Date\": maxOfDueDate,\r",
-									"    \"Maximum of Date\": maxOfDate\r",
-									"  }\r",
-									"};\r",
-									"\r",
-									"let jsonString = JSON.stringify(jsonObj);\r",
-									"console.log(\"jsonString: \" + jsonString);\r",
-									"let encodedStr = encodeURIComponent(jsonString);\r",
-									"console.log(\"encoded json: \" + encodedStr);\r",
-									"pm.variables.set(\"config\", encodedStr);"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -5289,15 +5266,7 @@
 							"script": {
 								"id": "e61b3972-fb1e-4d11-9cdb-3d07ab6d3ad0",
 								"exec": [
-									"let jsonObj = {\r",
-									"  \"deleteAllRows\": \"true\"\r",
-									"};\r",
-									"\r",
-									"let jsonString = JSON.stringify(jsonObj);\r",
-									"console.log(\"jsonString: \" + jsonString);\r",
-									"let encodedStr = encodeURIComponent(jsonString);\r",
-									"console.log(\"encoded json: \" + encodedStr);\r",
-									"pm.variables.set(\"config\", encodedStr);"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
