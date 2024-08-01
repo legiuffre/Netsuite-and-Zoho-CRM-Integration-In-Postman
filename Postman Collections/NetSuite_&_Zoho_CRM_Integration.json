@@ -504,7 +504,7 @@
 					"response": []
 				},
 				{
-					"name": "POST Get Delivered Trucks Copy",
+					"name": "POST Get Delivered Trucks",
 					"event": [
 						{
 							"listen": "test",
@@ -544,7 +544,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated, Zonar_GPS_ID, Lease_Start_Date, Current_Mileage from Trucks where (Truck_Status = '-Delivered' and (Mileage_Last_Updated < '{{today}}' or Mileage_Last_Updated is null)) and (Zonar_GPS_ID is not null) limit {{limit}}\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated, Lease_Start_Date, Current_Mileage from Trucks where (Truck_Status = '-Delivered' and (Mileage_Last_Updated < '{{today}}' or Mileage_Last_Updated is null)) limit {{limit}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -556,7 +556,7 @@
 					"response": []
 				},
 				{
-					"name": "POST Get Delivered Truck - DEV",
+					"name": "POST Get Delivered Truck with Zonar - DEV",
 					"event": [
 						{
 							"listen": "test",
