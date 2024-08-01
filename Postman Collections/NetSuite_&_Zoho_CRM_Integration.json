@@ -1323,6 +1323,70 @@
 					"response": []
 				},
 				{
+					"name": "GET Sales Assist Rec ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "549090f6-4973-4436-94e7-645529daa3f0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v6/Trucks/{{z_truck_id}}/Truck_PM?fields=id",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v6",
+								"Trucks",
+								"{{z_truck_id}}",
+								"Truck_PM"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET Truck by VIN - TEST",
 					"event": [
 						{
