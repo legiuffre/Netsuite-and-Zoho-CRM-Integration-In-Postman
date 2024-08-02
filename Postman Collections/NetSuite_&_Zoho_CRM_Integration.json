@@ -5590,12 +5590,7 @@
 							"script": {
 								"id": "62afd770-b196-48c1-9726-1906a8a1177d",
 								"exec": [
-									"const currentDate = new Date();\r",
-									"const endOfDayToday = new Date(currentDate.setHours(23, 59, 59, 999));\r",
-									"\r",
-									"const endtime = Math.floor(endOfDayToday.getTime() / 1000);\r",
-									"\r",
-									"pm.environment.set(\"endtime\", endtime.toString());"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
