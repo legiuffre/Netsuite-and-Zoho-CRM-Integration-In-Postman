@@ -2957,10 +2957,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://7936739.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=1001&deploy=1",
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_script_id}}&deploy=1",
 							"protocol": "https",
 							"host": [
-								"7936739",
+								"{{ns_acct_url_id}}",
 								"restlets",
 								"api",
 								"netsuite",
@@ -2975,7 +2975,7 @@
 							"query": [
 								{
 									"key": "script",
-									"value": "1001"
+									"value": "{{custom_search_script_id}}"
 								},
 								{
 									"key": "deploy",
