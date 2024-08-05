@@ -5150,6 +5150,73 @@
 					"response": []
 				},
 				{
+					"name": "Add Row in Postman Escrow Extract",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "69fcec36-a060-4563-9188-f7c3aa321c99",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "f4a0a1ac-2dc2-4f06-878d-cd5198dabf8e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "ZANALYTICS-ORGID",
+								"value": "{{zoho_analytics_org_id}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "Zoho-oauthtoken {{analytics-token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://analyticsapi.zoho.com/restapi/v2/workspaces/{{zoho_analytics_workspace_id}}/views/{{zoho_analytics_pm_escrow_extract_view_id}}/rows?CONFIG={{config}}",
+							"protocol": "https",
+							"host": [
+								"analyticsapi",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"restapi",
+								"v2",
+								"workspaces",
+								"{{zoho_analytics_workspace_id}}",
+								"views",
+								"{{zoho_analytics_pm_escrow_extract_view_id}}",
+								"rows"
+							],
+							"query": [
+								{
+									"key": "CONFIG",
+									"value": "{{config}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update Row - Test",
 					"event": [
 						{
@@ -5346,6 +5413,72 @@
 								"{{zoho_analytics_workspace_id}}",
 								"views",
 								"{{zoho_analytics_netsuite_ap_view_id}}",
+								"rows"
+							],
+							"query": [
+								{
+									"key": "CONFIG",
+									"value": "{{config}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All Rows in Postman Escrow Extract",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e61b3972-fb1e-4d11-9cdb-3d07ab6d3ad0",
+								"exec": [
+									"let jsonObj = {\r",
+									"  \"deleteAllRows\": \"true\"\r",
+									"};\r",
+									"\r",
+									"let jsonString = JSON.stringify(jsonObj);\r",
+									"console.log(\"jsonString: \" + jsonString);\r",
+									"let encodedStr = encodeURIComponent(jsonString);\r",
+									"console.log(\"encoded json: \" + encodedStr);\r",
+									"pm.variables.set(\"config\", encodedStr);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "d69bfe32-46a8-439c-bc10-09b677ecab9a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "ZANALYTICS-ORGID",
+								"value": "769480731"
+							},
+							{
+								"key": "Authorization",
+								"value": "Zoho-oauthtoken {{analytics-token}}"
+							}
+						],
+						"url": {
+							"raw": "https://analyticsapi.zoho.com/restapi/v2/workspaces/{{zoho_analytics_workspace_id}}/views/{{zoho_analytics_pm_escrow_extract_view_id}}/rows?CONFIG={{config}}",
+							"protocol": "https",
+							"host": [
+								"analyticsapi",
+								"zoho",
+								"com"
+							],
+							"path": [
+								"restapi",
+								"v2",
+								"workspaces",
+								"{{zoho_analytics_workspace_id}}",
+								"views",
+								"{{zoho_analytics_pm_escrow_extract_view_id}}",
 								"rows"
 							],
 							"query": [
