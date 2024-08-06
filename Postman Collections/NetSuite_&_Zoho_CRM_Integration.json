@@ -5828,10 +5828,10 @@
 									"const starttime = Math.floor(startOfPriorPeriod.getTime() / 1000);\r",
 									"const endtime = Math.floor(endOfDayToday.getTime() / 1000);\r",
 									"\r",
-									"pm.environment.set(\"starttime\", \"1634187600\");\r",
+									"pm.environment.set(\"starttime\", starttime.toString());\r",
 									"pm.environment.set(\"endtime\", endtime.toString());\r",
 									"\r",
-									"pm.environment.set(\"zonar_truck_vin\", \"1M1AN4GY1NM027670\");\r",
+									"pm.environment.set(\"zonar_truck_vin\", \"3AKJHHDR6RSUY3216\");\r",
 									"\r",
 									"console.log(\"starttime: \" + starttime.toString());\r",
 									"console.log(\"endtime: \" + endtime.toString());"
