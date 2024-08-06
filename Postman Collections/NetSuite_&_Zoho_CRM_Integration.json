@@ -5734,7 +5734,9 @@
 							"script": {
 								"id": "3fd5617c-48db-425a-b7c8-a5005c5baee3",
 								"exec": [
-									""
+									"var jsonObject = xml2Json(responseBody);\r",
+									"\r",
+									"console.log(JSON.stringify(jsonObject, null, 2));"
 								],
 								"type": "text/javascript",
 								"packages": {}
