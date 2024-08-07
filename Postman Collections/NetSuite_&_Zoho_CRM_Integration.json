@@ -179,7 +179,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "https://accounts.zoho.com/oauth/v2/token?client_id={{prod_zoho_client_id}}&client_secret={{prod_zoho_client_secret}}&grant_type=client_credentials&scope=ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.coql.READ,ZohoCRM.modules.DELETE&soid={{zoho_org_soid}}",
+							"raw": "https://accounts.zoho.com/oauth/v2/token?client_id={{prod_zoho_client_id}}&client_secret={{prod_zoho_client_secret}}&grant_type=client_credentials&scope=ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.coql.READ&soid={{zoho_org_soid}}",
 							"protocol": "https",
 							"host": [
 								"accounts",
@@ -206,7 +206,7 @@
 								},
 								{
 									"key": "scope",
-									"value": "ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.coql.READ,ZohoCRM.modules.DELETE"
+									"value": "ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.coql.READ"
 								},
 								{
 									"key": "soid",
