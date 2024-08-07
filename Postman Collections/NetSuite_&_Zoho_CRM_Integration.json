@@ -5734,9 +5734,18 @@
 							"script": {
 								"id": "3fd5617c-48db-425a-b7c8-a5005c5baee3",
 								"exec": [
-									"var jsonObject = xml2Json(responseBody);\r",
+									"// Retrieve the XML response body\r",
+									"var xmlResponse = pm.response.text();\r",
 									"\r",
-									"console.log(JSON.stringify(jsonObject, null, 2));"
+									"// Convert the XML response to JSON\r",
+									"var jsonResponse = xml2Json(xmlResponse);\r",
+									"\r",
+									"// Log the JSON response to the Postman console for debugging\r",
+									"console.log(jsonResponse);\r",
+									"\r",
+									"// Optionally, you can set an environment or global variable with the JSON response\r",
+									"pm.environment.set(\"jsonResponse\", JSON.stringify(jsonResponse));\r",
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
