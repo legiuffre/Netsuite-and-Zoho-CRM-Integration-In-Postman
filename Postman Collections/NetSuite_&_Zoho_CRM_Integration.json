@@ -3091,6 +3091,78 @@
 					"response": []
 				},
 				{
+					"name": "GET Prior Month Escrow Detail - IMPORT",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9f978d71-0e2a-4f7a-b9c8-f4372057e9c9",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9026a1f3-be2b-4760-bd65-3ee44efb6fc2",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "80122a0a-a404-4d05-ae84-89a020c7e525",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"searchID\": \"customsearch1213\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_script_id}}&deploy=1",
+							"protocol": "https",
+							"host": [
+								"{{ns_acct_url_id}}",
+								"restlets",
+								"api",
+								"netsuite",
+								"com"
+							],
+							"path": [
+								"app",
+								"site",
+								"hosting",
+								"restlet.nl"
+							],
+							"query": [
+								{
+									"key": "script",
+									"value": "{{custom_search_script_id}}"
+								},
+								{
+									"key": "deploy",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET Prior Month Escrow Detail - Single Record - dev",
 					"event": [
 						{
