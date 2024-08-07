@@ -556,6 +556,58 @@
 					"response": []
 				},
 				{
+					"name": "POST Get Delivered Trucks Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "0579b0af-5d0f-4abc-82a1-dddb41ea1e49",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{zoho_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name, Mileage_Last_Updated, Lease_Start_Date, Current_Mileage from Trucks where (Truck_Status = '-Delivered' and (Mileage_Last_Updated < '{{today}}' or Mileage_Last_Updated is null)) limit {{limit}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/coql"
+					},
+					"response": []
+				},
+				{
 					"name": "POST Get Delivered Truck with Zonar - DEV",
 					"event": [
 						{
@@ -3021,7 +3073,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"searchID\": \"customsearch1188\",\r\n    \"searchColumn\": \"custcol1\",\r\n    \"searchValue\":\"1FUJHHDR2RLUY0812\"\r\n}",
+							"raw": "{\r\n    \"searchID\": \"customsearch1212\",\r\n    \"searchColumn\": \"custcol1\",\r\n    \"searchValue\":\"1FUJHHDR2RLUY0812\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
