@@ -596,7 +596,59 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"select_query\" : \"SELECT id, Name from Trucks where Truck_Status = '-Delivered' limit {{limit}}\"\r\n}",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name from Trucks where Truck_Status = '-Delivered' OR Truck_Status = 'Virtual' OR Truck_Status = 'REL Solution Only' limit {{limit}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://www.zohoapis.com/crm/v6/coql"
+					},
+					"response": []
+				},
+				{
+					"name": "POST Get Delivered Trucks - Escrow Detail Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b99b55-8062-4c13-aba0-d59531d6b9d7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41bde604-c700-4cf4-98f4-f475058bb019",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "dfc27a90-1243-467b-872a-8b3032b5c136",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Zoho-oauthtoken {{zoho_access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"select_query\" : \"SELECT id, Name from Trucks where (Truck_Status = '-Delivered') or (Truck_Status = 'Virtual') or (Truck_Status = 'REL Solution Only')\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
