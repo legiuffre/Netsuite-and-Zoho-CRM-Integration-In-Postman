@@ -5485,15 +5485,7 @@
 							"script": {
 								"id": "e61b3972-fb1e-4d11-9cdb-3d07ab6d3ad0",
 								"exec": [
-									"let jsonObj = {\r",
-									"  \"deleteAllRows\": \"true\"\r",
-									"};\r",
-									"\r",
-									"let jsonString = JSON.stringify(jsonObj);\r",
-									"console.log(\"jsonString: \" + jsonString);\r",
-									"let encodedStr = encodeURIComponent(jsonString);\r",
-									"console.log(\"encoded json: \" + encodedStr);\r",
-									"pm.variables.set(\"config\", encodedStr);"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
