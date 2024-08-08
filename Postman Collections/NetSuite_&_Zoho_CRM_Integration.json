@@ -1700,7 +1700,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Invoice Information Copy",
+					"name": "GET Invoice Information - DEV",
 					"event": [
 						{
 							"listen": "test",
