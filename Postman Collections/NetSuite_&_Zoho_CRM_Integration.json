@@ -1700,6 +1700,38 @@
 					"response": []
 				},
 				{
+					"name": "GET Invoice Information Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a2f0fa3-1077-4607-8ada-09a036a6a5dc",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "aac04861-4fa6-41eb-8803-91aaef5fcfb1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{zoho_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": "https://www.zohoapis.com/crm/v7/Invoices/4816208000089141397"
+					},
+					"response": []
+				},
+				{
 					"name": "GET Ready for NetLessor Lease",
 					"id": "a62ce557-4bde-47d1-955a-35500bb22321",
 					"protocolProfileBehavior": {
