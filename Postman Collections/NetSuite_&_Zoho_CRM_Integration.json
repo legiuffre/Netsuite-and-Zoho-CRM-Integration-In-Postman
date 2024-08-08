@@ -1630,58 +1630,6 @@
 							}
 						}
 					],
-					"id": "c45f007e-9b98-4c10-a1fa-089bf2439ea0",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer {{zoho_access_token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=((Status:equals:PhysDam/NTL Insurance Billing)or(Status:equals:SCO Billing)or(Status:equals:SCO Escrow Billing))",
-							"protocol": "https",
-							"host": [
-								"www",
-								"zohoapis",
-								"com"
-							],
-							"path": [
-								"crm",
-								"v6",
-								"Invoices",
-								"search"
-							],
-							"query": [
-								{
-									"key": "criteria",
-									"value": "((Status:equals:PhysDam/NTL Insurance Billing)or(Status:equals:SCO Billing)or(Status:equals:SCO Escrow Billing))"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GET Approved Invoices",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "6a2f0fa3-1077-4607-8ada-09a036a6a5dc",
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
 					"id": "a9dac620-a8b1-4f68-93fe-c80ec70492c3",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
