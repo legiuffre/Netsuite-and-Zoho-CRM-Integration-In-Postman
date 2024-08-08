@@ -3472,7 +3472,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script={{custom_search_col_script_id}}&deploy=1",
+							"raw": "https://{{ns_acct_url_id}}.restlets.api.netsuite.com/app/site/hosting/restlet.nl?script=1016&deploy=1",
 							"protocol": "https",
 							"host": [
 								"{{ns_acct_url_id}}",
@@ -3490,7 +3490,7 @@
 							"query": [
 								{
 									"key": "script",
-									"value": "{{custom_search_col_script_id}}"
+									"value": "1016"
 								},
 								{
 									"key": "deploy",
