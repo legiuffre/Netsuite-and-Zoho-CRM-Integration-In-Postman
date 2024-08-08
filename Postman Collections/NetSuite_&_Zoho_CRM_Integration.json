@@ -1696,7 +1696,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=(Status:equals:Approved)",
+							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=(Status:equals:Approved)&fields=id",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -1713,6 +1713,10 @@
 								{
 									"key": "criteria",
 									"value": "(Status:equals:Approved)"
+								},
+								{
+									"key": "fields",
+									"value": "id"
 								}
 							]
 						}
@@ -1720,7 +1724,7 @@
 					"response": []
 				},
 				{
-					"name": "GET Approved Invoices Copy",
+					"name": "GET Invoice Information",
 					"event": [
 						{
 							"listen": "test",
@@ -1747,7 +1751,7 @@
 								"type": "text"
 							}
 						],
-						"url": "https://www.zohoapis.com/crm/v7/Invoices/4816208000120023514"
+						"url": "https://www.zohoapis.com/crm/v7/Invoices/{{invoice_id}}"
 					},
 					"response": []
 				},
