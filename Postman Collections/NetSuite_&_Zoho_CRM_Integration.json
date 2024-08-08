@@ -1616,7 +1616,7 @@
 					"response": []
 				},
 				{
-					"name": "GET SCO/PhysDam Invoices",
+					"name": "GET Ready Invoices",
 					"event": [
 						{
 							"listen": "test",
@@ -1696,7 +1696,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=(Status:equals:Approved)&fields=id",
+							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=((Status:equals:PhysDam/NTL Insurance Billing)or(Status:equals:SCO Billing)or(Status:equals:SCO Escrow Billing)or(Status:equals:Approved))",
 							"protocol": "https",
 							"host": [
 								"www",
@@ -1712,11 +1712,7 @@
 							"query": [
 								{
 									"key": "criteria",
-									"value": "(Status:equals:Approved)"
-								},
-								{
-									"key": "fields",
-									"value": "id"
+									"value": "((Status:equals:PhysDam/NTL Insurance Billing)or(Status:equals:SCO Billing)or(Status:equals:SCO Escrow Billing)or(Status:equals:Approved))"
 								}
 							]
 						}
