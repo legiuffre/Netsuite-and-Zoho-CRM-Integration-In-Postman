@@ -1747,27 +1747,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=(Status:equals:Approved)",
-							"protocol": "https",
-							"host": [
-								"www",
-								"zohoapis",
-								"com"
-							],
-							"path": [
-								"crm",
-								"v6",
-								"Invoices",
-								"search"
-							],
-							"query": [
-								{
-									"key": "criteria",
-									"value": "(Status:equals:Approved)"
-								}
-							]
-						}
+						"url": "https://www.zohoapis.com/crm/v7/Invoices/4816208000120023514"
 					},
 					"response": []
 				},
