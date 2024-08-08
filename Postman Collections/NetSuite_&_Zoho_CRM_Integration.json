@@ -1720,6 +1720,58 @@
 					"response": []
 				},
 				{
+					"name": "GET Approved Invoices Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a2f0fa3-1077-4607-8ada-09a036a6a5dc",
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "cf608ab0-50cd-45c1-a1fb-b38fbfe37017",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{zoho_access_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://www.zohoapis.com/crm/v6/Invoices/search?criteria=(Status:equals:Approved)",
+							"protocol": "https",
+							"host": [
+								"www",
+								"zohoapis",
+								"com"
+							],
+							"path": [
+								"crm",
+								"v6",
+								"Invoices",
+								"search"
+							],
+							"query": [
+								{
+									"key": "criteria",
+									"value": "(Status:equals:Approved)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET Ready for NetLessor Lease",
 					"id": "a62ce557-4bde-47d1-955a-35500bb22321",
 					"protocolProfileBehavior": {
