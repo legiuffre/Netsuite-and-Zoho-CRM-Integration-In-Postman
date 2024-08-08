@@ -1691,7 +1691,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer {{access_token}}",
+								"value": "Bearer {{zoho_access_token}}",
 								"type": "text"
 							}
 						],
